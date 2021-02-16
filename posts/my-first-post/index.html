@@ -1,0 +1,32 @@
+<!doctype html><html lang=en><head><title>Primeiro post :: Blog do Arthur M.</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Depois de algum tempo prometendo, finalmente criei um blog!
+Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de tecnologia.
+Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui fazer esse blog, pra ajudar quem quiser começar"><meta name=keywords content="talk"><meta name=robots content="noodp"><link rel=canonical href=https://arthurmco.github.io/posts/my-first-post/><link rel=stylesheet href=https://arthurmco.github.io/assets/style.css><link rel=stylesheet href=https://arthurmco.github.io/assets/green.css><link rel=apple-touch-icon href=https://arthurmco.github.io/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=https://arthurmco.github.io/img/favicon/green.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="Primeiro post"><meta property="og:description" content="Primeiro post, onde eu falo como eu fiz esse blog e do que eu vou falar"><meta property="og:url" content="https://arthurmco.github.io/posts/my-first-post/"><meta property="og:site_name" content="Blog do Arthur M."><meta property="og:image" content="https://arthurmco.github.io/"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2021-02-16 01:09:54 -0300 -0300"></head><body class=green><div class="container center headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=https://arthurmco.github.io/><div class=logo>Blog do Arthur M.</div></a></div></div></header><div class=content><div class=post><h1 class=post-title><a href=https://arthurmco.github.io/posts/my-first-post/>Primeiro post</a></h1><div class=post-meta><span class=post-date>2021-02-16</span>
+<span class=post-author>:: Arthur M</span></div><span class=post-tags>#<a href=https://arthurmco.github.io/tags/primeiro-post/>primeiro post</a>&nbsp;
+#<a href=https://arthurmco.github.io/tags/hugo/>hugo</a>&nbsp;
+#<a href=https://arthurmco.github.io/tags/jekyllrb/>jekyllrb</a>&nbsp;</span><div class=post-content><div><p>Depois de algum tempo prometendo, finalmente criei um blog!</p><p>Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu
+achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de
+tecnologia.</p><p>Eu poderia criar uma página de teste, ou um &ldquo;Olá mundo&rdquo;, mas vou falar sobre como eu consegui
+fazer esse blog, pra ajudar quem quiser começar</p><h2 id=como>Como?<a href=#como class=hanchor arialabel=Anchor>&#8983;</a></h2><p>Ao invés de usar o medium, ou o dev.to, decidi usar uma plataforma que gera sites estáticos
+chamada <a href=https://gohugo.io/>Hugo</a>, feita em Go.</p><p>Eu procurei algumas, e estava indeciso entre essa e o <a href=https://jekyllrb.com/>Jekyll</a>, mas o Jekyll
+é feito em uma linguagem que eu usei muito pouco, e mal passei do tutorial; além disso eu iria
+precisar instalar o Ruby.</p><p>Instalar o Hugo não foi difícil, basicamente é tão simples quanto instalar um programa qualquer.</p><p>Pra criar o site, você digita <code>hugo new site &lt;nome></code>, e ele vai criar um site dentro da pasta
+<code>&lt;nome></code>. Ele não cria um repositório git automaticamente, então você vai ter que fazer isso.</p><p>Existe um arquivo de configuração, que você vai ter que mexer pra colocar o que você quiser. O meu
+(até o presente momento) é assim:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=color:#a6e22e>baseURL</span> = <span style=color:#e6db74>&#34;https://arthurmco.github.io/&#34;</span>
+<span style=color:#a6e22e>languageCode</span> = <span style=color:#e6db74>&#34;pt-br&#34;</span>
+<span style=color:#a6e22e>title</span> = <span style=color:#e6db74>&#34;Blog do Arthur M.&#34;</span>
+<span style=color:#a6e22e>theme</span> = <span style=color:#e6db74>&#34;terminal&#34;</span>
+
+[<span style=color:#a6e22e>params</span>]
+  <span style=color:#a6e22e>fullWidthTheme</span> = <span style=color:#66d9ef>false</span>
+  <span style=color:#a6e22e>centerTheme</span> = <span style=color:#66d9ef>true</span>
+  <span style=color:#a6e22e>themeColor</span> = <span style=color:#e6db74>&#34;green&#34;</span>
+  <span style=color:#a6e22e>enableGitInfo</span> = <span style=color:#66d9ef>true</span>
+</code></pre></div><p>(Maravilhoso que o syntax highlighting funciona)</p><p>Pra mudar o tema, você pode fazer duas coisas: mover os arquivos dentro da pasta <code>themes/&lt;nomedotema></code>,
+ou criar um submódulo git nessa pasta aí. Lembre-se de editar o <code>config.toml</code> e botar o tema lá (que
+deve ser <code>&lt;nomedotema></code>).</p><p>Lembre-se que alguns temas possuem opções adicionais, algumas obrigatórias e outras não. Elas vão
+dentro de <code>[params]</code><br>O que eu instalei (que eu achei bonito pra caramba, pra falar a verdade), possui essas duas opções
+de cima obrigatórias, e as outras são opcionais</p><p>Pra criar um post, você digita <code>hugo new posts/my-first-post.md</code>. Ele vai criar um arquivo
+<code>my-first-post.md</code> dentro de <code>posts/</code>, e é onde você vai criar sua postagem. Lembre-se de escolher
+um nome que tenha a ver com o post.</p><p>O comando <code>hugo serve</code> te ajuda a visualizar como vai ficar teu site.</p><hr><p>Eu ainda não coloquei o blog no Github Pages. Depois que eu colocar, eu vou fazer a Parte 2 desse
+post.</p><p>Até mais!</p></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=https://arthurmco.github.io/assets/main.js></script><script src=https://arthurmco.github.io/assets/prism.js></script></div></body></html>
