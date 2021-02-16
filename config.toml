@@ -3,7 +3,7 @@ languageCode = "pt-br"
 title = "Blog do Arthur M."
 description = "Meu diário de coisas interessantes"
 theme = "terminal"
-disqusShortname = "arthurmco"
+disqusShortname = "https-arthurmco-github-io-blog"
 
 [params]
   fullWidthTheme = false
