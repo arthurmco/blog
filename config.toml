@@ -1,7 +1,9 @@
 baseURL = "https://arthurmco.github.io/blog/"
 languageCode = "pt-br"
 title = "Blog do Arthur M."
+description = "Meu diário de coisas interessantes"
 theme = "terminal"
+disqusShortname = "arthurmco"
 
 [params]
   fullWidthTheme = false
