@@ -71,4 +71,6 @@ O comando `hugo serve` te ajuda a visualizar como vai ficar teu site.
 Eu ainda não coloquei o blog no Github Pages. Depois que eu colocar, eu vou fazer a Parte 2 desse
 post.
 
+**EDIT**: A parte 2 está [aqui]({{< ref "/posts/my-first-post-pt2" >}})
+
 Até mais!

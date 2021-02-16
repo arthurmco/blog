@@ -6,7 +6,7 @@ theme = "terminal"
 [params]
   fullWidthTheme = false
   centerTheme = true
-  themeColor = "green"
+  themeColor = "red"
   enableGitInfo = true
 
 [params.logo]
