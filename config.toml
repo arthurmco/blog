@@ -1,7 +1,7 @@
 baseURL = "https://arthurmco.github.io/blog/"
 languageCode = "pt-br"
 title = "Blog do Arthur M."
-description = "Meu diário de coisas interessantes"
+subtitle = "Meu diário de coisas interessantes"
 theme = "terminal"
 disqusShortname = "https-arthurmco-github-io-blog"
 
@@ -10,6 +10,16 @@ disqusShortname = "https-arthurmco-github-io-blog"
   centerTheme = true
   themeColor = "red"
   enableGitInfo = true
+  showLastUpdated = true
 
-[params.logo]
-  logoText = "Blog do Arthur M."
+  [params.logo]
+    logoText = "Blog do Arthur M."
+
+[languages]
+  [languages.en]
+    title = "Blog do Arthur M."
+    subtitle = "Meu diário de coisas interessantes"
+
+  [languages.pt-br]
+    title = "Blog do Arthur M."
+    subtitle = "Meu diário de coisas interessantes"
