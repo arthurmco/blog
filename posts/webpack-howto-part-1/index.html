@@ -1,0 +1,313 @@
+<!doctype html><html lang=en>
+<head>
+<title>Como usar o Webpack - Parte 1 :: Blog do Arthur M.</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu vou explicar o que eu estou aprendendo.
+O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero.">
+<meta name=keywords content="webpack,javascript,webpack5">
+<meta name=robots content="noodp">
+<link rel=canonical href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>
+<link rel=stylesheet href=https://arthurmco.github.io/blog/assets/style.css>
+<link rel=stylesheet href=https://arthurmco.github.io/blog/assets/red.css>
+<link rel=apple-touch-icon href=https://arthurmco.github.io/blog/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://arthurmco.github.io/blog/img/favicon/red.png>
+<meta name=twitter:card content="summary">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como usar o Webpack - Parte 1">
+<meta property="og:description" content="Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.
+
+Nessa primeira parte, eu vou mostrar mais ou menos como ele funciona, 
+como instalar e como rodar ele.
+
+">
+<meta property="og:url" content="https://arthurmco.github.io/blog/posts/webpack-howto-part-1/">
+<meta property="og:site_name" content="Blog do Arthur M.">
+<meta property="og:image" content="https://arthurmco.github.io/blog/images/webpack-01-cover.png">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-09-11 23:15:56 -0300 -0300">
+</head>
+<body class=red>
+<div class="container center headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=https://arthurmco.github.io/blog/>
+<div class=logo>
+Blog do Arthur M.
+</div>
+</a>
+</div>
+</div>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>Como usar o Webpack - Parte 1</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-09-11 [Updated: 2021-09-11]
+</span>
+<span class=post-author>:: Arthur Mendes</span>
+</div>
+<span class=post-tags>
+#<a href=https://arthurmco.github.io/blog/tags/series/>series</a>&nbsp;
+#<a href=https://arthurmco.github.io/blog/tags/projetos/>projetos</a>&nbsp;
+</span>
+<img src=https://arthurmco.github.io/blog/images/webpack-01-cover.png class=post-cover alt="Como usar o Webpack - Parte 1">
+<div class=post-content><div>
+<p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.</p>
+<p>Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu
+vou explicar o que eu estou aprendendo.</p>
+<p>O meu intuito é chegar no ponto de &ldquo;criar&rdquo; um projeto Vue (que é o que
+esse projeto vai usar) do zero. Eu poderia ter usado Vue direto, mas
+queria testar algumas coisas antes usando Javascript puro, e o Webpack
+me proporcionou isso.</p>
+<p>Vou ser bem honesto: hoje em dia é mais viável usar o Webpack direto
+caso você queira fazer algo usando Javascript puro, com Javascript,
+HTML e CSS. Caso você queira usar React ou Vue, eles já vêm com
+ferramentas que abstraem o Webpack. Você não precisa configurar nada.</p>
+<p>Eu vou usar o Webpack 5. Eu não usei o 4 porque eu queria usar a
+versão mais nova, mas eu posso ver o 4 caso vocês estejam interessados.</p>
+<h1 id=o-que-é>O que é?<a href=#o-que-é class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<p>Antes de tudo, vamos falar sobre o que é o Webpack?</p>
+<p>Copiando da documentação deles:</p>
+<blockquote>
+<p>At its core, webpack is a static module bundler for modern
+JavaScript applications. When webpack processes your application, it
+internally builds a dependency graph from one or more entry points
+and then combines every module your project needs into one or more
+bundles, which are static assets to serve your content from.</p>
+</blockquote>
+<p>Traduzindo:</p>
+<blockquote>
+<p>Em sua essência, o webpack é um empacotador de módulo estático para
+aplicativos JavaScript modernos. Quando o webpack processa seu
+aplicativo, ele constrói internamente um gráfico de dependência a
+partir de um ou mais pontos de entrada e, em seguida, combina cada
+módulo de que seu projeto precisa em um ou mais pacotes, que são
+ativos estáticos para servir seu conteúdo.</p>
+</blockquote>
+<p>Resumindo: ele pega um arquivo de entrada (que você pode especificar
+qual), identifica todas as dependências dele e junta tudo em um
+arquivo de saída. O arquivo de entrada é chamado de <em>entry</em>, e o de
+saída é chamado de <em>bundle</em>. Você pode ter vários arquivos de saída em
+um projeto.</p>
+<p>Esses arquivos de saída são o que você inclui na sua página HTML</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>
+<span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+    &lt;<span style=color:#f92672>head</span>&gt;
+        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span>&gt;
+        &lt;<span style=color:#f92672>title</span>&gt;Minha página&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;/<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>body</span>&gt;
+        &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;saidadowebpack.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+        <span style=color:#75715e>&lt;!-- várias coisas maneiras e supimpas --&gt;</span>
+    &lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+
+
+</code></pre></div><p>Isso é muito bom para fazer deploy de bibliotecas Javascript nesses
+CDNs, já que você pode separar tudo em vários arquivos no ambiente de
+dev e gerar um arquivo só. Antes do Node se tornar popular,
+ferramentas assim provavelmente eram bem usadas.</p>
+<p>O Webpack tambem, usando <strong>loaders</strong> e <strong>plugins</strong>, pode converter
+arquivos de uma maneira que eles sejam usáveis dentro do
+Javascript. Os <strong>loaders</strong> simplesmente convertem arquivos em módulos
+Javascript, enquanto os <strong>plugins</strong> podem fazer mais coisas além
+disso, coisas que envolvem o bundle inteiro.</p>
+<p>Por exemplo, o <em>css-loader</em>, que é um loader que você pode usar para
+importar CSS dentro do Javascript, só precisa saber dos arquivos de
+entrada, então ele pode ser um loader mesmo. Já o
+<strong>HtmlWebpackPlugin</strong>, um plugin que gera páginas HTML para a
+aplicação que usa o Webpack, precisa saber o nome final do bundle,
+coisa que um loader não vai te fornecer, então ele só pode ser
+implementado como um plugin mesmo</p>
+<h2 id=criação>Criação<a href=#criação class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Inicialmente, você vai precisar instalar três pacotes: <code>webpack</code>,
+<code>webpack-cli</code> e <code>webpack-dev-server</code></p>
+<p>O <strong>webpack</strong> é o webpack em si, o <strong>webpack-cli</strong> é o pacote que contém a
+ferramentea de linha de comando do webpack (quando você digita
+<code>webpack</code> no console, você está chamando uma ferramenta do CLI), e o
+<strong>webpack-dev-server</strong> é um web server de desenvolvimento do webpack,
+que suporta várias coisas interessantes, como recarregar a página
+automaticamente quando uma mudança é feita.</p>
+<p>Para instalar os três:</p>
+<pre tabindex=0><code>
+npm install webpack webpack-cli webpack-dev-server
+
+
+</code></pre><p>A estrutura de pastas padrão esperada pelo webpack é a seguinte:</p>
+<pre tabindex=0><code>
+.
+├── dist
+└── src
+    └── index.js
+
+</code></pre><p>O arquivo <code>src/index.js</code> é o arquivo de entrada padrão. Isso significa
+que o webpack vai converter esse arquivo e todos os arquivos que ele
+importar (usando o <code>import ... from ...</code> do Javascript) em um arquivo
+de saída, ou bundle. O local padrão do bundle é <code>dist/main.js</code>, e esse
+arquivo é criado automaticamente.</p>
+<p>Você, então, pode incluir esse dist/main.js em qualquer página
+HTML.</p>
+<p>Dos arquivos importados, o webpack só vai incluir no bundle aquilo que
+foi realmente usado: funções, variáveis, etc. Ou seja, se um módulo
+define a função <code>soma</code> e a função <code>subtração</code>, mas você só usa a
+função <code>soma</code>, apenas essa função será incluída no bundle.</p>
+<p>Por exemplo, digamos que eu tenha dois arquivos (além do packages.json
+e a pasta node_modules, que eu tirei pra focarmos apenas nos arquivos
+importantes
+)</p>
+<pre tabindex=0><code>.
+└── src
+    ├── continhas.js
+    └── index.js
+
+</code></pre><p>com o continhas.js sendo:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
+<span style=color:#75715e>/** Soma dois valores **/</span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>soma</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>;
+}
+
+<span style=color:#75715e>/** Subtrai dois valores **/</span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>subtracao</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>
+}
+
+<span style=color:#66d9ef>export</span> {
+	<span style=color:#a6e22e>soma</span>,
+	<span style=color:#a6e22e>subtracao</span>
+}
+
+</code></pre></div><p>e o index.js (nossa entrada) sendo:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
+
+<span style=color:#66d9ef>import</span> {<span style=color:#a6e22e>soma</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./continhas.js&#39;</span>
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>30</span>;
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Hello world &#34;</span>, <span style=color:#a6e22e>soma</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Hello world &#34;</span>, <span style=color:#a6e22e>soma</span>(<span style=color:#a6e22e>a</span>, <span style=color:#ae81ff>20</span>));
+
+
+</code></pre></div><p>Lembre-se: o webpack começa pelo index.js, vai pegando os arquivos
+que o index.js importa e, de certa forma, os incluindo (na verdade,
+como você vai ver, ele faz mais do que isso)</p>
+<p>Rode o seguinte comando:</p>
+<pre tabindex=0><code>
+$ npx webpack
+
+</code></pre><p>Ele vai rodar o webpack.<br>
+Algumas mensagens de WARNING podem aparecer, mas elas só aparecem
+porque uma propriedade não foi definida no arquivo de configuração, e
+esse arquivo nós ainda não criamos.</p>
+<p>O arquivo dist/main.js vai ficar assim (na verdade, esse resultado
+pode mudar um pouco de versão pra versão do Webpack):</p>
+<pre tabindex=0><code>(()=&gt;{&quot;use strict&quot;;function o(o,l){return o+l}console.log(&quot;Hello world &quot;,o(10,20)),console.log(&quot;Hello world &quot;,o(30,20))})();
+</code></pre><p>Perceba que os <code>console.log</code>s ainda estão aqui. Mas algumas coisas
+aconteceram além disso. Por exemplo:</p>
+<ul>
+<li>
+<p><strong>Todos os comentários foram embora</strong>.<br>
+O Webpack remove os comentários no bundle final, já que o que ele
+faz é semelhante a uma compilação. Esse bundle é como um arquivo
+compilado</p>
+</li>
+<li>
+<p><strong>A função de subtração sumiu.</strong><br>
+Como eu disse antes, funções não usadas são removidas. Isso faz o
+arquivo final ser bem menor que os arquivos-fonte</p>
+<pre tabindex=0><code>[tuts@lula2022 webpack-test]$ ls -l dist/*.js
+-rw-rw-r--. 1 tuts tuts 124 Sep 11 22:31 dist/main.js
+[tuts@lula2022 webpack-test]$ ls -l src/*
+-rw-rw-r--. 1 tuts tuts 169 Sep 11 22:06 src/continhas.js
+-rw-rw-r--. 1 tuts tuts 155 Sep 11 22:30 src/index.js
+
+</code></pre><p>169 + 155 = 324<br>
+61% de redução do tamanho total do arquivo. Esse percentual pode
+variar, mas o arquivo final sempre vai ser menor que os fontes, já
+que ele é como se fosse um arquivo compilado. Ele não é feito pra
+ser lido por pessoas, como você pôde ver quando listamos o conteúdo
+dele.</p>
+</li>
+<li>
+<p><strong>A função de soma sumiu.</strong><br>
+Na verdade, a função soma ainda está aqui. O webpack só deu outro
+nome pra ela:</p>
+<pre tabindex=0><code>function o(o,l){return o+l}
+</code></pre><pre tabindex=0><code>function soma(o, l) {return o+l;}
+</code></pre><pre tabindex=0><code>function soma(a, b) {return a + b;}
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>/** Soma dois valores **/</span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>soma</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>b</span>;
+}
+</code></pre></div><p>Viu?
+A função <code>o(o, l)</code>, logo depois do &ldquo;use strict&rdquo;, é a nossa função
+soma. O webpack mudou o nome dela pro arquivo final ficar menor.<br>
+Esse processo de remoção de coisas (como comentários e mudança de
+nome de variáveis) pro arquivo ficar menor é chamado de
+<strong>minificação</strong>. O webpack faz isso por padrão em modo de produção.<br>
+Usar o modo de desenvolvimento ou o de produção pode ser especificado
+no arquivo de configuração, mas, caso ele não exista, o modo de produção
+é usado por padrão.</p>
+</li>
+</ul>
+<p>Caso você inclua esse arquivo main.js numa página HTML, você vai ver esses
+<code>console.log()</code>s printando Hello World</p>
+<p>Por exemplo, crie um arquivo index.html na mesma pasta do main.js, e
+coloque isso aqui nele:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>
+<span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+    &lt;<span style=color:#f92672>head</span>&gt;
+        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span>&gt;
+        &lt;<span style=color:#f92672>title</span>&gt;Teste Webpack&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;/<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>body</span>&gt;
+        &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;main.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+    &lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+
+
+</code></pre></div><p>Caso você abra no navegador, vai aparecer isso:</p>
+<p><img src=/blog/images/webpack-01-console.png alt="O console dessa página HTML aí em cima"></p>
+<p>Existem algumas perguntas que ficaram sem ser respondidas:</p>
+<ul>
+<li>Como eu uso essas funções fora do bundle? Acessando elas da minha
+página HTML?</li>
+<li>Como eu mudo o caminho do bundle de saída?</li>
+<li>Como eu uso esse <code>webpack-dev-server</code> aí?</li>
+</ul>
+<p>Essas coisas vão ficar pra parte 2, onde eu mostro como criar esse
+arquivo webpack.config.js, o arquivo de configuração do webpack, e o
+que vem nele.</p>
+</div></div>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//https-arthurmco-github-io-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://arthurmco.github.io/blog/assets/main.js></script>
+<script src=https://arthurmco.github.io/blog/assets/prism.js></script>
+</div>
+</body>
+</html>
