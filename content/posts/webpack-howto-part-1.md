@@ -315,6 +315,6 @@ Existem algumas perguntas que ficaram sem ser respondidas:
  - Como eu mudo o caminho do bundle de saída?
  - Como eu uso esse `webpack-dev-server` aí?
  
-Essas coisas vão ficar pra parte 2, onde eu mostro como criar esse
+Essas coisas vão ficar pra [parte 2]({{<ref "/posts/webpack-howto-part-2">}}), onde eu mostro como criar esse
 arquivo webpack.config.js, o arquivo de configuração do webpack, e o
 que vem nele.
