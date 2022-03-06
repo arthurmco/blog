@@ -1,7 +1,6 @@
 <!doctype html><html lang=en>
 <head>
-<title>Como usar o Webpack - Parte 2 :: Blog do Arthur M.</title>
-<meta charset=utf-8>
+<title>Como usar o Webpack - Parte 2 :: Blog do Arthur M.</title><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
 Vimos na parte 1 como o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como vimos, o uso sem configuração se torna bastante limitado, porque, dentre muitas outras coisas, os nomes dos arquivos não podem ser customizados,">
@@ -30,8 +29,7 @@ poder importar qualquer arquivo no seu script
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 <meta property="article:published_time" content="2021-09-23 13:11:22 -0300 -0300">
-</head>
-<body class=red>
+</head><body class=red>
 <div class="container center headings--one-size">
 <header class=header>
 <div class=header__inner>
@@ -39,22 +37,16 @@ poder importar qualquer arquivo no seu script
 <a href=https://arthurmco.github.io/blog/>
 <div class=logo>
 Blog do Arthur M.
-</div>
-</a>
-</div>
-</div>
-</header>
-<div class=content>
+</div></a>
+</div></div></header><div class=content>
 <div class=post>
 <h1 class=post-title>
-<a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-2/>Como usar o Webpack - Parte 2</a></h1>
-<div class=post-meta>
+<a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-2/>Como usar o Webpack - Parte 2</a></h1><div class=post-meta>
 <span class=post-date>
 2021-09-23 [Updated: 2021-09-23]
 </span>
 <span class=post-author>:: Arthur Mendes</span>
-</div>
-<span class=post-tags>
+</div><span class=post-tags>
 #<a href=https://arthurmco.github.io/blog/tags/series/>series</a>&nbsp;
 #<a href=https://arthurmco.github.io/blog/tags/projetos/>projetos</a>&nbsp;
 </span>
@@ -62,227 +54,161 @@ Blog do Arthur M.
 <div class=post-content><div>
 <p>Depois de muito tempo com medo de usar o Webpack, já que eu não
 entendia muito bem, finalmente estou usando em um projeto pessoal, e
-queria mostrar aquilo que eu aprendi para vocês.</p>
-<p><a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>Vimos na parte
+queria mostrar aquilo que eu aprendi para vocês.</p><p><a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>Vimos na parte
 1</a> como
 o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como
 vimos, o uso sem configuração se torna bastante limitado, porque,
 dentre muitas outras coisas, os nomes dos arquivos não podem ser
-customizados,</p>
-<p>Usando um arquivo de configuração, porém, você pode customizar várias
+customizados,</p><p>Usando um arquivo de configuração, porém, você pode customizar várias
 coisas, e usar vários <strong>plugins</strong> e <strong>loaders</strong> (eu expliquei o que são
-esses dois na parte 1).</p>
-<p>O nome do arquivo de configuração do webpack é o
+esses dois na parte 1).</p><p>O nome do arquivo de configuração do webpack é o
 <code>webpack.config.js</code>. Ele fica na raiz do seu projeto, no diretório
 principal. Lembrando da estrutura de arquivos que tínhamos, na parte
-1, incluindo esse arquivo, ela ficaria assim:</p>
-<pre tabindex=0><code>.
+1, incluindo esse arquivo, ela ficaria assim:</p><pre tabindex=0><code>.
 ├── webpack.config.js
 └── src
     ├── continhas.js
     └── index.js
-
-</code></pre><p>De cara, eu vou introduzir algumas opções dele para você.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;path&#39;</span>);
-
-<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;development&#39;</span>,
-    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/index.js&#39;</span>,
-    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#ae81ff>__</span><span style=color:#a6e22e>dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
-        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;bundle.js&#39;</span>,
-    }
-}
-
-</code></pre></div><p>Primeiro, dá pra perceber que ele é um arquivo javascript comum. A
-configuração em si é só o que ele exporta.</p>
-<p>A opção <strong>mode</strong> identifica o ambiente onde esse script vai rodar,
+</code></pre><p>De cara, eu vou introduzir algumas opções dele para você.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;path&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;development&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/index.js&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>__dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;bundle.js&#39;</span>,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Primeiro, dá pra perceber que ele é um arquivo javascript comum. A
+configuração em si é só o que ele exporta.</p><p>A opção <strong>mode</strong> identifica o ambiente onde esse script vai rodar,
 <code>development</code> pra desenvolvimento, <code>production</code> pra produção. Isso
 você provavelmente deixaria em uma variável de ambiente, ou em outro
-arquivo.</p>
-<p>A opção <strong>entry</strong> identifica o arquivo de entrada. Lembrando o que eu
-disse:</p>
-<blockquote>
+arquivo.</p><p>A opção <strong>entry</strong> identifica o arquivo de entrada. Lembrando o que eu
+disse:</p><blockquote>
 <p>O arquivo de entrada é chamado de <em>entry</em>, e o de saída é chamado de
-<em>bundle</em>.</p>
-</blockquote>
-<p>Você pode definir mais de um arquivo de entrada assim:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
-{
-    ...
-    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>arquivoum</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo1.js&#39;</span>,
-        <span style=color:#a6e22e>arquivodois</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo2.js&#39;</span>
-    }
-}
-
-</code></pre></div><p>Os nomes dos atributos não são muito importantes até onde eu sei, mas
-os caminhos dos arquivos são onde esses arquivos estão.</p>
-<p>A opção <strong>output</strong> define a saída, onde esses bundles serão
+<em>bundle</em>.</p></blockquote><p>Você pode definir mais de um arquivo de entrada assim:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    ...
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>arquivoum</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo1.js&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>arquivodois</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo2.js&#39;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Os nomes dos atributos não são muito importantes até onde eu sei, mas
+os caminhos dos arquivos são onde esses arquivos estão.</p><p>A opção <strong>output</strong> define a saída, onde esses bundles serão
 salvos. <code>output.path</code> define o caminho, e <code>output.filename</code> o nome do
-arquivo.</p>
-<p>Ele pode gerar um arquivo de output por cada arquivo de entrada,
-usando a string de substituição <code>[name]</code>. Por exemplo:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
-{
-    ...
-    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>arquivoum</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo1.js&#39;</span>,
-        <span style=color:#a6e22e>arquivodois</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo2.js&#39;</span>
-    },
-    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#ae81ff>__</span><span style=color:#a6e22e>dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
-        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;[name]_out.js&#39;</span>,
-    }
-}
-
-</code></pre></div><p>geraria dois arquivos na pasta <code>dist</code>: <code>arquivoum_out.js</code> e
-<code>arquivodois_out.js</code></p>
-<p>Usando esse arquivo super básico, você pode controlar os arquivos de
-entrada e os de saída.</p>
-<p>Mas existem mais coisas que você pode fazer:</p>
-<h1 id=módulos>Módulos<a href=#módulos class=hanchor arialabel=Anchor>&#8983;</a> </h1>
-<p>Algumas bibliotecas lhe permitem importar um arquivo CSS dentro de um
-arquivo Javascript, mais ou menos assim:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
-<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./style/style.css&#39;</span>
-<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./style/style.css&#39;</span>
-
-</code></pre></div><p>Você pode fazer isso usando loaders, não só com CSS, mas com outros
+arquivo.</p><p>Ele pode gerar um arquivo de output por cada arquivo de entrada,
+usando a string de substituição <code>[name]</code>. Por exemplo:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    ...
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>arquivoum</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo1.js&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>arquivodois</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/arquivo2.js&#39;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>__dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;[name]_out.js&#39;</span>,
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>geraria dois arquivos na pasta <code>dist</code>: <code>arquivoum_out.js</code> e
+<code>arquivodois_out.js</code></p><p>Usando esse arquivo super básico, você pode controlar os arquivos de
+entrada e os de saída.</p><p>Mas existem mais coisas que você pode fazer:</p><h1 id=módulos>Módulos<a href=#módulos class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>Algumas bibliotecas lhe permitem importar um arquivo CSS dentro de um
+arquivo Javascript, mais ou menos assim:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./style/style.css&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#39;./style/style.css&#39;</span>
+</span></span></code></pre></div><p>Você pode fazer isso usando loaders, não só com CSS, mas com outros
 tipos de arquivos também. Até com JSON, por mais engraçado que isso
-possa parecer.</p>
-<p>Usaremos dois loaders:</p>
-<ul>
-<li>o <strong>style-loader</strong> serve como uma base para carregar estilos CSS</li>
-<li>o <strong>css-loader</strong> serve para o style-loader reconhecer imports de
-CSS, geralmente usados para importar um arquivo CSS em outro.</li>
-</ul>
-<p>Os dois são geralmente usados juntos.</p>
-<p>Instale-os assim:</p>
-<pre tabindex=0><code>$ npm i --save-dev css-loader style-loader
-</code></pre><p>E adicione essa linha abaixo de <code>output</code>, ainda dentro do <code>module.exports</code></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>    <span style=color:#960050;background-color:#1e0010>module:</span> {
-        <span style=color:#960050;background-color:#1e0010>rules:</span> <span style=color:#960050;background-color:#1e0010>[</span>
-            <span style=color:#960050;background-color:#1e0010>{</span>
-                <span style=color:#960050;background-color:#1e0010>test:</span> <span style=color:#960050;background-color:#1e0010>/\.css$/i,</span>
-                <span style=color:#960050;background-color:#1e0010>use:</span> <span style=color:#960050;background-color:#1e0010>[&#39;style-loader&#39;,</span> <span style=color:#960050;background-color:#1e0010>&#39;css-loader&#39;],</span>
-            }<span style=color:#960050;background-color:#1e0010>,</span>
-        <span style=color:#960050;background-color:#1e0010>],</span>
-    <span style=color:#960050;background-color:#1e0010>},</span>
-
-</code></pre></div><p>Ele vai usar o css-loader e o style-loader em qualquer arquivo que
-terminar com <code>.css</code>.</p>
-<p>(aliás, quem quer um post sobre regex?)</p>
-<h1 id=plugins>Plugins<a href=#plugins class=hanchor arialabel=Anchor>&#8983;</a> </h1>
-<p>Como eu disse antes, um plugin do webpack tem autoridade pra mexer nos
+possa parecer.</p><p>Usaremos dois loaders:</p><ul>
+<li>o <strong>style-loader</strong> serve como uma base para carregar estilos CSS</li><li>o <strong>css-loader</strong> serve para o style-loader reconhecer imports de
+CSS, geralmente usados para importar um arquivo CSS em outro.</li></ul><p>Os dois são geralmente usados juntos.</p><p>Instale-os assim:</p><pre tabindex=0><code>$ npm i --save-dev css-loader style-loader
+</code></pre><p>E adicione essa linha abaixo de <code>output</code>, ainda dentro do <code>module.exports</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>module:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#960050;background-color:#1e0010>rules:</span> <span style=color:#960050;background-color:#1e0010>[</span>
+</span></span><span style=display:flex><span>            <span style=color:#960050;background-color:#1e0010>{</span>
+</span></span><span style=display:flex><span>                <span style=color:#960050;background-color:#1e0010>test:</span> <span style=color:#960050;background-color:#1e0010>/\.css$/i,</span>
+</span></span><span style=display:flex><span>                <span style=color:#960050;background-color:#1e0010>use:</span> <span style=color:#960050;background-color:#1e0010>[&#39;style-loader&#39;,</span> <span style=color:#960050;background-color:#1e0010>&#39;css-loader&#39;],</span>
+</span></span><span style=display:flex><span>            }<span style=color:#960050;background-color:#1e0010>,</span>
+</span></span><span style=display:flex><span>        <span style=color:#960050;background-color:#1e0010>],</span>
+</span></span><span style=display:flex><span>    <span style=color:#960050;background-color:#1e0010>},</span>
+</span></span></code></pre></div><p>Ele vai usar o css-loader e o style-loader em qualquer arquivo que
+terminar com <code>.css</code>.</p><p>(aliás, quem quer um post sobre regex?)</p><h1 id=plugins>Plugins<a href=#plugins class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>Como eu disse antes, um plugin do webpack tem autoridade pra mexer nos
 bundles. Um dos plugins mais usados é o <code>html-webpack-plugin</code>, e ele
 serve para gerar uma página HTML que automaticamente inclui todos os
-bundles, assim você não precisa criar nenhuma página</p>
-<p>O HTML que ele gera é mais ou menos assim, nas configurações default:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>html</span>&gt;
-    &lt;<span style=color:#f92672>head</span>&gt;
-        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>&gt;
-        &lt;<span style=color:#f92672>title</span>&gt;título&lt;/<span style=color:#f92672>title</span>&gt;
-        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1&#34;</span>&gt;
-        &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>defer</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;defer&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bundle.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
-    &lt;/<span style=color:#f92672>head</span>&gt;
-    &lt;<span style=color:#f92672>body</span>&gt;
-    &lt;/<span style=color:#f92672>body</span>&gt;
-&lt;/<span style=color:#f92672>html</span>&gt;
-</code></pre></div><p>Sendo que o título você pode definir quando instancia o plugin.</p>
-<p>Para instalar o <code>html-webpack-plugin</code>, você deve executar o seguinte
-comando:</p>
-<pre tabindex=0><code>npm i --save-dev html-webpack-plugin
-</code></pre><p>Dentro do webpack.config.js, insira essa linha, lá no começo</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;html-webpack-plugin&#39;</span>)
-</code></pre></div><p>Isso vai incluir a classe responsável por instanciar o plugin.</p>
-<p>Ao contrário dos loaders, os plugins devem ser requeridos.</p>
-<p>Agora, insira essas linhas depois de <code>module</code></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
-        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
-            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;título da sua página&#34;</span>
-        })
-    ]
-</code></pre></div><p>O construtor dessa classe aceita mais atributos além de <code>title</code>:</p>
-<ul>
+bundles, assim você não precisa criar nenhuma página</p><p>O HTML que ele gera é mais ou menos assim, nas configurações default:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>html</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>title</span>&gt;título&lt;/<span style=color:#f92672>title</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1&#34;</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>defer</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;defer&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bundle.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>html</span>&gt;
+</span></span></code></pre></div><p>Sendo que o título você pode definir quando instancia o plugin.</p><p>Para instalar o <code>html-webpack-plugin</code>, você deve executar o seguinte
+comando:</p><pre tabindex=0><code>npm i --save-dev html-webpack-plugin
+</code></pre><p>Dentro do webpack.config.js, insira essa linha, lá no começo</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;html-webpack-plugin&#39;</span>)
+</span></span></code></pre></div><p>Isso vai incluir a classe responsável por instanciar o plugin.</p><p>Ao contrário dos loaders, os plugins devem ser requeridos.</p><p>Agora, insira essas linhas depois de <code>module</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;título da sua página&#34;</span>
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>    ]
+</span></span></code></pre></div><p>O construtor dessa classe aceita mais atributos além de <code>title</code>:</p><ul>
 <li><strong>filename</strong>: o path do arquivo para o qual você quer escrever a
-página. O padrão é index.html</li>
-<li><strong>template</strong>: um path para um template, cujo conteúdo HTML será
+página. O padrão é index.html</li><li><strong>template</strong>: um path para um template, cujo conteúdo HTML será
 copiado para o arquivo principal. <a href=https://github.com/jantimon/html-webpack-plugin#writing-your-own-templates>A documentação do
 plugin</a>
-pode ajudar em como criar o template</li>
-<li><strong>showErrors</strong>: mostra erros (de compilação do bundle,
-provavelmente) na página HTML.</li>
-</ul>
-<p>Para gerar mais de um arquivo HTML, você deve declarar esse plugin
+pode ajudar em como criar o template</li><li><strong>showErrors</strong>: mostra erros (de compilação do bundle,
+provavelmente) na página HTML.</li></ul><p>Para gerar mais de um arquivo HTML, você deve declarar esse plugin
 mais de uma vez, e mudar o filename para outro arquivo, e o template
-para outro arquivo também se necessário.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
-        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
-            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;título da sua página&#34;</span>
-        }),
-        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
-            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;outra página&#34;</span>,
-            <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>__</span><span style=color:#a6e22e>dirname</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/outrapagina.html&#34;</span>,
-            <span style=color:#a6e22e>template</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;src/assets/outrotemplate.html&#34;</span>
-        })
-    ]
-</code></pre></div><p>O seu webpack.config.js provavelmente vai ficar assim:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;path&#39;</span>);
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;html-webpack-plugin&#39;</span>)
-
-<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
-    <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;development&#39;</span>,
-    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/index.js&#39;</span>,
-    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#ae81ff>__</span><span style=color:#a6e22e>dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
-        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;bundle.js&#39;</span>,
-    },
-    <span style=color:#a6e22e>module</span><span style=color:#f92672>:</span> {
-        <span style=color:#a6e22e>rules</span><span style=color:#f92672>:</span> [
-            {
-                <span style=color:#a6e22e>test</span><span style=color:#f92672>:</span> <span style=color:#e6db74>/\.css$/i</span>,
-                <span style=color:#a6e22e>use</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;style-loader&#39;</span>, <span style=color:#e6db74>&#39;css-loader&#39;</span>],
-            },
-        ],
-    },
-    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
-        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
-            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;titulo da página&#34;</span>,
-            <span style=color:#a6e22e>xhtml</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
-        })
-    ],
-
-};
-
-</code></pre></div>
-<p>Então, por enquanto é isso. Já dá pra desenvolver alguma coisa</p>
-<p>Na próxima parte falaremos de opções para desenvolvedores.</p>
-<p>Além disso, falaremos sobre como usar o jest junto com o seu app,
+para outro arquivo também se necessário.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;título da sua página&#34;</span>
+</span></span><span style=display:flex><span>        }),
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;outra página&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>__dirname</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/outrapagina.html&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>template</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;src/assets/outrotemplate.html&#34;</span>
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>    ]
+</span></span></code></pre></div><p>O seu webpack.config.js provavelmente vai ficar assim:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;path&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;html-webpack-plugin&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;development&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>entry</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;./src/index.js&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>__dirname</span>, <span style=color:#e6db74>&#39;dist&#39;</span>),
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>filename</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;bundle.js&#39;</span>,
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>module</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>rules</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>test</span><span style=color:#f92672>:</span> <span style=color:#e6db74>/\.css$/i</span>,
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>use</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;style-loader&#39;</span>, <span style=color:#e6db74>&#39;css-loader&#39;</span>],
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>        ],
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>HtmlWebpackPlugin</span>({
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;titulo da página&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>xhtml</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>Então, por enquanto é isso. Já dá pra desenvolver alguma coisa</p><p>Na próxima parte falaremos de opções para desenvolvedores.</p><p>Além disso, falaremos sobre como usar o jest junto com o seu app,
 porque você já deve ter percebido que, em 2021, o <code>import</code> não
 é muito bem suportado no Node, só o <code>require</code>. O Webpack entende os
 imports, mas o Node não. Mas os testes rodam no Node, então temos um
 problema.<br>
 Esse problema eu já resolvi nesse app que eu estou escrevendo, então
-vou explicar como eu fiz isso pra vocês</p>
-</div></div>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//https-arthurmco-github-io-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<footer class=footer>
+vou explicar como eu fiz isso pra vocês</p></div></div><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//https-arthurmco-github-io-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div></div><footer class=footer>
 <div class=footer__inner>
 <div class=copyright>
-<span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
 <span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=https://arthurmco.github.io/blog/assets/main.js></script>
+</div></div></footer><script src=https://arthurmco.github.io/blog/assets/main.js></script>
 <script src=https://arthurmco.github.io/blog/assets/prism.js></script>
-</div>
-</body>
-</html>
+</div></body></html>

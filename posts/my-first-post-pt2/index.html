@@ -1,7 +1,6 @@
 <!doctype html><html lang=en>
 <head>
-<title>Primeiro post (parte 2) :: Blog do Arthur M.</title>
-<meta charset=utf-8>
+<title>Primeiro post (parte 2) :: Blog do Arthur M.</title><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Na primeira parte, eu ensinei como iniciar o blog, e hoje eu vou mostrar como postar ele no github pages.
 Como botar Eu usei esse guia pra me ajudar, e funcionou. Mas, resumindo:
@@ -25,8 +24,7 @@ Como botar Eu usei esse guia pra me ajudar, e funcionou. Mas, resumindo:
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 <meta property="article:published_time" content="2021-02-16 02:04:31 -0300 -0300">
-</head>
-<body class=red>
+</head><body class=red>
 <div class="container center headings--one-size">
 <header class=header>
 <div class=header__inner>
@@ -34,22 +32,16 @@ Como botar Eu usei esse guia pra me ajudar, e funcionou. Mas, resumindo:
 <a href=https://arthurmco.github.io/blog/>
 <div class=logo>
 Blog do Arthur M.
-</div>
-</a>
-</div>
-</div>
-</header>
-<div class=content>
+</div></a>
+</div></div></header><div class=content>
 <div class=post>
 <h1 class=post-title>
-<a href=https://arthurmco.github.io/blog/posts/my-first-post-pt2/>Primeiro post (parte 2)</a></h1>
-<div class=post-meta>
+<a href=https://arthurmco.github.io/blog/posts/my-first-post-pt2/>Primeiro post (parte 2)</a></h1><div class=post-meta>
 <span class=post-date>
 2021-02-16 [Updated: 2021-02-16]
 </span>
 <span class=post-author>:: Arthur M</span>
-</div>
-<span class=post-tags>
+</div><span class=post-tags>
 #<a href=https://arthurmco.github.io/blog/tags/primeiro-post/>primeiro post</a>&nbsp;
 #<a href=https://arthurmco.github.io/blog/tags/hugo/>hugo</a>&nbsp;
 #<a href=https://arthurmco.github.io/blog/tags/jekyllrb/>jekyllrb</a>&nbsp;
@@ -57,83 +49,44 @@ Blog do Arthur M.
 </span>
 <div class=post-content><div>
 <p>Na <a href=https://arthurmco.github.io/blog/posts/my-first-post/>primeira parte</a>, eu ensinei como iniciar o blog, e hoje
-eu vou mostrar como postar ele no github pages.</p>
-<h2 id=como-botar>Como botar<a href=#como-botar class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>Eu usei <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>esse guia</a> pra me ajudar, e
-funcionou. Mas, resumindo:</p>
-<ul>
+eu vou mostrar como postar ele no github pages.</p><h2 id=como-botar>Como botar<a href=#como-botar class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>Eu usei <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>esse guia</a> pra me ajudar, e
+funcionou. Mas, resumindo:</p><ul>
 <li>
-<p>você precisa criar um repositório.</p>
-<ul>
+<p>você precisa criar um repositório.</p><ul>
 <li>
 <p>Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites
 <code>fulano.github.io</code>, é basicamente isso), você cria um repositório chamado <code>fulano.github.io</code>,
-assumindo que <code>fulano</code> seja seu username do github.</p>
-</li>
-<li>
+assumindo que <code>fulano</code> seja seu username do github.</p></li><li>
 <p>Caso você queira criar uma subpágina (eu fiz isso), você cria um repositório com o nome da
 sua subpágina (no meu caso, eu chamei de <code>blog</code>, por isso que a URL é essa. Você pode ver o
-repositório <a href=https://github.com/arthurmco/blog>aqui</a>)</p>
-</li>
-</ul>
-</li>
-<li>
+repositório <a href=https://github.com/arthurmco/blog>aqui</a>)</p></li></ul></li><li>
 <p>dê um <code>mkdir -p .github/workflows</code> dentro do seu repositório, e dentro dessa pasta <code>workflows</code>,
-cole <a href=https://github.com/arthurmco/blog/blob/main/.github/workflows/gh_pages.yml>esse arquivo aqui</a>.</p>
-<ul>
+cole <a href=https://github.com/arthurmco/blog/blob/main/.github/workflows/gh_pages.yml>esse arquivo aqui</a>.</p><ul>
 <li>Ele vai criar um job no Github Actions (uma espécie de CI do Github) que vai gerar o HTML do site
 a partir do Markdown e colocar esse HTML dentro do branch <code>gh-pages</code>. O branch <code>gh-pages</code> é de onde
 o Github vai tirar o HTML do seu site.<br>
-Essa action demora um pouco pra rodar, então demora alguns segundos até seu site ser gerado.</li>
-</ul>
-</li>
-<li>
+Essa action demora um pouco pra rodar, então demora alguns segundos até seu site ser gerado.</li></ul></li><li>
 <p>Vá até as configurações do repositório (a engrenagem escrito &ldquo;Settings&rdquo;), clique em Options,
-depois desça até &ldquo;Github Pages&rdquo;. Mude o branch para <code>gh-pages</code>, assim como está na imagem:</p>
-<p><img src=/blog/images/01-ghpages-image.png alt="Como deve ficar teu setup"></p>
-</li>
-</ul>
-<h2 id=outras-coisas>Outras coisas<a href=#outras-coisas class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>Existe um jeito bem legal de fazer referências a outras páginas, que eu pesquisei só pra não ter
-que ficar colocando a URL na mão.</p>
-<p>Um exemplo: o código do começo do post ficou assim:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown>
-Na [<span style=color:#f92672>primeira parte</span>](<span style=color:#a6e22e>{{&amp;lt; ref &#34;/posts/my-first-post&#34; &amp;gt;}}</span>), eu ensinei...
-
-</code></pre></div><p>Esse <code>&lt;ref "/posts/my-first-post" ></code> cria um link pro arquivo <code>posts/my-first-post</code>, que é onde eu salvei o primeiro
-post.</p>
-<p>Além disso, pra botar imagens, é só você colocar dentro do diretório <code>static</code>, lá na raiz do
+depois desça até &ldquo;Github Pages&rdquo;. Mude o branch para <code>gh-pages</code>, assim como está na imagem:</p><p><img src=/blog/images/01-ghpages-image.png alt="Como deve ficar teu setup"></p></li></ul><h2 id=outras-coisas>Outras coisas<a href=#outras-coisas class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>Existe um jeito bem legal de fazer referências a outras páginas, que eu pesquisei só pra não ter
+que ficar colocando a URL na mão.</p><p>Um exemplo: o código do começo do post ficou assim:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>
+</span></span><span style=display:flex><span>Na [<span style=color:#f92672>primeira parte</span>](<span style=color:#a6e22e>{{&amp;lt; ref &#34;/posts/my-first-post&#34; &amp;gt;}}</span>), eu ensinei...
+</span></span></code></pre></div><p>Esse <code>&lt;ref "/posts/my-first-post" ></code> cria um link pro arquivo <code>posts/my-first-post</code>, que é onde eu salvei o primeiro
+post.</p><p>Além disso, pra botar imagens, é só você colocar dentro do diretório <code>static</code>, lá na raiz do
 repositório. Por exemplo, a imagem que eu usei está na pasta <code>static/images/01-ghpages-image.png</code>,
-pra usá-la eu escrevi assim:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown>
-   depois desça até &#34;Github Pages&#34;. Mude o branch para <span style=color:#e6db74>`gh-pages`</span>, assim como 
-   está na imagem
-
-![<span style=color:#f92672>Como deve ficar teu setup</span>](<span style=color:#a6e22e>/blog/images/01-ghpages-image.png</span>)
-
-</code></pre></div><p>Infelizmente, eu tive que botar o <code>blog/</code>. Parece que, se seu blog não fica na raiz da url, você
-precisa botar o caminho. (Bom, pelo menos eu não preciso colocar a URL inteira.)</p>
-<hr>
-<p>Então é isso.</p>
-<p>Enquanto isso, eu vou ver como eu adiciono comentários.</p>
-<p>Até mais!</p>
-</div></div>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//https-arthurmco-github-io-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<footer class=footer>
+pra usá-la eu escrevi assim:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>
+</span></span><span style=display:flex><span>   depois desça até &#34;Github Pages&#34;. Mude o branch para <span style=color:#e6db74>`gh-pages`</span>, assim como 
+</span></span><span style=display:flex><span>   está na imagem
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>![<span style=color:#f92672>Como deve ficar teu setup</span>](<span style=color:#a6e22e>/blog/images/01-ghpages-image.png</span>)
+</span></span></code></pre></div><p>Infelizmente, eu tive que botar o <code>blog/</code>. Parece que, se seu blog não fica na raiz da url, você
+precisa botar o caminho. (Bom, pelo menos eu não preciso colocar a URL inteira.)</p><hr>
+<p>Então é isso.</p><p>Enquanto isso, eu vou ver como eu adiciono comentários.</p><p>Até mais!</p></div></div><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//https-arthurmco-github-io-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div></div><footer class=footer>
 <div class=footer__inner>
 <div class=copyright>
-<span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
 <span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=https://arthurmco.github.io/blog/assets/main.js></script>
+</div></div></footer><script src=https://arthurmco.github.io/blog/assets/main.js></script>
 <script src=https://arthurmco.github.io/blog/assets/prism.js></script>
-</div>
-</body>
-</html>
+</div></body></html>

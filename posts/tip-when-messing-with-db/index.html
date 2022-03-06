@@ -1,7 +1,6 @@
 <!doctype html><html lang=en>
 <head>
-<title>Como meter a mão no banco de dados com segurança :: Blog do Arthur M.</title>
-<meta charset=utf-8>
+<title>Como meter a mão no banco de dados com segurança :: Blog do Arthur M.</title><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="18h de uma sexta feira.
 Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu joguinho, porque assim que você fizer seu commit, o seu expediente acabou.
@@ -25,8 +24,7 @@ Você não tem tempo pra alterar o código do sistema do animal, já que isso va
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 <meta property="article:published_time" content="2021-04-24 00:34:30 -0300 -0300">
-</head>
-<body class=red>
+</head><body class=red>
 <div class="container center headings--one-size">
 <header class=header>
 <div class=header__inner>
@@ -34,100 +32,60 @@ Você não tem tempo pra alterar o código do sistema do animal, já que isso va
 <a href=https://arthurmco.github.io/blog/>
 <div class=logo>
 Blog do Arthur M.
-</div>
-</a>
-</div>
-</div>
-</header>
-<div class=content>
+</div></a>
+</div></div></header><div class=content>
 <div class=post>
 <h1 class=post-title>
-<a href=https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/>Como meter a mão no banco de dados com segurança</a></h1>
-<div class=post-meta>
+<a href=https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/>Como meter a mão no banco de dados com segurança</a></h1><div class=post-meta>
 <span class=post-date>
 2021-04-24 [Updated: 2021-04-24]
 </span>
 <span class=post-author>:: Arthur Mendes</span>
-</div>
-<span class=post-tags>
+</div><span class=post-tags>
 #<a href=https://arthurmco.github.io/blog/tags/hint/>hint</a>&nbsp;
 </span>
 <div class=post-content><div>
-<p>18h de uma sexta feira.</p>
-<p>Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu
-joguinho, porque assim que você fizer seu commit, o seu expediente acabou.</p>
-<p>De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se
-lembra que o animal que fez esse sistema deixou esses dados como somente leitura.</p>
-<p>Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia
-e o seu chefe pediu essa alteração, educadamente, para <em>ontem</em></p>
-<p>Você vai ter que alterar eles diretamente no banco.</p>
-<p>Você se lembra de todas as piadas de <code>UPDATE</code> sem <code>WHERE</code>, e como a falta de algumas palavras fez o seu
-colega perder um final de semana inteiro com o suporte atrás de backups.</p>
-<p>Como fazer isso sem ter medo desses problemas?</p>
-<p>A resposta é <strong>TRANSAÇÕES</strong></p>
-<hr>
+<p>18h de uma sexta feira.</p><p>Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu
+joguinho, porque assim que você fizer seu commit, o seu expediente acabou.</p><p>De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se
+lembra que o animal que fez esse sistema deixou esses dados como somente leitura.</p><p>Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia
+e o seu chefe pediu essa alteração, educadamente, para <em>ontem</em></p><p>Você vai ter que alterar eles diretamente no banco.</p><p>Você se lembra de todas as piadas de <code>UPDATE</code> sem <code>WHERE</code>, e como a falta de algumas palavras fez o seu
+colega perder um final de semana inteiro com o suporte atrás de backups.</p><p>Como fazer isso sem ter medo desses problemas?</p><p>A resposta é <strong>TRANSAÇÕES</strong></p><hr>
 <p>Quando você logar no seu banco (eu vou usar o postgres, mas hoje em dia qualquer banco* de dados
-decente suporta isso), você dá de cara com isso daqui:</p>
-<pre tabindex=0><code>meushell% psql -h IP -U usuario -d banco
+decente suporta isso), você dá de cara com isso daqui:</p><pre tabindex=0><code>meushell% psql -h IP -U usuario -d banco
 Password for user usuario: 
 psql (13.2 (Debian 13.2-1), server 11.9 (Raspbian 11.9-0+deb10u1))
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
-Type &quot;help&quot; for help.
+Type &#34;help&#34; for help.
 
 banco=# 
 </code></pre><blockquote>
-<p>Se você usa SQLite, você pode simplesmente copiar o banco antes da alteração :)</p>
-</blockquote>
-<p>Para iniciar uma transação, você digita BEGIN</p>
-<pre tabindex=0><code>banco=# BEGIN;
+<p>Se você usa SQLite, você pode simplesmente copiar o banco antes da alteração :)</p></blockquote><p>Para iniciar uma transação, você digita BEGIN</p><pre tabindex=0><code>banco=# BEGIN;
 BEGIN
 banco=*# 
-</code></pre><p>Observe que o <em>prompt</em> mudou. Ele vai ficar com esse asterisco durante a transação.</p>
-<p>Enquanto ele tiver esse asterisco, você digita os comandos que você quiser. Por exemplo, o update
+</code></pre><p>Observe que o <em>prompt</em> mudou. Ele vai ficar com esse asterisco durante a transação.</p><p>Enquanto ele tiver esse asterisco, você digita os comandos que você quiser. Por exemplo, o update
 que o seu chefe pediu, pra abreviar o nome do maior cliente dele, que pode ser considerado um pouco
-constrangedor.</p>
-<pre tabindex=0><code>banco=*# update usuarios_do_sistema_do_animal set nome_do_usuario='Tomás T. Pinto' where id=2020;
+constrangedor.</p><pre tabindex=0><code>banco=*# update usuarios_do_sistema_do_animal set nome_do_usuario=&#39;Tomás T. Pinto&#39; where id=2020;
 UPDATE 1
 banco=*#
-</code></pre><p><strong>PRESTE MUITA ATENÇÃO</strong> no <code>UPDATE 1</code>. Esse 1 é a quantidade de linhas que o seu comando atualizou.</p>
-<p>Caso isso seja o que você esperava, você digita <code>COMMIT</code></p>
-<pre tabindex=0><code>banco=*# COMMIT;
+</code></pre><p><strong>PRESTE MUITA ATENÇÃO</strong> no <code>UPDATE 1</code>. Esse 1 é a quantidade de linhas que o seu comando atualizou.</p><p>Caso isso seja o que você esperava, você digita <code>COMMIT</code></p><pre tabindex=0><code>banco=*# COMMIT;
 COMMIT
 banco=# 
-</code></pre><p>Com o comando <code>COMMIT</code>, as suas alterações serão salvas no banco de dados.</p>
-<blockquote>
+</code></pre><p>Com o comando <code>COMMIT</code>, as suas alterações serão salvas no banco de dados.</p><blockquote>
 <p>Se você não sabe o que esperar, você precisa primeiro analisar o que você quer. Dê um <code>SELECT</code>
-primeiro, para você encontrar as linhas que você precisa alterar</p>
-</blockquote>
-<p>Caso isso <strong>não</strong> seja o que você esperava, digite <code>ROLLBACK</code></p>
-<pre tabindex=0><code>banco=*# ROLLBACK;
+primeiro, para você encontrar as linhas que você precisa alterar</p></blockquote><p>Caso isso <strong>não</strong> seja o que você esperava, digite <code>ROLLBACK</code></p><pre tabindex=0><code>banco=*# ROLLBACK;
 ROLLBACK
 banco=#
-</code></pre><p>As suas alterações serão revertidas.</p>
-<p><strong>Cuidado:</strong> Transações têm um limite de tamanho. Esse limite é bem grande, mas pode ser atingido
+</code></pre><p>As suas alterações serão revertidas.</p><p><strong>Cuidado:</strong> Transações têm um limite de tamanho. Esse limite é bem grande, mas pode ser atingido
 (já atingi esse limite no trabalho uma vez). Provavelmente você não vai atingir, mas, caso você não
-consiga aplicar sua transação por causa de <em>timeout</em>, o problema pode ser esse</p>
-<blockquote>
+consiga aplicar sua transação por causa de <em>timeout</em>, o problema pode ser esse</p><blockquote>
 <p>P.S: Caso você tenha gostado do post, agradeça à Giulia, porque foi ela que deu a ideia de fazer
-ontem à tarde.</p>
-</blockquote>
-</div></div>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//https-arthurmco-github-io-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</div>
-<footer class=footer>
+ontem à tarde.</p></blockquote></div></div><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//https-arthurmco-github-io-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div></div><footer class=footer>
 <div class=footer__inner>
 <div class=copyright>
-<span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
 <span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-</footer>
-<script src=https://arthurmco.github.io/blog/assets/main.js></script>
+</div></div></footer><script src=https://arthurmco.github.io/blog/assets/main.js></script>
 <script src=https://arthurmco.github.io/blog/assets/prism.js></script>
-</div>
-</body>
-</html>
+</div></body></html>
