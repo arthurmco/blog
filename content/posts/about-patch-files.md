@@ -130,7 +130,7 @@ Depois disso, para cada arquivo, nós temos vários "chunks", pedaços de altera
 
 O formato é mais ou menos assim:
 
-`@@ -linhaA, quantidadeA +linha, quantidadeA @@`
+`@@ -linhaA, quantidadeA +linhaB, quantidadeB @@`
 
 A `linhaA` é o número da linha onde o chunk começa, onde a alteração
 vai acontecer no arquivo antigo. A `quantidadeA` é a quantidade do
