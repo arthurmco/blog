@@ -1,59 +1,16 @@
-<!doctype html><html lang=en>
-<head>
-<title>Como usar o Webpack - Parte 1 :: Blog do Arthur M.</title><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+<!doctype html><html lang=en><head><title>Como usar o Webpack - Parte 1 :: Blog do Arthur M.</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
 Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu vou explicar o que eu estou aprendendo.
-O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero.">
-<meta name=keywords content="webpack,javascript,webpack5">
-<meta name=robots content="noodp">
-<link rel=canonical href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>
-<link rel=stylesheet href=https://arthurmco.github.io/blog/assets/style.css>
-<link rel=stylesheet href=https://arthurmco.github.io/blog/assets/red.css>
-<link rel=apple-touch-icon href=https://arthurmco.github.io/blog/img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=https://arthurmco.github.io/blog/img/favicon/red.png>
-<meta name=twitter:card content="summary">
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Como usar o Webpack - Parte 1">
-<meta property="og:description" content="Depois de muito tempo com medo de usar o Webpack, já que eu não
+O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero."><meta name=keywords content="webpack,javascript,webpack5"><meta name=robots content="noodp"><link rel=canonical href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/><link rel=stylesheet href=https://arthurmco.github.io/blog/assets/style.css><link rel=stylesheet href=https://arthurmco.github.io/blog/assets/red.css><link rel=apple-touch-icon href=https://arthurmco.github.io/blog/img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=https://arthurmco.github.io/blog/img/favicon/red.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="Como usar o Webpack - Parte 1"><meta property="og:description" content="Depois de muito tempo com medo de usar o Webpack, já que eu não
 entendia muito bem, finalmente estou usando em um projeto pessoal, e
 queria mostrar aquilo que eu aprendi para vocês.
 
 Nessa primeira parte, eu vou mostrar mais ou menos como ele funciona, 
 como instalar e como rodar ele.
 
-">
-<meta property="og:url" content="https://arthurmco.github.io/blog/posts/webpack-howto-part-1/">
-<meta property="og:site_name" content="Blog do Arthur M.">
-<meta property="og:image" content="https://arthurmco.github.io/blog/images/webpack-01-cover.png">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-09-11 23:15:56 -0300 -0300">
-</head><body class=red>
-<div class="container center headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=https://arthurmco.github.io/blog/>
-<div class=logo>
-Blog do Arthur M.
-</div></a>
-</div></div></header><div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>Como usar o Webpack - Parte 1</a></h1><div class=post-meta>
-<span class=post-date>
-2021-09-11 [Updated: 2021-09-11]
-</span>
-<span class=post-author>:: Arthur Mendes</span>
-</div><span class=post-tags>
-#<a href=https://arthurmco.github.io/blog/tags/series/>series</a>&nbsp;
-#<a href=https://arthurmco.github.io/blog/tags/projetos/>projetos</a>&nbsp;
-</span>
-<img src=https://arthurmco.github.io/blog/images/webpack-01-cover.png class=post-cover alt="Como usar o Webpack - Parte 1">
-<div class=post-content><div>
-<p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+"><meta property="og:url" content="https://arthurmco.github.io/blog/posts/webpack-howto-part-1/"><meta property="og:site_name" content="Blog do Arthur M."><meta property="og:image" content="https://arthurmco.github.io/blog/images/webpack-01-cover.png"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2021-09-11 23:15:56 -0300 -0300"></head><body class=red><div class="container center headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=https://arthurmco.github.io/blog/><div class=logo>Blog do Arthur M.</div></a></div></div></header><div class=content><div class=post><h1 class=post-title><a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-1/>Como usar o Webpack - Parte 1</a></h1><div class=post-meta><span class=post-date>2021-09-11 [Updated: 2021-09-11]</span>
+<span class=post-author>:: Arthur Mendes</span></div><span class=post-tags>#<a href=https://arthurmco.github.io/blog/tags/series/>series</a>&nbsp;
+#<a href=https://arthurmco.github.io/blog/tags/projetos/>projetos</a>&nbsp;</span>
+<img src=https://arthurmco.github.io/blog/images/webpack-01-cover.png class=post-cover alt="Como usar o Webpack - Parte 1"><div class=post-content><div><p>Depois de muito tempo com medo de usar o Webpack, já que eu não
 entendia muito bem, finalmente estou usando em um projeto pessoal, e
 queria mostrar aquilo que eu aprendi para vocês.</p><p>Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu
 vou explicar o que eu estou aprendendo.</p><p>O meu intuito é chegar no ponto de &ldquo;criar&rdquo; um projeto Vue (que é o que
@@ -63,13 +20,11 @@ me proporcionou isso.</p><p>Vou ser bem honesto: hoje em dia é mais viável usa
 caso você queira fazer algo usando Javascript puro, com Javascript,
 HTML e CSS. Caso você queira usar React ou Vue, eles já vêm com
 ferramentas que abstraem o Webpack. Você não precisa configurar nada.</p><p>Eu vou usar o Webpack 5. Eu não usei o 4 porque eu queria usar a
-versão mais nova, mas eu posso ver o 4 caso vocês estejam interessados.</p><h1 id=o-que-é>O que é?<a href=#o-que-é class=hanchor arialabel=Anchor>&#8983;</a> </h1><p>Antes de tudo, vamos falar sobre o que é o Webpack?</p><p>Copiando da documentação deles:</p><blockquote>
-<p>At its core, webpack is a static module bundler for modern
+versão mais nova, mas eu posso ver o 4 caso vocês estejam interessados.</p><h1 id=o-que-é>O que é?<a href=#o-que-é class=hanchor arialabel=Anchor>&#8983;</a></h1><p>Antes de tudo, vamos falar sobre o que é o Webpack?</p><p>Copiando da documentação deles:</p><blockquote><p>At its core, webpack is a static module bundler for modern
 JavaScript applications. When webpack processes your application, it
 internally builds a dependency graph from one or more entry points
 and then combines every module your project needs into one or more
-bundles, which are static assets to serve your content from.</p></blockquote><p>Traduzindo:</p><blockquote>
-<p>Em sua essência, o webpack é um empacotador de módulo estático para
+bundles, which are static assets to serve your content from.</p></blockquote><p>Traduzindo:</p><blockquote><p>Em sua essência, o webpack é um empacotador de módulo estático para
 aplicativos JavaScript modernos. Quando o webpack processa seu
 aplicativo, ele constrói internamente um gráfico de dependência a
 partir de um ou mais pontos de entrada e, em seguida, combina cada
@@ -103,7 +58,7 @@ entrada, então ele pode ser um loader mesmo. Já o
 <strong>HtmlWebpackPlugin</strong>, um plugin que gera páginas HTML para a
 aplicação que usa o Webpack, precisa saber o nome final do bundle,
 coisa que um loader não vai te fornecer, então ele só pode ser
-implementado como um plugin mesmo</p><h2 id=criação>Criação<a href=#criação class=hanchor arialabel=Anchor>&#8983;</a> </h2><p>Inicialmente, você vai precisar instalar três pacotes: <code>webpack</code>,
+implementado como um plugin mesmo</p><h2 id=criação>Criação<a href=#criação class=hanchor arialabel=Anchor>&#8983;</a></h2><p>Inicialmente, você vai precisar instalar três pacotes: <code>webpack</code>,
 <code>webpack-cli</code> e <code>webpack-dev-server</code></p><p>O <strong>webpack</strong> é o webpack em si, o <strong>webpack-cli</strong> é o pacote que contém a
 ferramentea de linha de comando do webpack (quando você digita
 <code>webpack</code> no console, você está chamando uma ferramenta do CLI), e o
@@ -158,33 +113,24 @@ importantes
 que o index.js importa e, de certa forma, os incluindo (na verdade,
 como você vai ver, ele faz mais do que isso)</p><p>Rode o seguinte comando:</p><pre tabindex=0><code>
 $ npx webpack
-</code></pre><p>Ele vai rodar o webpack.<br>
-Algumas mensagens de WARNING podem aparecer, mas elas só aparecem
+</code></pre><p>Ele vai rodar o webpack.<br>Algumas mensagens de WARNING podem aparecer, mas elas só aparecem
 porque uma propriedade não foi definida no arquivo de configuração, e
 esse arquivo nós ainda não criamos.</p><p>O arquivo dist/main.js vai ficar assim (na verdade, esse resultado
 pode mudar um pouco de versão pra versão do Webpack):</p><pre tabindex=0><code>(()=&gt;{&#34;use strict&#34;;function o(o,l){return o+l}console.log(&#34;Hello world &#34;,o(10,20)),console.log(&#34;Hello world &#34;,o(30,20))})();
 </code></pre><p>Perceba que os <code>console.log</code>s ainda estão aqui. Mas algumas coisas
-aconteceram além disso. Por exemplo:</p><ul>
-<li>
-<p><strong>Todos os comentários foram embora</strong>.<br>
-O Webpack remove os comentários no bundle final, já que o que ele
+aconteceram além disso. Por exemplo:</p><ul><li><p><strong>Todos os comentários foram embora</strong>.<br>O Webpack remove os comentários no bundle final, já que o que ele
 faz é semelhante a uma compilação. Esse bundle é como um arquivo
-compilado</p></li><li>
-<p><strong>A função de subtração sumiu.</strong><br>
-Como eu disse antes, funções não usadas são removidas. Isso faz o
+compilado</p></li><li><p><strong>A função de subtração sumiu.</strong><br>Como eu disse antes, funções não usadas são removidas. Isso faz o
 arquivo final ser bem menor que os arquivos-fonte</p><pre tabindex=0><code>[tuts@lula2022 webpack-test]$ ls -l dist/*.js
 -rw-rw-r--. 1 tuts tuts 124 Sep 11 22:31 dist/main.js
 [tuts@lula2022 webpack-test]$ ls -l src/*
 -rw-rw-r--. 1 tuts tuts 169 Sep 11 22:06 src/continhas.js
 -rw-rw-r--. 1 tuts tuts 155 Sep 11 22:30 src/index.js
-</code></pre><p>169 + 155 = 324<br>
-61% de redução do tamanho total do arquivo. Esse percentual pode
+</code></pre><p>169 + 155 = 324<br>61% de redução do tamanho total do arquivo. Esse percentual pode
 variar, mas o arquivo final sempre vai ser menor que os fontes, já
 que ele é como se fosse um arquivo compilado. Ele não é feito pra
 ser lido por pessoas, como você pôde ver quando listamos o conteúdo
-dele.</p></li><li>
-<p><strong>A função de soma sumiu.</strong><br>
-Na verdade, a função soma ainda está aqui. O webpack só deu outro
+dele.</p></li><li><p><strong>A função de soma sumiu.</strong><br>Na verdade, a função soma ainda está aqui. O webpack só deu outro
 nome pra ela:</p><pre tabindex=0><code>function o(o,l){return o+l}
 </code></pre><pre tabindex=0><code>function soma(o, l) {return o+l;}
 </code></pre><pre tabindex=0><code>function soma(a, b) {return a + b;}
@@ -194,11 +140,9 @@ nome pra ela:</p><pre tabindex=0><code>function o(o,l){return o+l}
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>Viu?
 A função <code>o(o, l)</code>, logo depois do &ldquo;use strict&rdquo;, é a nossa função
-soma. O webpack mudou o nome dela pro arquivo final ficar menor.<br>
-Esse processo de remoção de coisas (como comentários e mudança de
+soma. O webpack mudou o nome dela pro arquivo final ficar menor.<br>Esse processo de remoção de coisas (como comentários e mudança de
 nome de variáveis) pro arquivo ficar menor é chamado de
-<strong>minificação</strong>. O webpack faz isso por padrão em modo de produção.<br>
-Usar o modo de desenvolvimento ou o de produção pode ser especificado
+<strong>minificação</strong>. O webpack faz isso por padrão em modo de produção.<br>Usar o modo de desenvolvimento ou o de produção pode ser especificado
 no arquivo de configuração, mas, caso ele não exista, o modo de produção
 é usado por padrão.</p></li></ul><p>Caso você inclua esse arquivo main.js numa página HTML, você vai ver esses
 <code>console.log()</code>s printando Hello World</p><p>Por exemplo, crie um arquivo index.html na mesma pasta do main.js, e
@@ -213,17 +157,9 @@ coloque isso aqui nele:</p><div class=highlight><pre tabindex=0 style=color:#f8f
 </span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;main.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
 </span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>body</span>&gt;
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>html</span>&gt;
-</span></span></code></pre></div><p>Caso você abra no navegador, vai aparecer isso:</p><p><img src=/blog/images/webpack-01-console.png alt="O console dessa página HTML aí em cima"></p><p>Existem algumas perguntas que ficaram sem ser respondidas:</p><ul>
-<li>Como eu uso essas funções fora do bundle? Acessando elas da minha
+</span></span></code></pre></div><p>Caso você abra no navegador, vai aparecer isso:</p><p><img src=/blog/images/webpack-01-console.png alt="O console dessa página HTML aí em cima"></p><p>Existem algumas perguntas que ficaram sem ser respondidas:</p><ul><li>Como eu uso essas funções fora do bundle? Acessando elas da minha
 página HTML?</li><li>Como eu mudo o caminho do bundle de saída?</li><li>Como eu uso esse <code>webpack-dev-server</code> aí?</li></ul><p>Essas coisas vão ficar pra <a href=https://arthurmco.github.io/blog/posts/webpack-howto-part-2/>parte 2</a>, onde eu mostro como criar esse
 arquivo webpack.config.js, o arquivo de configuração do webpack, e o
-que vem nele.</p></div></div><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//https-arthurmco-github-io-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div></div><footer class=footer>
-<div class=footer__inner>
-<div class=copyright>
-<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div></div></footer><script src=https://arthurmco.github.io/blog/assets/main.js></script>
-<script src=https://arthurmco.github.io/blog/assets/prism.js></script>
-</div></body></html>
+que vem nele.</p></div></div><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//https-arthurmco-github-io-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=https://arthurmco.github.io/blog/assets/main.js></script>
+<script src=https://arthurmco.github.io/blog/assets/prism.js></script></div></body></html>
