@@ -83,7 +83,7 @@ dois nomes são só de referência</p><p>Depois disso, para cada arquivo, nós t
 </span></span></span><span style=display:flex><span><span style=color:#f92672></span><span style=color:#a6e22e>+os.system(&#34;git commit --no-verify -m \&#34;Bump version (v{} -&gt; v{})\&#34;&#34;.format(current_ver, next_ver))
 </span></span></span><span style=display:flex><span><span style=color:#a6e22e></span> 
 </span></span><span style=display:flex><span> ####################
-</span></span></code></pre></div><p>O formato é mais ou menos assim:</p><p><code>@@ -linhaA, quantidadeA +linha, quantidadeA @@</code></p><p>A <code>linhaA</code> é o número da linha onde o chunk começa, onde a alteração
+</span></span></code></pre></div><p>O formato é mais ou menos assim:</p><p><code>@@ -linhaA, quantidadeA +linhaB, quantidadeB @@</code></p><p>A <code>linhaA</code> é o número da linha onde o chunk começa, onde a alteração
 vai acontecer no arquivo antigo. A <code>quantidadeA</code> é a quantidade do
 número de linhas nesse &ldquo;chunk&rdquo; no arquivo original</p><p>A <code>linhaB</code> é o número da linha onde o chunk começa, onde a alteração
 vai acontecer no arquivo novo. A <code>quantidadeB</code> é a quantidade do
