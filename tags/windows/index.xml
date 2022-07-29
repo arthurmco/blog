@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>windows on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/tags/windows/</link><description>Recent content in windows on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Sun, 06 Mar 2022 14:47:11 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>Problemas com `git pull` no Windows?</title><link>https://arthurmco.github.io/blog/posts/ssh-on-windows/</link><pubDate>Sun, 06 Mar 2022 14:47:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/ssh-on-windows/</guid><description>Você está tendo problemas de autenticação com o git pull no Windows?
 Se você deu git clone ou git pull e se deparou com um erro mais ou menos assim:
-Permission denied (publickey).: exit status 255 e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar ssh -vT git@github.com sem problema nenhum, então talvez o problema seja que você está usando o cliente SSH do git ao invés do cliente do Windows.</description></item></channel></rss>
+Permission denied (publickey).: exit status 255 e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar ssh -vT git@github.com sem problema nenhum, então talvez o problema seja que você está usando o cliente SSH do git ao invés do cliente do Windows.</description><content>&lt;p>Você está tendo problemas de autenticação com o &lt;code>git pull&lt;/code> no Windows?&lt;/p>
+&lt;p>Se você deu &lt;code>git clone&lt;/code> ou &lt;code>git pull&lt;/code> e se deparou com um erro mais ou menos assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Permission denied (publickey).: exit status 255
+&lt;/code>&lt;/pre>&lt;p>e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar
+&lt;code>ssh -vT git@github.com&lt;/code> sem problema nenhum, então talvez o problema seja
+que você está usando o cliente SSH do git ao invés do cliente do Windows.&lt;/p>
+&lt;p>O cliente do Windows tem um bônus que ele funciona dentro do vscode também&lt;/p>
+&lt;p>Para você fazer isso, rode esse comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
+&lt;/code>&lt;/pre>&lt;p>Lembre-se que você deve instalar o OpenSSH.&lt;/p>
+&lt;p>Para isso, abra as configurações do Windows, procure naquela barra de pesquisa
+por &amp;ldquo;Recursos Opcionais&amp;rdquo;, vá em &amp;ldquo;Adicionar recurso opcional&amp;rdquo;, clique no
+botão de &amp;ldquo;Exibir recursos&amp;rdquo; e procure por &amp;ldquo;Cliente OpenSSH&amp;rdquo;. Instale e reinicie.&lt;/p></content></item></channel></rss>

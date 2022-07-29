@@ -1,29 +1,1071 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/</link><description>Recent content on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 29 Jul 2022 04:36:31 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>TravaZap e TravaLoL: como funcionam? - Parte 1</title><link>https://arthurmco.github.io/blog/posts/trava-zap-trava-lol/</link><pubDate>Fri, 29 Jul 2022 04:36:31 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/trava-zap-trava-lol/</guid><description>Esse é o primeiro de uma categoria de posts que eu vou fazer chamada de &amp;ldquo;direcionados para todos os públicos.&amp;rdquo;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/</link><description>Recent content on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 29 Jul 2022 18:23:32 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Não dá pra usar `git-lfs` no blog</title><link>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</link><pubDate>Fri, 29 Jul 2022 18:23:32 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</guid><description>Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava experimentando colocar as imagens no git-lfs
+O git-lfs é uma extensão do git que guarda certos arquivos, geralmente binários, separadamente, em um servidor separado, o que é bom, já que o git não é otimizado pra arquivos binários.
+Pra quem estiver afim de usar, já saiba que não rola.
+Ironicamente, essa extensão tem dedo da própria equipe do GitHub.</description><content>&lt;p>Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava
+experimentando colocar as imagens no &lt;code>git-lfs&lt;/code>&lt;/p>
+&lt;p>O &lt;code>git-lfs&lt;/code> é uma extensão do git que guarda certos arquivos, geralmente binários, separadamente, em
+um servidor separado, o que é bom, já que o git não é otimizado pra arquivos binários.&lt;/p>
+&lt;p>Pra quem estiver afim de usar, &lt;a href="https://github.com/git-lfs/git-lfs/issues/3498">já saiba que não rola&lt;/a>.&lt;br>
+&lt;em>Ironicamente&lt;/em>, essa extensão tem dedo da própria equipe do GitHub.&lt;/p>
+&lt;p>Felizmente, agora as coisas já tevem ter normalizado. Desculpem o transtorno.&lt;/p></content></item><item><title>TravaZap e TravaLoL: como funcionam? - Parte 1</title><link>https://arthurmco.github.io/blog/posts/trava-zap-trava-lol/</link><pubDate>Fri, 29 Jul 2022 04:36:31 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/trava-zap-trava-lol/</guid><description>Esse é o primeiro de uma categoria de posts que eu vou fazer chamada de &amp;ldquo;direcionados para todos os públicos.&amp;rdquo;
 Por causa disso, as coisas serão explicadas com mais detalhes, já que nem todos entendem os termos técnicos. Se você achar que eu estou falando muito, é por isso.
-Além disso, as explicações que eu vou dar não são para alguém com doutorado em ciências da computação entender, mas sim para sua tia que tomou o travazap do rei do PIX saber o porquê do celular dela ficar lento.</description></item><item><title>O meu Mac está dando um erro EADDRINUSE na porta 5000!</title><link>https://arthurmco.github.io/blog/posts/port-5000-mac/</link><pubDate>Tue, 10 May 2022 09:55:03 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/port-5000-mac/</guid><description>Ontem, no trabalho, eu fui tentar subir um serviço localmente, no Macbook que eles deram.
+Além disso, as explicações que eu vou dar não são para alguém com doutorado em ciências da computação entender, mas sim para sua tia que tomou o travazap do rei do PIX saber o porquê do celular dela ficar lento.</description><content>&lt;p>Esse é o primeiro de uma categoria de posts que eu vou fazer chamada de
+&amp;ldquo;direcionados para todos os públicos.&amp;rdquo;&lt;/p>
+&lt;p>Por causa disso, as coisas serão explicadas com mais detalhes, já que nem todos
+entendem os termos técnicos. Se você achar que eu estou falando muito, é por isso.&lt;/p>
+&lt;p>Além disso, as explicações que eu vou dar não são para alguém com doutorado em ciências
+da computação entender, mas sim para sua tia que tomou o travazap do rei do PIX saber
+o porquê do celular dela ficar lento. Então não seja chato de falar que eu esqueci de
+falar alguma coisa. Eu simplifiquei alguns termos para que a mensagem fique mais clara.&lt;/p>
+&lt;p>Dito isso, vamos lá:&lt;/p>
+&lt;hr>
+&lt;p>Ultimamente os jogadores de League of Legends têm reclamado de um tal de &lt;strong>travalol&lt;/strong>, ou &lt;strong>trava lobby&lt;/strong>,
+uma espécie de programa que faz com que os jogadores sejam &lt;em>kickados&lt;/em> das partidas.&lt;/p>
+&lt;p>No vídeo abaixo você pode ver um vídeo do canal &amp;ldquo;Que Crime&amp;rdquo; falando um pouco do Travalol:&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/LdK4C5ANZXI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div>
+&lt;h1 id="uma-explicação-básica">Uma explicação básica&lt;/h1>
+&lt;blockquote>
+&lt;p>O TravaZap funciona porque a mensagem do trava contém caracteres especiais.&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>O TravaLoL funciona por causa de um bug no client.&lt;/p>
+&lt;/blockquote>
+&lt;p>Essa explicação é a explicação que você vai achar na grande maioria dos sites. Ela está tecnicamente correta,
+mas falta algo a mais.&lt;/p>
+&lt;h1 id="travazap">TravaZap&lt;/h1>
+&lt;p>O TravaZap é o que me deixou mais curioso, afinal como uma ingênua mensagem pode fazer um aplicativo inteiro travar?&lt;/p>
+&lt;p>No começo eu achei que era culpa da aplicação. Mas, para entender o motivo, eu preciso explicar primeiro o que é &lt;strong>Unicode&lt;/strong>&lt;/p>
+&lt;h2 id="unicode">Unicode&lt;/h2>
+&lt;p>Antes, um pouco de história.&lt;/p>
+&lt;p>Quando estamos aprendendo a ler, nós somos introduzidos primeiro ao alfabeto:&lt;/p>
+&lt;p>&lt;code>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z&lt;/code>&lt;/p>
+&lt;p>Depois, nós somos introduzidos aos numerais:&lt;/p>
+&lt;p>&lt;code>0 1 2 3 4 5 6 7 8 9&lt;/code>&lt;/p>
+&lt;p>Nós sabemos que números e letras são coisas diferentes: números são mais usados pra contar e letras são mais usadas
+para escrever.&lt;/p>
+&lt;p>Infelizmente, o computador só enxerga números. Lembrem-se que o computador é, em seu núcleo, uma máquina para
+contar, então ele enxergar apenas números faz até que um pouco de sentido.&lt;/p>
+&lt;p>Esses números que o computador enxerga são chamados de &lt;strong>bits&lt;/strong>, e eles são compostos por 0 e 1. &lt;br>
+Oito &lt;strong>bits&lt;/strong> são iguais a um &lt;strong>byte&lt;/strong>. Um byte pode ir de 0 a 255.&lt;/p>
+&lt;p>Quando o computador começou a se popularizar, foi necessário mostrar texto ao usuário, mensagens mais
+claras do que meras luzes em um painel. Então começaram a inventar jeitos de representarem letras usando números.&lt;/p>
+&lt;p>O padrão mais usado durante muito tempo foi o &lt;strong>ASCII&lt;/strong>. Ele usa um byte por letra (ou seja, vai de 0 até 255[*]),
+diferencia maiúsculas de minúsculas, e tem a maioria dos caracteres com acento. No ASCII, a letra &lt;strong>A&lt;/strong> é codificada
+usando o número &lt;strong>65&lt;/strong>.&lt;/p>
+&lt;p>Infelizmente, o ASCII, devido a limitações de armazenamento na época, apenas guarda caracteres do alfabeto latino
+e alguns acentos. Se você quiser escrever, por exemplo, 私のコックは巨大です, você não vai conseguir usando ASCII.
+Obviamente era possível naquela época, já que os japoneses usavam computadores, mas não usando ASCII. Sim, você teria
+que trocar de encoding, o que provavelmente iria corromper seu texto, já que apenas os números e caracteres de
+letra maiúscula eram iguais entre os encodings da época.&lt;/p>
+&lt;p>Você já deve ter visto muitos textos assim, principalmente se você for mais velho:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/trava/acento.png" alt="Erro de encoding no windows 98">&lt;/p>
+&lt;p>Esse erro ocorre porque o sistema operacional, o Windows no caso, estava usando o encoding errado. O padrão é ASCII,
+mas o Windows 98 usava uma encoding chamada &lt;a href="https://pt.wikipedia.org/wiki/ISO/IEC_8859-1">ISO-8859-1&lt;/a>, também chamada
+Latin-1, para encodificar os caracteres em português.&lt;/p>
+&lt;p>As pessoas já estavam cansadas de problemas como esse, que limitam a comunicação. E olha que a diferença entre o Latin-1
+pro ASCII era pequena: em muitos encodings, o que restava de semelhante ao ASCII eram apenas números e letras maiúsculas.&lt;/p>
+&lt;p>O desejo por um padrão universal começou, e o Unicode surgiu a partir daí.&lt;/p>
+&lt;p>[*] Tecnicamente o ASCII vai até 127, por motivos que fogem ao assunto desse post.&lt;/p>
+&lt;h2 id="utf-8">UTF-8&lt;/h2>
+&lt;p>O Unicode representa caracteres em valores chamados de &lt;strong>codepoints&lt;/strong>, e eles são representados exclusivamente em hexadecimal.
+Esses caracteres vão desde letras e números em diferentes idiomas até &lt;em>kanjis&lt;/em>, hieroglifos e emojis.&lt;br>
+Por exemplo, 💩 é representado pelo codepoint 1F4A9, equivalente a 128169 em decimal.&lt;/p>
+&lt;p>Todos os codepoints começam com U seguidos do número, então o codepoint que representa a atual situação do nosso amado país
+seria escrito U+1F4A9.&lt;/p>
+&lt;p>Porém, esses &lt;strong>codepoints&lt;/strong> não dizem nada sobre como você os representa na máquina. Para isso, existem métodos de mapeamento. Os mais
+comuns se chamam UTF, ou &lt;em>Unicode Transformation Format&lt;/em>, algo como &lt;strong>Formato de Transformação Unicode&lt;/strong>, que vai mapear o codepoint em
+bytes, para serem usados pelo software.&lt;/p>
+&lt;p>O mais popular é o UTF-8. Nele, você usa no mínimo um byte e no máximo oito, se eu não me engano. Os bytes que cada codepoint depende do
+número do codepoint. Felizmente, os 127 primeiros caracteres têm o mesmo valor tanto em UTF-8, quanto Unicode e quanto ASCII, então
+não há mudanças (por isso que é tão popular). Todos os sistemas operacionais são compatíveis e usam UTF-8.&lt;/p>
+&lt;p>Existe o UTF-16, onde você usa entre dois e oito.&lt;/p>
+&lt;p>E existe o UTF-32, que você usa entre quatro e oito, se eu não me engano.&lt;/p>
+&lt;p>Muito embora, na prática, o limite máximo seja quatro.&lt;/p>
+&lt;p>Antigamente, o Windows usava um formato chamado &lt;strong>UCS-2&lt;/strong>, que usava exatamente dois bytes por codepoint.&lt;/p>
+&lt;p>E, sim, letra e codepoint são coisas diferentes. Por exemplo, existem duas formas de escrever a letra &lt;code>á&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>U+00E1&lt;/li>
+&lt;li>U+0061 U+0301.&lt;/li>
+&lt;/ul>
+&lt;p>Na primeira forma você usa o codepoint responsavel pela letra &lt;code>á&lt;/code>.&lt;/p>
+&lt;p>Na segunda você usa 2 codepoints: um pra letra &lt;code>a&lt;/code> (sem acento) e outro que representa o ato de acentuar o
+codepoint anterior.&lt;/p>
+&lt;h2 id="navegando-pelo-texto">Navegando pelo texto&lt;/h2>
+&lt;p>Você deve estar se perguntando: o que isso tem a ver com o travazap?&lt;/p>
+&lt;p>Acalme-se.&lt;/p>
+&lt;p>É importante que você veja a explicação, principalmente na parte que eu falei que, no UTF-8,
+&lt;em>você usa no mínimo um byte e no máximo seis&lt;/em>.&lt;/p>
+&lt;p>Não, o valor de bytes por caractere não é fixo.&lt;/p>
+&lt;p>Por exemplo, se convertermos a frase &amp;ldquo;Luladrão roubou meu coração&amp;rdquo; para UTF-8, teremos:
+(cada número sendo um byte, em hexadecimal)&lt;/p>
+&lt;pre tabindex="0">&lt;code>00000000 4c 75 6c 61 64 72 c3 a3 6f 2c 20 72 6f 75 62 6f |Luladr..o, roubo|
+L u l a d r --ã-- o , r o u b o
+00000010 75 20 6d 65 75 20 63 6f 72 61 c3 a7 c3 a3 6f |u meu cora....o|
+u m e u c o r a --ç-- --ã-- o
+&lt;/code>&lt;/pre>&lt;p>Perceba que os caracteres com acento ocuparam dois bytes?&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ã&lt;/code> é representado pelos bytes C3 e A3 (195 e 163 em decimal).&lt;/li>
+&lt;li>&lt;code>ç&lt;/code> é representado pelos bytes C3 e A7 (195 e 167 em decimal).&lt;/li>
+&lt;/ul>
+&lt;p>Antigamente, em ASCII, um caractere era igual a um byte. Então, para você, por exemplo, andar
+dez caracteres para frente num texto, você simplesmente pulava dez bytes. Você nem precisaria
+se preocupar no que está escrito, já que o tamanho é fixo.&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/trava/squid1.png" alt="Antigamente, as letras eram assim">&lt;/p>
+&lt;p>Já no UTF-8, você precisa prestar atenção no byte que você está lendo, para ver se o caractere
+tem um ou mais bytes.&lt;/p>
+&lt;p>Isso torna operações de manipulação de texto, como contar letras e palavras, além de descobrir
+o tamanho de um pedaço de texto em caracteres, relativamente mais difícil.&lt;/p>
+&lt;h2 id="escrita">Escrita&lt;/h2>
+&lt;p>Algo que se torna mais complicado é desenhar as letras que você vê na tela.&lt;/p>
+&lt;p>Antigamente, quando se usava apenas ASCII, o computador ordenava os 256 caracteres do ASCII em uma
+lista na memória, e usava o valor da letra para se decidir qual caractere desenhar. Por exemplo, se
+você pedisse para ele desenhar o caractere de valor &lt;code>65&lt;/code>, o computador iria ver o 65º caractere da lista,
+que seria a letra &amp;ldquo;A&amp;rdquo;, e o desenharia onde você pediu.&lt;/p>
+&lt;p>Como eram apenas 256 valores, não tinha problema em ter uma tabela gigantesca em memória.&lt;/p>
+&lt;p>Porém, a primeira versão do Unicode já vinha com dezenas de milhares de &amp;ldquo;caracteres&amp;rdquo; (codepoints, na verdade).
+A primeira versão lançou ainda na década de 90, onde os computadores possuíam, em média, uns 128 MB de memória.
+Uma simples lista caberia, mas não sobraria muito para outros aplicativos.&lt;/p>
+&lt;p>Então os cientistas da computação inventaram jeitos melhores de guardar esses caracteres na memória, e diferentes
+formatos de fontes de computador nasceram. Jeitos melhores obviamente aumentaram a velocidade, mas aumentavam
+também o tamanho desses arquivos, além do consumo de memória da máquina.&lt;/p>
+&lt;p>Porém, uma coisa que mudou é que, antigamente, todos os caracteres tinham um tamanho fixo, de alguns pixels.&lt;br>
+Por exemplo, se uma letra tem 7 pixels de largura, e você precisa escrever a palavra &lt;code>PAÇOCA&lt;/code>, você sabe que
+precisa reservar &lt;code>7&lt;/code> pixels * &lt;code>6&lt;/code> caracteres, ou seja, 42 pixels.&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/trava/pafoca.png" alt="&amp;amp;ldquo;Paçoca&amp;amp;rdquo; escrita em diferentes tipos de letra, para ilustrar os diferentes tamanhos">
+&lt;!-- raw HTML omitted -->&amp;ldquo;Paçoca&amp;rdquo; escrita em diferentes tipos de letra, para ilustrar os diferentes tamanhos&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>Agora, um caractere pode ter diferentes tamanhos, então o programa nunca sabe qual vai ser o tamanho da letra que
+ele vai desenhar até ele desenhar. Sim, a altura ainda é conhecida, mas a largura não.&lt;/p>
+&lt;h2 id="problemas">Problemas&lt;/h2>
+&lt;p>Então, nós temos dois problemas:&lt;/p>
+&lt;ul>
+&lt;li>Um &lt;strong>caractere&lt;/strong> pode ser composto por vários &lt;strong>codepoints&lt;/strong>.&lt;/li>
+&lt;li>Um &lt;strong>codepoint&lt;/strong> pode ser composto por vários &lt;strong>bytes&lt;/strong>.&lt;/li>
+&lt;li>Um &lt;strong>caractere&lt;/strong> pode ter diferentes larguras.&lt;/li>
+&lt;li>Além disso, um &lt;strong>caractere&lt;/strong> pode ser desenhado de trás pra frente, ou de cima para baixo.&lt;/li>
+&lt;/ul>
+&lt;p>Identificar caracteres é difícil, mas desenhá-los na tela é ainda mais.&lt;/p>
+&lt;p>O motivo pelo qual isso não parece lento é que os programas geralmente, na hora de editar texto, ou
+deixam quatro bytes por codepoint, fazendo com que seja muito mais fácil de navegar, ou usam
+algoritmos que permitem navegação rápida, a custo de mais memória consumida.&lt;/p>
+&lt;p>Além disso, eles só desenham os caracteres que vão aparecer na tela, o que limita um pouco as coisas.&lt;/p>
+&lt;h2 id="voltando-à-questão">Voltando à questão.&lt;/h2>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/trava/travazap.jpg" alt="">
+&lt;!-- raw HTML omitted -->Fonte: radaroeste.com.br&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>Até agora, sabemos que:&lt;/p>
+&lt;ul>
+&lt;li>os caracteres podem ocupar mais de um byte.&lt;/li>
+&lt;li>cada caractere pode ter diferentes tamanhos.&lt;/li>
+&lt;li>a parte mais demorada envolve desenhar o caractere.&lt;/li>
+&lt;/ul>
+&lt;p>Dito isso, já posso explicar como funciona o travazap.&lt;/p>
+&lt;p>Não, não é nada a ver com os servidores do whatsapp. O Whatsapp usa uma linguagem chamada &lt;strong>Erlang&lt;/strong>
+para criar o programa que fica no servidor, enviando as mensagens para os aplicativos lhe mostrarem. &lt;br>
+Essa linguagem tem um bom suporte a Unicode.&lt;/p>
+&lt;p>O aplicativo em si é feito em Java, se eu não me engano. Java tem um bom suporte a unicode.&lt;/p>
+&lt;p>E, para falar a verdade, o tratamento de Unicode já é conhecido faz tempo. Qualquer linguagem de
+programação tem funções que lidam com isso.&lt;/p>
+&lt;p>O problema está na hora de desenhar.&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/trava/pombo.png" alt="">&lt;/p>
+&lt;p>Isso é um travazap que eu peguei da internet, inalterado. &lt;br>
+Ele tem 110 kB.&lt;br>
+Pode não parecer muito, mas isso são, aproximadamente, 100 mil caracteres.&lt;/p>
+&lt;p>Você já pode perceber que tem algo errado, já que os travazaps não parecem ser tão grandes.
+No máximo eles têm uma tela ou duas. Isso não dá cem mil caracteres nunca, nem na menor
+fonte possível que você pode configurar no celular.&lt;/p>
+&lt;p>O problema, na verdade, está em &lt;em>desenhar&lt;/em>.&lt;/p>
+&lt;p>A maior parte do travazap é composta por esses codepoints aqui:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>U+2009&lt;/code>&lt;/li>
+&lt;li>&lt;code>U+200A&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Se você souber inglês, vai ver que &lt;a href="https://unicode-explorer.com/c/2009">o nome do primeiro codepoint&lt;/a>
+é algo como &amp;ldquo;ESPAÇO PEQUENO&amp;rdquo;, e &lt;a href="https://unicode-explorer.com/c/200A">o nome do segundo&lt;/a>
+é algo como &amp;ldquo;ESPAÇO DO TAMANHO DE UM FIO DE CABELO&amp;rdquo;.&lt;/p>
+&lt;p>O &lt;code>2009&lt;/code> é o segundo menor espaço disponível, medindo algo como 3 pixels. O &lt;code>200A&lt;/code> é ainda menor do que
+isso. Lembrando que as telas de celular de hoje em dia possuem algo como 720 pixels de largura[2],
+então cabem uns 300 caracteres desses por linha.&lt;/p>
+&lt;p>Esses dois caracteres não são muito difíceis de serem desenhados, mas, ainda assim, o WhatsApp precisa
+desenhá-los um a um. E, como os caracteres são bem pequenos, você precisa desenhar muitos deles
+para chegar até o final da tela.&lt;/p>
+&lt;p>Ao contrário do seu navegador, Chrome ou Firefox, que já é otimizado para lidar com muito texto (
+lembrando que, tecnicamente, são &lt;strong>100 mil caracteres de uma vez&lt;/strong> ), o WhatsApp não é, e ele
+acaba travando.&lt;/p>
+&lt;p>Muitos travazaps contém &lt;em>codepoints&lt;/em> que mudam a direção do texto, o que também afeta a velocidade
+de desenho, já que você precisa calcular a medida da letra de trás para frente, e ir andando
+pelo texto até achar o &lt;em>codepoint&lt;/em> que volta a direção do texto ao normal.&lt;/p>
+&lt;p>&lt;strong>Fato curioso:&lt;/strong> o travazap não funciona com SMS da mesma forma que com o WhatsApp.&lt;br>
+Sim, o SMS suporta Unicode, mas ele tem um limite &lt;em>em bytes&lt;/em>, e esse limite é relativamente
+pequeno. Então você não vai ver tantos caracteres. &lt;em>MASSSS&lt;/em>, você vai receber muitas mensagens
+de uma vez, umas mil, uma atrás da outra.&lt;br>
+É &lt;em>isso&lt;/em> é o qe pode travar o seu celular&lt;/p>
+&lt;hr>
+&lt;p>[2] 720 pixels &lt;em>virtuais&lt;/em>. Na verdade, a tela tem, no mínimo, o dobro dessa resolução, mas ela é
+mais usada pelo sistema pra suavizar as bordas das letras e melhorar a definição das imagens.\
+Para o aplicativo, é uma tela de 720 pixels.&lt;/p>
+&lt;hr>
+&lt;p>Pronto, TravaZap explicado!&lt;/p>
+&lt;p>Na parte 2, que eu ainda vou escrever, eu vou falar mais ou menos como funciona o TravaLoL novo.
+Como eu ainda estou pesquisando, vai demorar um pouco mais.&lt;/p></content></item><item><title>O meu Mac está dando um erro EADDRINUSE na porta 5000!</title><link>https://arthurmco.github.io/blog/posts/port-5000-mac/</link><pubDate>Tue, 10 May 2022 09:55:03 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/port-5000-mac/</guid><description>Ontem, no trabalho, eu fui tentar subir um serviço localmente, no Macbook que eles deram.
 O serviço roda na porta 5000, então eu fui tentar rodá-lo. Para minha surpresa, apareceu um erro assim (não vou botar ele aqui porque eu não quero ser processado):
 Error: listen EADDRINUSE: address already in use :::5000 Isso significa que, obviamente, a porta 5000 está bloqueada.
-Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era.</description></item><item><title>O terminal nativo do macOS tem uma limitação curiosa</title><link>https://arthurmco.github.io/blog/posts/apple-24bit-terminal/</link><pubDate>Thu, 07 Apr 2022 11:35:21 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/apple-24bit-terminal/</guid><description>O app de terminal nativo do macOS suporta só 256 cores diferentes.
+Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era.</description><content>&lt;p>Ontem, no trabalho, eu fui tentar subir um serviço localmente, no Macbook que eles deram.&lt;/p>
+&lt;p>O serviço roda na porta 5000, então eu fui tentar rodá-lo. Para minha surpresa, apareceu
+um erro assim (não vou botar ele aqui porque eu não quero ser processado):&lt;/p>
+&lt;pre tabindex="0">&lt;code>Error: listen EADDRINUSE: address already in use :::5000
+&lt;/code>&lt;/pre>&lt;p>Isso significa que, obviamente, a porta 5000 está bloqueada.&lt;/p>
+&lt;p>Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era. E era muito simples&lt;/p>
+&lt;p>Era um serviço do AirPlay que rodava nessa porta. O AirPlay é um serviço de compartilhamento da
+Apple, então provavelmente a Apple deixa isso ativo por padrão, porque ela acha que você tem
+tudo compatível com esse protocolo.&lt;/p>
+&lt;p>O serviço fica escutando na porta 5000&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ lsof -i :5000
+COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+ControlCe 1338 arthurmco 18u IPv4 0xdd3dfcad86ca845 0t0 TCP *:commplex-main (LISTEN)
+ControlCe 1338 arthurmco 19u IPv6 0xdd3dfbc773edd3d 0t0 TCP *:commplex-main (LISTEN)
+&lt;/code>&lt;/pre>&lt;p>É esse &lt;code>ControlCe&lt;/code> aí (deve ser de ControlCenter). Um nome extremamente sugestivo.&lt;/p>
+&lt;p>Infelizmente, eu só tenho só mais um produto Apple, e eu nem uso ele com esse computador.&lt;/p>
+&lt;p>Pra desativar isso, você:&lt;/p>
+&lt;ul>
+&lt;li>abre as &lt;strong>Preferências do Sistema&lt;/strong> do Mac (ou &lt;strong>System Preferences&lt;/strong>, se
+você prefere em inglês),&lt;/li>
+&lt;li>vai em &lt;strong>Compartilhamento&lt;/strong> (ou &lt;strong>Sharing&lt;/strong>).&lt;/li>
+&lt;li>desmarca a opção que diz &amp;ldquo;Receptor de AirPlay&amp;rdquo; (eu sei lá como é isso em inglês, mas vai
+ter AirPlay no nome). Ela é a última opção, ou está entre as últimas.&lt;/li>
+&lt;/ul>
+&lt;p>Pronto. Agora você pode rodar serviços na 5000 à vontade.&lt;/p></content></item><item><title>O terminal nativo do macOS tem uma limitação curiosa</title><link>https://arthurmco.github.io/blog/posts/apple-24bit-terminal/</link><pubDate>Thu, 07 Apr 2022 11:35:21 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/apple-24bit-terminal/</guid><description>O app de terminal nativo do macOS suporta só 256 cores diferentes.
 Ele não suporta 24bits de cor.
 Se você realmente necessita de 24 bits de cor num aplicativo não-gráfico, usa o iTerm2, que é o que a galera costuma usar.
 O terminal é a janela da esquerda, o iTerm2 é a da direita. Clica na imagem pra dar um zoom
-As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.</description></item><item><title>Coisas interessantes sobre patchfiles</title><link>https://arthurmco.github.io/blog/posts/about-patch-files/</link><pubDate>Sun, 13 Mar 2022 14:28:37 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/about-patch-files/</guid><description>Hoje eu precisei editar um arquivo patch na mão, algo relacionado com um projeto pessoal meu.
+As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.</description><content>&lt;p>O app de terminal nativo do macOS suporta só 256 cores diferentes.&lt;/p>
+&lt;p>Ele não suporta 24bits de cor.&lt;/p>
+&lt;p>Se você realmente necessita de 24 bits de cor num aplicativo não-gráfico, usa o iTerm2,
+que é o que a galera costuma usar.&lt;/p>
+&lt;p>&lt;a href="https://arthurmco.github.io/blog/blog/images/terminal-iterm2-compare.png">&lt;img src="https://arthurmco.github.io/blog/blog/images/terminal-iterm2-compare.png" alt="Lado a lado: cores no terminal e no iTerm2">&lt;/a>&lt;/p>
+&lt;p>O terminal é a janela da esquerda, o iTerm2 é a da direita. Clica na imagem pra dar um zoom&lt;/p>
+&lt;p>As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.&lt;/p>
+&lt;p>Acho engraçado que o terminal do Windows suporta 24 bits de cor, e esse suporte é bem recente.&lt;/p></content></item><item><title>Coisas interessantes sobre patchfiles</title><link>https://arthurmco.github.io/blog/posts/about-patch-files/</link><pubDate>Sun, 13 Mar 2022 14:28:37 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/about-patch-files/</guid><description>Hoje eu precisei editar um arquivo patch na mão, algo relacionado com um projeto pessoal meu.
 Para quem não sabe, arquivos patch são aqueles com extensão .patch. Eles têm um monte de linhas que começam com + e -.
 A sintaxe desse arquivo é a mesma sintaxe que o comando git diff mostra em um repositório válido,
 Um arquivo diff é mais ou menos assim:
-diff --git a/src/common/CMakeLists.txt b/src/common/CMakeLists.txt index edeeeec.</description></item><item><title>Problemas com `git pull` no Windows?</title><link>https://arthurmco.github.io/blog/posts/ssh-on-windows/</link><pubDate>Sun, 06 Mar 2022 14:47:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/ssh-on-windows/</guid><description>Você está tendo problemas de autenticação com o git pull no Windows?
+diff --git a/src/common/CMakeLists.txt b/src/common/CMakeLists.txt index edeeeec.</description><content>&lt;p>Hoje eu precisei editar um arquivo &lt;code>patch&lt;/code> na mão, algo relacionado
+com um projeto pessoal meu.&lt;/p>
+&lt;p>Para quem não sabe, arquivos &lt;code>patch&lt;/code> são aqueles com extensão .patch.
+Eles têm um monte de linhas que começam com &lt;code>+&lt;/code> e &lt;code>-&lt;/code>.&lt;br>
+A sintaxe desse arquivo é a mesma sintaxe que o comando &lt;code>git diff&lt;/code>
+mostra em um repositório válido,&lt;/p>
+&lt;p>Um arquivo diff é mais ou menos assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/src/common/CMakeLists.txt b/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index edeeeec..fcbe64c 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -48,13 +48,11 @@ add_dependencies(familyline-common input-flatbuffer input-ser-flatbuffer network
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_compile_features(familyline-common PRIVATE cxx_std_20)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(fmt 6...7.2 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(ZLIB REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span> find_package(tl-expected 1 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(nlohmann_json REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(FlatBuffers REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(SDL2 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(range-v3 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(glm REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if (FLINE_USE_VCPKG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(${CMAKE_TOOLCHAIN_FILE})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -79,8 +77,9 @@ else()
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_link_libraries(familyline-common PUBLIC ${CURLPP_LDFLAGS})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_include_directories(familyline-common PUBLIC ${CURLPP_INCLUDE_DIRS})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> endif()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+ pkg_search_module(ZLIB REQUIRED zlib)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- target_link_libraries(familyline-common PUBLIC fmt::fmt glm::glm ${ZLIB_LIBRARIES})
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+ target_link_libraries(familyline-common PUBLIC fmt::fmt glm ${ZLIB_LIBRARIES})
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span> target_link_libraries(familyline-common PUBLIC tl::expected range-v3::range-v3)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_link_libraries(familyline-common PUBLIC nlohmann_json::nlohmann_json)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_include_directories(familyline-common PUBLIC
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/src/common/generated.cmake b/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index d30ff1c..b105a41 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -5,6 +5,8 @@
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> # called INPUT_FLATBUFFER_INCLUDE, where the generated header file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> # is.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+# TODO: solve the issue of us having to run cmake twice to get the flatbuffers path
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span> include_guard(GLOBAL)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(&amp;#34;${CMAKE_SOURCE_DIR}/cmake/BuildFlatBuffers.cmake&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/tools/bump_version.py b/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index 5b79583..46f736c 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -127,7 +127,7 @@ update_cmakelists(current_ver, next_ver)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> ####################
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> os.system(&amp;#34;git add CMakeLists.txt&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-os.system(&amp;#34;git commit -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+os.system(&amp;#34;git commit --no-verify -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ####################
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Existem vários formatos de arquivos de patch. O mais comum é esse aí de cima,
+chamado de &lt;code>unified format&lt;/code>&lt;/p>
+&lt;p>Um arquivo de patch pode conter vários arquivos. Eles são delimitados
+por duas coisas:&lt;/p>
+&lt;ul>
+&lt;li>o comando usado pra gerar o diff:&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>diff --git a/tools/bump_version.py b/tools/bump_version.py
+index 5b79583..46f736c 100644
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>o &lt;code>header&lt;/code> do arquivo:&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>--- a/tools/bump_version.py
++++ b/tools/bump_version.py
+&lt;/code>&lt;/pre>&lt;p>Opcionalmente, esse header pode conter uma data. É útil para ver se o
+seu arquivo é mais novo ou mais velho do que o patch&lt;/p>
+&lt;pre tabindex="0">&lt;code>--- a/tools/bump_version.py 2022-03-07 01:34:08.815661222 -0300
++++ b/tools/bump_version.py 2022-03-09 18:29:20.993654217 -0300
+&lt;/code>&lt;/pre>&lt;p>O &lt;code>---&lt;/code> delimita o arquivo &amp;ldquo;antigo&amp;rdquo;. O &lt;code>+++&lt;/code> delimita o arquivo
+&amp;ldquo;novo&amp;rdquo;, que vai surgir depois do path.&lt;/p>
+&lt;p>O que conta pro formato é o caminho depois do &lt;code>a/&lt;/code> ou do &lt;code>b&lt;/code>, esses
+dois nomes são só de referência&lt;/p>
+&lt;p>Depois disso, para cada arquivo, nós temos vários &amp;ldquo;chunks&amp;rdquo;, pedaços de alteração.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -127,7 +127,7 @@ update_cmakelists(current_ver, next_ver)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> ####################
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> os.system(&amp;#34;git add CMakeLists.txt&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-os.system(&amp;#34;git commit -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+os.system(&amp;#34;git commit --no-verify -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ####################
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O formato é mais ou menos assim:&lt;/p>
+&lt;p>&lt;code>@@ -linhaA, quantidadeA +linhaB, quantidadeB @@&lt;/code>&lt;/p>
+&lt;p>A &lt;code>linhaA&lt;/code> é o número da linha onde o chunk começa, onde a alteração
+vai acontecer no arquivo antigo. A &lt;code>quantidadeA&lt;/code> é a quantidade do
+número de linhas nesse &amp;ldquo;chunk&amp;rdquo; no arquivo original&lt;/p>
+&lt;p>A &lt;code>linhaB&lt;/code> é o número da linha onde o chunk começa, onde a alteração
+vai acontecer no arquivo novo. A &lt;code>quantidadeB&lt;/code> é a quantidade do
+número de linhas nesse &amp;ldquo;chunk&amp;rdquo; depois que todas as alterações forem
+aplicadas.&lt;/p>
+&lt;p>Por exemplo, nesse chunk aí de cima, ele começa na linha 127 do
+arquivo, temos 7 linhas nele antes das alterações, e 7 linhas nele
+depois&lt;/p>
+&lt;p>Nesse aqui:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -48,13 +48,11 @@ add_dependencies(familyline-common input-flatbuffer input-ser-flatbuffer network
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_compile_features(familyline-common PRIVATE cxx_std_20)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(fmt 6...7.2 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(ZLIB REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span> find_package(tl-expected 1 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(nlohmann_json REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(FlatBuffers REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(SDL2 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(range-v3 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(glm REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if (FLINE_USE_VCPKG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(${CMAKE_TOOLCHAIN_FILE})
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ele começa na linha 48 do arquivo original, temos 13 linhas nele antes
+das alterações e teremos 11 linhas depois.&lt;/p>
+&lt;p>Depois disso, vêm algumas linhas do arquivo original, para dar
+contexto.&lt;/p>
+&lt;p>As linhas sem nada antes são linhas que não sofrerão alterações.&lt;/p>
+&lt;p>As linhas com &lt;code>-&lt;/code> serão removidas.&lt;/p>
+&lt;p>As linhas com &lt;code>+&lt;/code> serão adicionadas.&lt;/p>
+&lt;hr>
+&lt;p>E é isso.&lt;/p>
+&lt;p>É um formato relativamente simples, mas bem útil para dizer
+alterações.&lt;/p>
+&lt;p>Se você quiser mais detalhes sobre o formato, pode vir &lt;a href="https://www.artima.com/weblogs/viewpost.jsp?thread=164293">nesse post do
+Guido van
+Rossum&lt;/a>,
+onde ele escreveu uma mini-especificação do formato.&lt;/p></content></item><item><title>Problemas com `git pull` no Windows?</title><link>https://arthurmco.github.io/blog/posts/ssh-on-windows/</link><pubDate>Sun, 06 Mar 2022 14:47:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/ssh-on-windows/</guid><description>Você está tendo problemas de autenticação com o git pull no Windows?
 Se você deu git clone ou git pull e se deparou com um erro mais ou menos assim:
-Permission denied (publickey).: exit status 255 e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar ssh -vT git@github.com sem problema nenhum, então talvez o problema seja que você está usando o cliente SSH do git ao invés do cliente do Windows.</description></item><item><title>Como usar o Webpack - Parte 2</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</link><pubDate>Thu, 23 Sep 2021 13:11:22 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
-Vimos na parte 1 como o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como vimos, o uso sem configuração se torna bastante limitado, porque, dentre muitas outras coisas, os nomes dos arquivos não podem ser customizados,</description></item><item><title>Como usar o Webpack - Parte 1</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</link><pubDate>Sat, 11 Sep 2021 23:15:56 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+Permission denied (publickey).: exit status 255 e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar ssh -vT git@github.com sem problema nenhum, então talvez o problema seja que você está usando o cliente SSH do git ao invés do cliente do Windows.</description><content>&lt;p>Você está tendo problemas de autenticação com o &lt;code>git pull&lt;/code> no Windows?&lt;/p>
+&lt;p>Se você deu &lt;code>git clone&lt;/code> ou &lt;code>git pull&lt;/code> e se deparou com um erro mais ou menos assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Permission denied (publickey).: exit status 255
+&lt;/code>&lt;/pre>&lt;p>e as suas chaves SSH estão registradas no Git certinhas e você conseguiu dar
+&lt;code>ssh -vT git@github.com&lt;/code> sem problema nenhum, então talvez o problema seja
+que você está usando o cliente SSH do git ao invés do cliente do Windows.&lt;/p>
+&lt;p>O cliente do Windows tem um bônus que ele funciona dentro do vscode também&lt;/p>
+&lt;p>Para você fazer isso, rode esse comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
+&lt;/code>&lt;/pre>&lt;p>Lembre-se que você deve instalar o OpenSSH.&lt;/p>
+&lt;p>Para isso, abra as configurações do Windows, procure naquela barra de pesquisa
+por &amp;ldquo;Recursos Opcionais&amp;rdquo;, vá em &amp;ldquo;Adicionar recurso opcional&amp;rdquo;, clique no
+botão de &amp;ldquo;Exibir recursos&amp;rdquo; e procure por &amp;ldquo;Cliente OpenSSH&amp;rdquo;. Instale e reinicie.&lt;/p></content></item><item><title>Como usar o Webpack - Parte 2</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</link><pubDate>Thu, 23 Sep 2021 13:11:22 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+Vimos na parte 1 como o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como vimos, o uso sem configuração se torna bastante limitado, porque, dentre muitas outras coisas, os nomes dos arquivos não podem ser customizados,</description><content>&lt;p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.&lt;/p>
+&lt;p>&lt;a href="https://arthurmco.github.io/blog/posts/webpack-howto-part-1/">Vimos na parte
+1&lt;/a> como
+o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como
+vimos, o uso sem configuração se torna bastante limitado, porque,
+dentre muitas outras coisas, os nomes dos arquivos não podem ser
+customizados,&lt;/p>
+&lt;p>Usando um arquivo de configuração, porém, você pode customizar várias
+coisas, e usar vários &lt;strong>plugins&lt;/strong> e &lt;strong>loaders&lt;/strong> (eu expliquei o que são
+esses dois na parte 1).&lt;/p>
+&lt;p>O nome do arquivo de configuração do webpack é o
+&lt;code>webpack.config.js&lt;/code>. Ele fica na raiz do seu projeto, no diretório
+principal. Lembrando da estrutura de arquivos que tínhamos, na parte
+1, incluindo esse arquivo, ela ficaria assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>.
+├── webpack.config.js
+└── src
+├── continhas.js
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>De cara, eu vou introduzir algumas opções dele para você.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;path&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">module&lt;/span>.&lt;span style="color:#a6e22e">exports&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">mode&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;development&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/index.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;bundle.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Primeiro, dá pra perceber que ele é um arquivo javascript comum. A
+configuração em si é só o que ele exporta.&lt;/p>
+&lt;p>A opção &lt;strong>mode&lt;/strong> identifica o ambiente onde esse script vai rodar,
+&lt;code>development&lt;/code> pra desenvolvimento, &lt;code>production&lt;/code> pra produção. Isso
+você provavelmente deixaria em uma variável de ambiente, ou em outro
+arquivo.&lt;/p>
+&lt;p>A opção &lt;strong>entry&lt;/strong> identifica o arquivo de entrada. Lembrando o que eu
+disse:&lt;/p>
+&lt;blockquote>
+&lt;p>O arquivo de entrada é chamado de &lt;em>entry&lt;/em>, e o de saída é chamado de
+&lt;em>bundle&lt;/em>.&lt;/p>
+&lt;/blockquote>
+&lt;p>Você pode definir mais de um arquivo de entrada assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivoum&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo1.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivodois&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo2.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Os nomes dos atributos não são muito importantes até onde eu sei, mas
+os caminhos dos arquivos são onde esses arquivos estão.&lt;/p>
+&lt;p>A opção &lt;strong>output&lt;/strong> define a saída, onde esses bundles serão
+salvos. &lt;code>output.path&lt;/code> define o caminho, e &lt;code>output.filename&lt;/code> o nome do
+arquivo.&lt;/p>
+&lt;p>Ele pode gerar um arquivo de output por cada arquivo de entrada,
+usando a string de substituição &lt;code>[name]&lt;/code>. Por exemplo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivoum&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo1.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivodois&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo2.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;[name]_out.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>geraria dois arquivos na pasta &lt;code>dist&lt;/code>: &lt;code>arquivoum_out.js&lt;/code> e
+&lt;code>arquivodois_out.js&lt;/code>&lt;/p>
+&lt;p>Usando esse arquivo super básico, você pode controlar os arquivos de
+entrada e os de saída.&lt;/p>
+&lt;p>Mas existem mais coisas que você pode fazer:&lt;/p>
+&lt;h1 id="módulos">Módulos&lt;/h1>
+&lt;p>Algumas bibliotecas lhe permitem importar um arquivo CSS dentro de um
+arquivo Javascript, mais ou menos assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./style/style.css&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./style/style.css&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Você pode fazer isso usando loaders, não só com CSS, mas com outros
+tipos de arquivos também. Até com JSON, por mais engraçado que isso
+possa parecer.&lt;/p>
+&lt;p>Usaremos dois loaders:&lt;/p>
+&lt;ul>
+&lt;li>o &lt;strong>style-loader&lt;/strong> serve como uma base para carregar estilos CSS&lt;/li>
+&lt;li>o &lt;strong>css-loader&lt;/strong> serve para o style-loader reconhecer imports de
+CSS, geralmente usados para importar um arquivo CSS em outro.&lt;/li>
+&lt;/ul>
+&lt;p>Os dois são geralmente usados juntos.&lt;/p>
+&lt;p>Instale-os assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ npm i --save-dev css-loader style-loader
+&lt;/code>&lt;/pre>&lt;p>E adicione essa linha abaixo de &lt;code>output&lt;/code>, ainda dentro do &lt;code>module.exports&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">module:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">rules:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">test:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">/\.css$/i,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">use:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">[&amp;#39;style-loader&amp;#39;,&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;css-loader&amp;#39;],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&lt;span style="color:#960050;background-color:#1e0010">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ele vai usar o css-loader e o style-loader em qualquer arquivo que
+terminar com &lt;code>.css&lt;/code>.&lt;/p>
+&lt;p>(aliás, quem quer um post sobre regex?)&lt;/p>
+&lt;h1 id="plugins">Plugins&lt;/h1>
+&lt;p>Como eu disse antes, um plugin do webpack tem autoridade pra mexer nos
+bundles. Um dos plugins mais usados é o &lt;code>html-webpack-plugin&lt;/code>, e ele
+serve para gerar uma página HTML que automaticamente inclui todos os
+bundles, assim você não precisa criar nenhuma página&lt;/p>
+&lt;p>O HTML que ele gera é mais ou menos assim, nas configurações default:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;utf-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;título&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;viewport&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">content&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;width=device-width, initial-scale=1&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">defer&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;defer&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;bundle.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Sendo que o título você pode definir quando instancia o plugin.&lt;/p>
+&lt;p>Para instalar o &lt;code>html-webpack-plugin&lt;/code>, você deve executar o seguinte
+comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>npm i --save-dev html-webpack-plugin
+&lt;/code>&lt;/pre>&lt;p>Dentro do webpack.config.js, insira essa linha, lá no começo&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;html-webpack-plugin&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Isso vai incluir a classe responsável por instanciar o plugin.&lt;/p>
+&lt;p>Ao contrário dos loaders, os plugins devem ser requeridos.&lt;/p>
+&lt;p>Agora, insira essas linhas depois de &lt;code>module&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;título da sua página&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O construtor dessa classe aceita mais atributos além de &lt;code>title&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>filename&lt;/strong>: o path do arquivo para o qual você quer escrever a
+página. O padrão é index.html&lt;/li>
+&lt;li>&lt;strong>template&lt;/strong>: um path para um template, cujo conteúdo HTML será
+copiado para o arquivo principal. &lt;a href="https://github.com/jantimon/html-webpack-plugin#writing-your-own-templates">A documentação do
+plugin&lt;/a>
+pode ajudar em como criar o template&lt;/li>
+&lt;li>&lt;strong>showErrors&lt;/strong>: mostra erros (de compilação do bundle,
+provavelmente) na página HTML.&lt;/li>
+&lt;/ul>
+&lt;p>Para gerar mais de um arquivo HTML, você deve declarar esse plugin
+mais de uma vez, e mudar o filename para outro arquivo, e o template
+para outro arquivo também se necessário.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;título da sua página&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;outra página&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">__dirname&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#34;/outrapagina.html&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">template&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;src/assets/outrotemplate.html&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O seu webpack.config.js provavelmente vai ficar assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;path&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;html-webpack-plugin&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">module&lt;/span>.&lt;span style="color:#a6e22e">exports&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">mode&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;development&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/index.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;bundle.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">module&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">rules&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">test&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">/\.css$/i&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">use&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [&lt;span style="color:#e6db74">&amp;#39;style-loader&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;css-loader&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;titulo da página&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">xhtml&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;p>Então, por enquanto é isso. Já dá pra desenvolver alguma coisa&lt;/p>
+&lt;p>Na próxima parte falaremos de opções para desenvolvedores.&lt;/p>
+&lt;p>Além disso, falaremos sobre como usar o jest junto com o seu app,
+porque você já deve ter percebido que, em 2021, o &lt;code>import&lt;/code> não
+é muito bem suportado no Node, só o &lt;code>require&lt;/code>. O Webpack entende os
+imports, mas o Node não. Mas os testes rodam no Node, então temos um
+problema.&lt;br>
+Esse problema eu já resolvi nesse app que eu estou escrevendo, então
+vou explicar como eu fiz isso pra vocês&lt;/p></content></item><item><title>Como usar o Webpack - Parte 1</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</link><pubDate>Sat, 11 Sep 2021 23:15:56 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
 Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu vou explicar o que eu estou aprendendo.
-O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero.</description></item><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
+O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero.</description><content>&lt;p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.&lt;/p>
+&lt;p>Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu
+vou explicar o que eu estou aprendendo.&lt;/p>
+&lt;p>O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que
+esse projeto vai usar) do zero. Eu poderia ter usado Vue direto, mas
+queria testar algumas coisas antes usando Javascript puro, e o Webpack
+me proporcionou isso.&lt;/p>
+&lt;p>Vou ser bem honesto: hoje em dia é mais viável usar o Webpack direto
+caso você queira fazer algo usando Javascript puro, com Javascript,
+HTML e CSS. Caso você queira usar React ou Vue, eles já vêm com
+ferramentas que abstraem o Webpack. Você não precisa configurar nada.&lt;/p>
+&lt;p>Eu vou usar o Webpack 5. Eu não usei o 4 porque eu queria usar a
+versão mais nova, mas eu posso ver o 4 caso vocês estejam interessados.&lt;/p>
+&lt;h1 id="o-que-é">O que é?&lt;/h1>
+&lt;p>Antes de tudo, vamos falar sobre o que é o Webpack?&lt;/p>
+&lt;p>Copiando da documentação deles:&lt;/p>
+&lt;blockquote>
+&lt;p>At its core, webpack is a static module bundler for modern
+JavaScript applications. When webpack processes your application, it
+internally builds a dependency graph from one or more entry points
+and then combines every module your project needs into one or more
+bundles, which are static assets to serve your content from.&lt;/p>
+&lt;/blockquote>
+&lt;p>Traduzindo:&lt;/p>
+&lt;blockquote>
+&lt;p>Em sua essência, o webpack é um empacotador de módulo estático para
+aplicativos JavaScript modernos. Quando o webpack processa seu
+aplicativo, ele constrói internamente um gráfico de dependência a
+partir de um ou mais pontos de entrada e, em seguida, combina cada
+módulo de que seu projeto precisa em um ou mais pacotes, que são
+ativos estáticos para servir seu conteúdo.&lt;/p>
+&lt;/blockquote>
+&lt;p>Resumindo: ele pega um arquivo de entrada (que você pode especificar
+qual), identifica todas as dependências dele e junta tudo em um
+arquivo de saída. O arquivo de entrada é chamado de &lt;em>entry&lt;/em>, e o de
+saída é chamado de &lt;em>bundle&lt;/em>. Você pode ter vários arquivos de saída em
+um projeto.&lt;/p>
+&lt;p>Esses arquivos de saída são o que você inclui na sua página HTML&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span> &lt;span style="color:#a6e22e">lang&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;en&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;UTF-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;Minha página&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;saidadowebpack.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">&amp;lt;!-- várias coisas maneiras e supimpas --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Isso é muito bom para fazer deploy de bibliotecas Javascript nesses
+CDNs, já que você pode separar tudo em vários arquivos no ambiente de
+dev e gerar um arquivo só. Antes do Node se tornar popular,
+ferramentas assim provavelmente eram bem usadas.&lt;/p>
+&lt;p>O Webpack tambem, usando &lt;strong>loaders&lt;/strong> e &lt;strong>plugins&lt;/strong>, pode converter
+arquivos de uma maneira que eles sejam usáveis dentro do
+Javascript. Os &lt;strong>loaders&lt;/strong> simplesmente convertem arquivos em módulos
+Javascript, enquanto os &lt;strong>plugins&lt;/strong> podem fazer mais coisas além
+disso, coisas que envolvem o bundle inteiro.&lt;/p>
+&lt;p>Por exemplo, o &lt;em>css-loader&lt;/em>, que é um loader que você pode usar para
+importar CSS dentro do Javascript, só precisa saber dos arquivos de
+entrada, então ele pode ser um loader mesmo. Já o
+&lt;strong>HtmlWebpackPlugin&lt;/strong>, um plugin que gera páginas HTML para a
+aplicação que usa o Webpack, precisa saber o nome final do bundle,
+coisa que um loader não vai te fornecer, então ele só pode ser
+implementado como um plugin mesmo&lt;/p>
+&lt;h2 id="criação">Criação&lt;/h2>
+&lt;p>Inicialmente, você vai precisar instalar três pacotes: &lt;code>webpack&lt;/code>,
+&lt;code>webpack-cli&lt;/code> e &lt;code>webpack-dev-server&lt;/code>&lt;/p>
+&lt;p>O &lt;strong>webpack&lt;/strong> é o webpack em si, o &lt;strong>webpack-cli&lt;/strong> é o pacote que contém a
+ferramentea de linha de comando do webpack (quando você digita
+&lt;code>webpack&lt;/code> no console, você está chamando uma ferramenta do CLI), e o
+&lt;strong>webpack-dev-server&lt;/strong> é um web server de desenvolvimento do webpack,
+que suporta várias coisas interessantes, como recarregar a página
+automaticamente quando uma mudança é feita.&lt;/p>
+&lt;p>Para instalar os três:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+npm install webpack webpack-cli webpack-dev-server
+&lt;/code>&lt;/pre>&lt;p>A estrutura de pastas padrão esperada pelo webpack é a seguinte:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+.
+├── dist
+└── src
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>O arquivo &lt;code>src/index.js&lt;/code> é o arquivo de entrada padrão. Isso significa
+que o webpack vai converter esse arquivo e todos os arquivos que ele
+importar (usando o &lt;code>import ... from ...&lt;/code> do Javascript) em um arquivo
+de saída, ou bundle. O local padrão do bundle é &lt;code>dist/main.js&lt;/code>, e esse
+arquivo é criado automaticamente.&lt;/p>
+&lt;p>Você, então, pode incluir esse dist/main.js em qualquer página
+HTML.&lt;/p>
+&lt;p>Dos arquivos importados, o webpack só vai incluir no bundle aquilo que
+foi realmente usado: funções, variáveis, etc. Ou seja, se um módulo
+define a função &lt;code>soma&lt;/code> e a função &lt;code>subtração&lt;/code>, mas você só usa a
+função &lt;code>soma&lt;/code>, apenas essa função será incluída no bundle.&lt;/p>
+&lt;p>Por exemplo, digamos que eu tenha dois arquivos (além do packages.json
+e a pasta node_modules, que eu tirei pra focarmos apenas nos arquivos
+importantes
+)&lt;/p>
+&lt;pre tabindex="0">&lt;code>.
+└── src
+├── continhas.js
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>com o continhas.js sendo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Soma dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Subtrai dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">subtracao&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">soma&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subtracao&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>e o index.js (nossa entrada) sendo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> {&lt;span style="color:#a6e22e">soma&lt;/span>} &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./continhas.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">30&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello world &amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">20&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello world &amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#ae81ff">20&lt;/span>));
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Lembre-se: o webpack começa pelo index.js, vai pegando os arquivos
+que o index.js importa e, de certa forma, os incluindo (na verdade,
+como você vai ver, ele faz mais do que isso)&lt;/p>
+&lt;p>Rode o seguinte comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+$ npx webpack
+&lt;/code>&lt;/pre>&lt;p>Ele vai rodar o webpack.&lt;br>
+Algumas mensagens de WARNING podem aparecer, mas elas só aparecem
+porque uma propriedade não foi definida no arquivo de configuração, e
+esse arquivo nós ainda não criamos.&lt;/p>
+&lt;p>O arquivo dist/main.js vai ficar assim (na verdade, esse resultado
+pode mudar um pouco de versão pra versão do Webpack):&lt;/p>
+&lt;pre tabindex="0">&lt;code>(()=&amp;gt;{&amp;#34;use strict&amp;#34;;function o(o,l){return o+l}console.log(&amp;#34;Hello world &amp;#34;,o(10,20)),console.log(&amp;#34;Hello world &amp;#34;,o(30,20))})();
+&lt;/code>&lt;/pre>&lt;p>Perceba que os &lt;code>console.log&lt;/code>s ainda estão aqui. Mas algumas coisas
+aconteceram além disso. Por exemplo:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Todos os comentários foram embora&lt;/strong>.&lt;br>
+O Webpack remove os comentários no bundle final, já que o que ele
+faz é semelhante a uma compilação. Esse bundle é como um arquivo
+compilado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A função de subtração sumiu.&lt;/strong>&lt;br>
+Como eu disse antes, funções não usadas são removidas. Isso faz o
+arquivo final ser bem menor que os arquivos-fonte&lt;/p>
+&lt;pre tabindex="0">&lt;code>[tuts@lula2022 webpack-test]$ ls -l dist/*.js
+-rw-rw-r--. 1 tuts tuts 124 Sep 11 22:31 dist/main.js
+[tuts@lula2022 webpack-test]$ ls -l src/*
+-rw-rw-r--. 1 tuts tuts 169 Sep 11 22:06 src/continhas.js
+-rw-rw-r--. 1 tuts tuts 155 Sep 11 22:30 src/index.js
+&lt;/code>&lt;/pre>&lt;p>169 + 155 = 324&lt;br>
+61% de redução do tamanho total do arquivo. Esse percentual pode
+variar, mas o arquivo final sempre vai ser menor que os fontes, já
+que ele é como se fosse um arquivo compilado. Ele não é feito pra
+ser lido por pessoas, como você pôde ver quando listamos o conteúdo
+dele.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A função de soma sumiu.&lt;/strong>&lt;br>
+Na verdade, a função soma ainda está aqui. O webpack só deu outro
+nome pra ela:&lt;/p>
+&lt;pre tabindex="0">&lt;code>function o(o,l){return o+l}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>function soma(o, l) {return o+l;}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>function soma(a, b) {return a + b;}
+&lt;/code>&lt;/pre>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Soma dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Viu?
+A função &lt;code>o(o, l)&lt;/code>, logo depois do &amp;ldquo;use strict&amp;rdquo;, é a nossa função
+soma. O webpack mudou o nome dela pro arquivo final ficar menor.&lt;br>
+Esse processo de remoção de coisas (como comentários e mudança de
+nome de variáveis) pro arquivo ficar menor é chamado de
+&lt;strong>minificação&lt;/strong>. O webpack faz isso por padrão em modo de produção.&lt;br>
+Usar o modo de desenvolvimento ou o de produção pode ser especificado
+no arquivo de configuração, mas, caso ele não exista, o modo de produção
+é usado por padrão.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Caso você inclua esse arquivo main.js numa página HTML, você vai ver esses
+&lt;code>console.log()&lt;/code>s printando Hello World&lt;/p>
+&lt;p>Por exemplo, crie um arquivo index.html na mesma pasta do main.js, e
+coloque isso aqui nele:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span> &lt;span style="color:#a6e22e">lang&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;en&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;UTF-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;Teste Webpack&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;main.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Caso você abra no navegador, vai aparecer isso:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/webpack-01-console.png" alt="O console dessa página HTML aí em cima">&lt;/p>
+&lt;p>Existem algumas perguntas que ficaram sem ser respondidas:&lt;/p>
+&lt;ul>
+&lt;li>Como eu uso essas funções fora do bundle? Acessando elas da minha
+página HTML?&lt;/li>
+&lt;li>Como eu mudo o caminho do bundle de saída?&lt;/li>
+&lt;li>Como eu uso esse &lt;code>webpack-dev-server&lt;/code> aí?&lt;/li>
+&lt;/ul>
+&lt;p>Essas coisas vão ficar pra &lt;a href="https://arthurmco.github.io/blog/posts/webpack-howto-part-2/">parte 2&lt;/a>, onde eu mostro como criar esse
+arquivo webpack.config.js, o arquivo de configuração do webpack, e o
+que vem nele.&lt;/p></content></item><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
 Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu joguinho, porque assim que você fizer seu commit, o seu expediente acabou.
 De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se lembra que o animal que fez esse sistema deixou esses dados como somente leitura.
-Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia e o seu chefe pediu essa alteração, educadamente, para ontem</description></item><item><title>Projetos pessoais</title><link>https://arthurmco.github.io/blog/posts/personal-projects/</link><pubDate>Thu, 18 Feb 2021 03:57:10 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/personal-projects/</guid><description>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu encontro enquanto desenvolvo, e como eu os solucionei.
+Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia e o seu chefe pediu essa alteração, educadamente, para ontem</description><content>&lt;p>18h de uma sexta feira.&lt;/p>
+&lt;p>Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu
+joguinho, porque assim que você fizer seu commit, o seu expediente acabou.&lt;/p>
+&lt;p>De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se
+lembra que o animal que fez esse sistema deixou esses dados como somente leitura.&lt;/p>
+&lt;p>Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia
+e o seu chefe pediu essa alteração, educadamente, para &lt;em>ontem&lt;/em>&lt;/p>
+&lt;p>Você vai ter que alterar eles diretamente no banco.&lt;/p>
+&lt;p>Você se lembra de todas as piadas de &lt;code>UPDATE&lt;/code> sem &lt;code>WHERE&lt;/code>, e como a falta de algumas palavras fez o seu
+colega perder um final de semana inteiro com o suporte atrás de backups.&lt;/p>
+&lt;p>Como fazer isso sem ter medo desses problemas?&lt;/p>
+&lt;p>A resposta é &lt;strong>TRANSAÇÕES&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;p>Quando você logar no seu banco (eu vou usar o postgres, mas hoje em dia qualquer banco* de dados
+decente suporta isso), você dá de cara com isso daqui:&lt;/p>
+&lt;pre tabindex="0">&lt;code>meushell% psql -h IP -U usuario -d banco
+Password for user usuario:
+psql (13.2 (Debian 13.2-1), server 11.9 (Raspbian 11.9-0+deb10u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type &amp;#34;help&amp;#34; for help.
+banco=#
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>Se você usa SQLite, você pode simplesmente copiar o banco antes da alteração :)&lt;/p>
+&lt;/blockquote>
+&lt;p>Para iniciar uma transação, você digita BEGIN&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=# BEGIN;
+BEGIN
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>Observe que o &lt;em>prompt&lt;/em> mudou. Ele vai ficar com esse asterisco durante a transação.&lt;/p>
+&lt;p>Enquanto ele tiver esse asterisco, você digita os comandos que você quiser. Por exemplo, o update
+que o seu chefe pediu, pra abreviar o nome do maior cliente dele, que pode ser considerado um pouco
+constrangedor.&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# update usuarios_do_sistema_do_animal set nome_do_usuario=&amp;#39;Tomás T. Pinto&amp;#39; where id=2020;
+UPDATE 1
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>PRESTE MUITA ATENÇÃO&lt;/strong> no &lt;code>UPDATE 1&lt;/code>. Esse 1 é a quantidade de linhas que o seu comando atualizou.&lt;/p>
+&lt;p>Caso isso seja o que você esperava, você digita &lt;code>COMMIT&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# COMMIT;
+COMMIT
+banco=#
+&lt;/code>&lt;/pre>&lt;p>Com o comando &lt;code>COMMIT&lt;/code>, as suas alterações serão salvas no banco de dados.&lt;/p>
+&lt;blockquote>
+&lt;p>Se você não sabe o que esperar, você precisa primeiro analisar o que você quer. Dê um &lt;code>SELECT&lt;/code>
+primeiro, para você encontrar as linhas que você precisa alterar&lt;/p>
+&lt;/blockquote>
+&lt;p>Caso isso &lt;strong>não&lt;/strong> seja o que você esperava, digite &lt;code>ROLLBACK&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# ROLLBACK;
+ROLLBACK
+banco=#
+&lt;/code>&lt;/pre>&lt;p>As suas alterações serão revertidas.&lt;/p>
+&lt;p>&lt;strong>Cuidado:&lt;/strong> Transações têm um limite de tamanho. Esse limite é bem grande, mas pode ser atingido
+(já atingi esse limite no trabalho uma vez). Provavelmente você não vai atingir, mas, caso você não
+consiga aplicar sua transação por causa de &lt;em>timeout&lt;/em>, o problema pode ser esse&lt;/p>
+&lt;blockquote>
+&lt;p>P.S: Caso você tenha gostado do post, agradeça à Giulia, porque foi ela que deu a ideia de fazer
+ontem à tarde.&lt;/p>
+&lt;/blockquote></content></item><item><title>Projetos pessoais</title><link>https://arthurmco.github.io/blog/posts/personal-projects/</link><pubDate>Thu, 18 Feb 2021 03:57:10 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/personal-projects/</guid><description>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu encontro enquanto desenvolvo, e como eu os solucionei.
 Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas usam, os posts onde eu descrevo esses problemas podem ser mais úteis.
-Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes para mim.</description></item><item><title>Primeiro post (parte 2)</title><link>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</link><pubDate>Tue, 16 Feb 2021 02:04:31 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</guid><description>Na primeira parte, eu ensinei como iniciar o blog, e hoje eu vou mostrar como postar ele no github pages.
+Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes para mim.</description><content>&lt;p>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu
+encontro enquanto desenvolvo, e como eu os solucionei.&lt;/p>
+&lt;p>Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas
+usam, os posts onde eu descrevo esses problemas podem ser mais úteis.&lt;/p>
+&lt;p>Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes
+para mim.&lt;br>
+E, como eu penso em fazer uma espécie de &amp;ldquo;devlog&amp;rdquo; pra eles, é bom eu falar quais eles
+são, para que ninguém fique perdido quando eu começar a postar coisas sobre eles e, caso alguém
+fique, eu possa linkar a pessoa para esse post aqui.&lt;/p>
+&lt;h1 id="shissue">shissue&lt;/h1>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/742d63d3ef7d7449eb52614be002539757a32b15572ed7e18aad1340d4ee9059/68747470733a2f2f61736369696e656d612e6f72672f612f7144785764717a764f35564c6e426c704f54646e4e7a31496d2e706e67" alt="Print do programa">
+&lt;a href="https://github.com/arthurmco/shissue">Link&lt;/a>&lt;/p>
+&lt;p>O &lt;code>shissue&lt;/code> é uma ferramenta que eu fiz que te permite ver os issues do seu repositório. Com ele,
+você conseguia ver o número do issue, se ele estava aberto ou fechado, o texto e os autores. Ele
+funcionava para o Github e para o Gitlab. Até as labels ele mostrava&lt;/p>
+&lt;p>Eu estava pensando em permitir que você escrevesse issues por ele.&lt;/p>
+&lt;p>Ele foi o meu primeiro programa real em Go, e com ele eu aprendi a fazer requisições HTTP em Go.&lt;/p>
+&lt;p>No momento ele está abandonado, mas, se vocês acharem útil, eu posso dar uma refatorada nele (a
+linguagem mudou muito desde 2018, que foi quando eu criei esse programa).&lt;/p>
+&lt;h1 id="annos">annos&lt;/h1>
+&lt;blockquote>
+&lt;p>ANNOS (Arthur&amp;rsquo;s Not Named Operating System) is a OS, powered by a C++ monolythic kernel.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/074f7f41d2f449a4b9965900e15bc4eb739be1c5a6167c82322b9cd6023670fe/68747470733a2f2f692e696d6775722e636f6d2f684141356148682e706e67" alt="Print dele rodando no QEMU">
+&lt;a href="https://github.com/arthurmco/annOS">Link&lt;/a>&lt;/p>
+&lt;p>O annOS foi um kernel que eu fiz. Não faz muita coisa, mas me ensinou &lt;em>bastante&lt;/em> sobre programação
+low-level, sobre como um kernel real acessa o hardware, um pouco sobre como o protocolo PCI funciona,
+como os sistemas operacionais de antigamente mostravam coisas na tela, como a MMU dos processadores
+x86 funcionam&amp;hellip;&lt;/p>
+&lt;p>No momento ele está parado. Eu o abandonei porque eu não encontrei um objetivo pra ele, e acabei
+desanimando.&lt;/p>
+&lt;p>Há um tempo atrás, eu comecei a fazer um kernel em Rust, mas ele ainda não está no Github. Nem nome
+ele tem!&lt;/p>
+&lt;h1 id="familyline">Familyline&lt;/h1>
+&lt;p>Praticamente o único projeto realmente ativo dessa lista&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/02-fayline.png" alt="Foto dele rodando">
+&lt;a href="https://github.com/arthurmco/familyline">Link&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>It&amp;rsquo;s made with a homebrew engine, for me to exclusively learn while bringing joy to its players. The major objective of this game is fun, to play and develop.&lt;/p>
+&lt;/blockquote>
+&lt;p>É um jogo de estratégia em tempo real, feito com uma engine própria, onde você acompanha a história
+de uma família fictícia (daí o nome) desde o final do Neolítico até mais ou menos 30 d.C.&lt;/p>
+&lt;p>A história real ainda não está feita, nem a engine, mas já aprendi bastante. Tudo o que eu sei de
+C++, CMake e programação OpenGL foi graças a esse jogo.&lt;br>
+Eu também aprendi a usar o &lt;a href="https://github.com/google/googletest">Google Test&lt;/a> (uma suíte de teste
+da Google) pra testar algumas partes da engine.&lt;/p>
+&lt;p>Foi o projeto que eu mais aprendi, e é o que provavelmente vai render mais conteúdo.&lt;/p>
+&lt;p>Recentemente, eu aprendi a usar o AddressSanitizer do GCC, pra resolver alguns problemas de
+corrupção de memória.&lt;/p>
+&lt;p>No momento, eu estou adicionando um modo multiplayer, mais pra confirmar se a engine está rodando
+no tempo certo, se cada &amp;ldquo;tick&amp;rdquo;, ou seja, cada iteração da engine, está acontecendo em seu tempo,
+e também pro jogo ficar um pouco mais interessante.&lt;/p>
+&lt;p>Ele tem uma GUI, feita usando C++ e uma biblioteca de desenho 2D chamada &lt;a href="https://www.cairographics.org/">Cairo&lt;/a>.&lt;/p>
+&lt;p>No futuro, eu quero fazer algumas coisas:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>suporte a Vulkan&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>permitir a você adicionar entidades (as construções e as unidades) usando &lt;a href="https://groups.csail.mit.edu/mac/projects/scheme/">Scheme&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar a GUI (o código está meio feio)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>melhorar o renderer: adicionar um suporte melhor a luzes, renderizar sombras, normal maps, até um
+ambient occlusion.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>mais tipos de terreno, especialmente um com água.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar o pathfinder.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Ele está &lt;em>bem&lt;/em> ativo, com commits pelo menos toda semana.&lt;/p>
+&lt;h1 id="demangler-js">demangler-js&lt;/h1>
+&lt;p>&lt;a href="https://github.com/arthurmco/demangler-js">Link&lt;/a>&lt;/p>
+&lt;p>Um demangler de funções C++.&lt;/p>
+&lt;p>Quando você compila um programa em C++, você tem um problema: C++ tem overloading de tipos nos
+argumentos. Em C, duas funções com o mesmo nome não podem existir, mesmo se elas tiverem argumentos
+diferentes. Em C++, elas podem. O &lt;em>mangling&lt;/em> é feito pelo compilador, então, para encodar essas
+informações de tipos (além de outras, como namespace) no nome da função, para que, na hora de
+debugar, ou qualquer outra hora que você precise saber o nome dessa função, você consiga saber
+os tipos dela.&lt;/p>
+&lt;p>O demangler simplesmente pega esse nome estranho e, a partir dele, obtém o nome real da função e
+os tipos de seus argumentos.&lt;/p>
+&lt;p>Esse projeto está meio parado. Ele também só suporta nomes mangleados pelo GCC&lt;/p></content></item><item><title>Primeiro post (parte 2)</title><link>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</link><pubDate>Tue, 16 Feb 2021 02:04:31 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</guid><description>Na primeira parte, eu ensinei como iniciar o blog, e hoje eu vou mostrar como postar ele no github pages.
 Como botar Eu usei esse guia pra me ajudar, e funcionou. Mas, resumindo:
 você precisa criar um repositório.
-Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites fulano.github.io, é basicamente isso), você cria um repositório chamado fulano.github.io, assumindo que fulano seja seu username do github.</description></item><item><title>Primeiro post</title><link>https://arthurmco.github.io/blog/posts/my-first-post/</link><pubDate>Tue, 16 Feb 2021 01:09:54 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post/</guid><description>Depois de algum tempo prometendo, finalmente criei um blog!
+Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites fulano.github.io, é basicamente isso), você cria um repositório chamado fulano.github.io, assumindo que fulano seja seu username do github.</description><content>&lt;p>Na &lt;a href="https://arthurmco.github.io/blog/posts/my-first-post/">primeira parte&lt;/a>, eu ensinei como iniciar o blog, e hoje
+eu vou mostrar como postar ele no github pages.&lt;/p>
+&lt;h2 id="como-botar">Como botar&lt;/h2>
+&lt;p>Eu usei &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">esse guia&lt;/a> pra me ajudar, e
+funcionou. Mas, resumindo:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>você precisa criar um repositório.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites
+&lt;code>fulano.github.io&lt;/code>, é basicamente isso), você cria um repositório chamado &lt;code>fulano.github.io&lt;/code>,
+assumindo que &lt;code>fulano&lt;/code> seja seu username do github.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Caso você queira criar uma subpágina (eu fiz isso), você cria um repositório com o nome da
+sua subpágina (no meu caso, eu chamei de &lt;code>blog&lt;/code>, por isso que a URL é essa. Você pode ver o
+repositório &lt;a href="https://github.com/arthurmco/blog">aqui&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>dê um &lt;code>mkdir -p .github/workflows&lt;/code> dentro do seu repositório, e dentro dessa pasta &lt;code>workflows&lt;/code>,
+cole &lt;a href="https://github.com/arthurmco/blog/blob/main/.github/workflows/gh_pages.yml">esse arquivo aqui&lt;/a>.&lt;/p>
+&lt;ul>
+&lt;li>Ele vai criar um job no Github Actions (uma espécie de CI do Github) que vai gerar o HTML do site
+a partir do Markdown e colocar esse HTML dentro do branch &lt;code>gh-pages&lt;/code>. O branch &lt;code>gh-pages&lt;/code> é de onde
+o Github vai tirar o HTML do seu site.&lt;br>
+Essa action demora um pouco pra rodar, então demora alguns segundos até seu site ser gerado.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Vá até as configurações do repositório (a engrenagem escrito &amp;ldquo;Settings&amp;rdquo;), clique em Options,
+depois desça até &amp;ldquo;Github Pages&amp;rdquo;. Mude o branch para &lt;code>gh-pages&lt;/code>, assim como está na imagem:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/01-ghpages-image.png" alt="Como deve ficar teu setup">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="outras-coisas">Outras coisas&lt;/h2>
+&lt;p>Existe um jeito bem legal de fazer referências a outras páginas, que eu pesquisei só pra não ter
+que ficar colocando a URL na mão.&lt;/p>
+&lt;p>Um exemplo: o código do começo do post ficou assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Na [&lt;span style="color:#f92672">primeira parte&lt;/span>](&lt;span style="color:#a6e22e">{{&amp;amp;lt; ref &amp;#34;/posts/my-first-post&amp;#34; &amp;amp;gt;}}&lt;/span>), eu ensinei...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Esse &lt;code>&amp;lt;ref &amp;quot;/posts/my-first-post&amp;quot; &amp;gt;&lt;/code> cria um link pro arquivo &lt;code>posts/my-first-post&lt;/code>, que é onde eu salvei o primeiro
+post.&lt;/p>
+&lt;p>Além disso, pra botar imagens, é só você colocar dentro do diretório &lt;code>static&lt;/code>, lá na raiz do
+repositório. Por exemplo, a imagem que eu usei está na pasta &lt;code>static/images/01-ghpages-image.png&lt;/code>,
+pra usá-la eu escrevi assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> depois desça até &amp;#34;Github Pages&amp;#34;. Mude o branch para &lt;span style="color:#e6db74">`gh-pages`&lt;/span>, assim como
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> está na imagem
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>![&lt;span style="color:#f92672">Como deve ficar teu setup&lt;/span>](&lt;span style="color:#a6e22e">/blog/images/01-ghpages-image.png&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Infelizmente, eu tive que botar o &lt;code>blog/&lt;/code>. Parece que, se seu blog não fica na raiz da url, você
+precisa botar o caminho. (Bom, pelo menos eu não preciso colocar a URL inteira.)&lt;/p>
+&lt;hr>
+&lt;p>Então é isso.&lt;/p>
+&lt;p>Enquanto isso, eu vou ver como eu adiciono comentários.&lt;/p>
+&lt;p>Até mais!&lt;/p></content></item><item><title>Primeiro post</title><link>https://arthurmco.github.io/blog/posts/my-first-post/</link><pubDate>Tue, 16 Feb 2021 01:09:54 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post/</guid><description>Depois de algum tempo prometendo, finalmente criei um blog!
 Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de tecnologia.
-Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui fazer esse blog, pra ajudar quem quiser começar</description></item></channel></rss>
+Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui fazer esse blog, pra ajudar quem quiser começar</description><content>&lt;p>Depois de algum tempo prometendo, finalmente criei um blog!&lt;/p>
+&lt;p>Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu
+achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de
+tecnologia.&lt;/p>
+&lt;p>Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui
+fazer esse blog, pra ajudar quem quiser começar&lt;/p>
+&lt;h2 id="como">Como?&lt;/h2>
+&lt;p>Ao invés de usar o medium, ou o dev.to, decidi usar uma plataforma que gera sites estáticos
+chamada &lt;a href="https://gohugo.io/">Hugo&lt;/a>, feita em Go.&lt;/p>
+&lt;p>Eu procurei algumas, e estava indeciso entre essa e o &lt;a href="https://jekyllrb.com/">Jekyll&lt;/a>, mas o Jekyll
+é feito em uma linguagem que eu usei muito pouco, e mal passei do tutorial; além disso eu iria
+precisar instalar o Ruby.&lt;/p>
+&lt;p>Instalar o Hugo não foi difícil, basicamente é tão simples quanto instalar um programa qualquer.&lt;/p>
+&lt;p>Pra criar o site, você digita &lt;code>hugo new site &amp;lt;nome&amp;gt;&lt;/code>, e ele vai criar um site dentro da pasta
+&lt;code>&amp;lt;nome&amp;gt;&lt;/code>. Ele não cria um repositório git automaticamente, então você vai ter que fazer isso.&lt;/p>
+&lt;p>Existe um arquivo de configuração, que você vai ter que mexer pra colocar o que você quiser. O meu
+(até o presente momento) é assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">baseURL&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;https://arthurmco.github.io/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">languageCode&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;pt-br&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">title&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;Blog do Arthur M.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">theme&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;terminal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#a6e22e">params&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fullWidthTheme&lt;/span> = &lt;span style="color:#66d9ef">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">centerTheme&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">themeColor&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;green&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">enableGitInfo&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(Maravilhoso que o syntax highlighting funciona)&lt;/p>
+&lt;p>Pra mudar o tema, você pode fazer duas coisas: mover os arquivos dentro da pasta &lt;code>themes/&amp;lt;nomedotema&amp;gt;&lt;/code>,
+ou criar um submódulo git nessa pasta aí. Lembre-se de editar o &lt;code>config.toml&lt;/code> e botar o tema lá (que
+deve ser &lt;code>&amp;lt;nomedotema&amp;gt;&lt;/code>).&lt;/p>
+&lt;p>Lembre-se que alguns temas possuem opções adicionais, algumas obrigatórias e outras não. Elas vão
+dentro de &lt;code>[params]&lt;/code>&lt;br>
+O que eu instalei (que eu achei bonito pra caramba, pra falar a verdade), possui essas duas opções
+de cima obrigatórias, e as outras são opcionais&lt;/p>
+&lt;p>Pra criar um post, você digita &lt;code> hugo new posts/my-first-post.md&lt;/code>. Ele vai criar um arquivo
+&lt;code>my-first-post.md&lt;/code> dentro de &lt;code>posts/&lt;/code>, e é onde você vai criar sua postagem. Lembre-se de escolher
+um nome que tenha a ver com o post.&lt;/p>
+&lt;p>O comando &lt;code>hugo serve&lt;/code> te ajuda a visualizar como vai ficar teu site.&lt;/p>
+&lt;hr>
+&lt;p>Eu ainda não coloquei o blog no Github Pages. Depois que eu colocar, eu vou fazer a Parte 2 desse
+post.&lt;/p>
+&lt;p>&lt;strong>EDIT&lt;/strong>: A parte 2 está &lt;a href="https://arthurmco.github.io/blog/posts/my-first-post-pt2/">aqui&lt;/a>&lt;/p>
+&lt;p>Até mais!&lt;/p></content></item></channel></rss>
