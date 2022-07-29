@@ -2,4 +2,11 @@
 Ele não suporta 24bits de cor.
 Se você realmente necessita de 24 bits de cor num aplicativo não-gráfico, usa o iTerm2, que é o que a galera costuma usar.
 O terminal é a janela da esquerda, o iTerm2 é a da direita. Clica na imagem pra dar um zoom
-As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.</description></item></channel></rss>
+As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.</description><content>&lt;p>O app de terminal nativo do macOS suporta só 256 cores diferentes.&lt;/p>
+&lt;p>Ele não suporta 24bits de cor.&lt;/p>
+&lt;p>Se você realmente necessita de 24 bits de cor num aplicativo não-gráfico, usa o iTerm2,
+que é o que a galera costuma usar.&lt;/p>
+&lt;p>&lt;a href="https://arthurmco.github.io/blog/blog/images/terminal-iterm2-compare.png">&lt;img src="https://arthurmco.github.io/blog/blog/images/terminal-iterm2-compare.png" alt="Lado a lado: cores no terminal e no iTerm2">&lt;/a>&lt;/p>
+&lt;p>O terminal é a janela da esquerda, o iTerm2 é a da direita. Clica na imagem pra dar um zoom&lt;/p>
+&lt;p>As cores deveriam ser as mesmas, mas na janela do iterm2 elas estão mais bem definidas.&lt;/p>
+&lt;p>Acho engraçado que o terminal do Windows suporta 24 bits de cor, e esse suporte é bem recente.&lt;/p></content></item></channel></rss>
