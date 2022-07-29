@@ -1,28 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mac on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/tags/mac/</link><description>Recent content in mac on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Tue, 10 May 2022 09:55:03 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>O meu Mac está dando um erro EADDRINUSE na porta 5000!</title><link>https://arthurmco.github.io/blog/posts/port-5000-mac/</link><pubDate>Tue, 10 May 2022 09:55:03 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/port-5000-mac/</guid><description>Ontem, no trabalho, eu fui tentar subir um serviço localmente, no Macbook que eles deram.
 O serviço roda na porta 5000, então eu fui tentar rodá-lo. Para minha surpresa, apareceu um erro assim (não vou botar ele aqui porque eu não quero ser processado):
 Error: listen EADDRINUSE: address already in use :::5000 Isso significa que, obviamente, a porta 5000 está bloqueada.
-Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era.</description><content>&lt;p>Ontem, no trabalho, eu fui tentar subir um serviço localmente, no Macbook que eles deram.&lt;/p>
-&lt;p>O serviço roda na porta 5000, então eu fui tentar rodá-lo. Para minha surpresa, apareceu
-um erro assim (não vou botar ele aqui porque eu não quero ser processado):&lt;/p>
-&lt;pre tabindex="0">&lt;code>Error: listen EADDRINUSE: address already in use :::5000
-&lt;/code>&lt;/pre>&lt;p>Isso significa que, obviamente, a porta 5000 está bloqueada.&lt;/p>
-&lt;p>Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era. E era muito simples&lt;/p>
-&lt;p>Era um serviço do AirPlay que rodava nessa porta. O AirPlay é um serviço de compartilhamento da
-Apple, então provavelmente a Apple deixa isso ativo por padrão, porque ela acha que você tem
-tudo compatível com esse protocolo.&lt;/p>
-&lt;p>O serviço fica escutando na porta 5000&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ lsof -i :5000
-COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
-ControlCe 1338 arthurmco 18u IPv4 0xdd3dfcad86ca845 0t0 TCP *:commplex-main (LISTEN)
-ControlCe 1338 arthurmco 19u IPv6 0xdd3dfbc773edd3d 0t0 TCP *:commplex-main (LISTEN)
-&lt;/code>&lt;/pre>&lt;p>É esse &lt;code>ControlCe&lt;/code> aí (deve ser de ControlCenter). Um nome extremamente sugestivo.&lt;/p>
-&lt;p>Infelizmente, eu só tenho só mais um produto Apple, e eu nem uso ele com esse computador.&lt;/p>
-&lt;p>Pra desativar isso, você:&lt;/p>
-&lt;ul>
-&lt;li>abre as &lt;strong>Preferências do Sistema&lt;/strong> do Mac (ou &lt;strong>System Preferences&lt;/strong>, se
-você prefere em inglês),&lt;/li>
-&lt;li>vai em &lt;strong>Compartilhamento&lt;/strong> (ou &lt;strong>Sharing&lt;/strong>).&lt;/li>
-&lt;li>desmarca a opção que diz &amp;ldquo;Receptor de AirPlay&amp;rdquo; (eu sei lá como é isso em inglês, mas vai
-ter AirPlay no nome). Ela é a última opção, ou está entre as últimas.&lt;/li>
-&lt;/ul>
-&lt;p>Pronto. Agora você pode rodar serviços na 5000 à vontade.&lt;/p></content></item></channel></rss>
+Eu e o meu líder ficamos uns 15 minutos tentando descobrir o que era.</description></item></channel></rss>
