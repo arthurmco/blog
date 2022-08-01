@@ -8,6 +8,7 @@ tags = ["ssh", "windows", "git"]
 keywords = ["short"]
 description = "Talvez você esteja usando o cliente SSH errado"
 showFullContent = false
+archive = "2022@03"
 +++
 
 Você está tendo problemas de autenticação com o `git pull` no Windows?

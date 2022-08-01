@@ -8,6 +8,7 @@ tags = ["projetos", "shissue", "familyline", "demangler-js", "annos"]
 keywords = ["devlog"]
 description = "Nesse post, eu conto um pouco sobre os programas que fiz, e que estou fazendo, fora de meu trabalho. Todos eles estão [no meu Github](https://github.com/arthurmco)"
 showFullContent = false
+archive = "2021@02"
 +++
 
 Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu 

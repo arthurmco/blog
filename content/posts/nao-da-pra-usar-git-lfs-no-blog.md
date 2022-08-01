@@ -9,6 +9,7 @@ tags = ["short", "meta"]
 showFullContent = true
 readingTime = false
 hideComments = false
+archive = "2022@07"
 +++
 
 Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava

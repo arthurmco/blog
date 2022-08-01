@@ -7,10 +7,11 @@ disqusShortname = "https-arthurmco-github-io-blog"
 
 [params]
   fullWidthTheme = false
-  centerTheme = true
+  centerTheme = false
   themeColor = "red"
   enableGitInfo = true
   showLastUpdated = true
+  updatedDatePrefix = "Modificado em"
 
   [params.logo]
     logoText = "Blog do Arthur M."
@@ -23,3 +24,7 @@ disqusShortname = "https-arthurmco-github-io-blog"
   [languages.pt-br]
     title = "Blog do Arthur M."
     subtitle = "Meu diário de coisas interessantes"
+
+
+[taxonomies]
+archive = 'archive'

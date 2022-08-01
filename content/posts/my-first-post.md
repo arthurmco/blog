@@ -8,6 +8,7 @@ tags = ["primeiro post", "hugo", "jekyllrb"]
 keywords = ["talk"]
 description = "Primeiro post, onde eu falo como eu fiz esse blog e do que eu vou falar"
 showFullContent = false
+archive = "2021@02"
 +++
 
 Depois de algum tempo prometendo, finalmente criei um blog!

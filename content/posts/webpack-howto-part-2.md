@@ -16,6 +16,7 @@ criar uma página HTML automaticamente, e usar módulos loaders para você
 poder importar qualquer arquivo no seu script
 """
 showFullContent = false
+archive = "2021@09"
 +++
 
 Depois de muito tempo com medo de usar o Webpack, já que eu não

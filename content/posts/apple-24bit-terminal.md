@@ -8,6 +8,7 @@ tags = ["short"]
 keywords = ["macos", "terminal", "ansi"]
 description = "E suporta só 256 cores diferentes."
 showFullContent = false
+archive = "2022@04"
 +++
 
 O app de terminal nativo do macOS suporta só 256 cores diferentes.

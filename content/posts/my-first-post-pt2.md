@@ -8,6 +8,7 @@ tags = ["primeiro post", "hugo", "jekyllrb", "github-pages"]
 keywords = ["talk"]
 description = "Parte 2 do meu primeiro post. Aqui eu vou mostrar como se coloca esse blog no ar"
 showFullContent = false
+archive = "2021@02"
 +++
 
 Na [primeira parte]({{< ref "/posts/my-first-post" >}}), eu ensinei como iniciar o blog, e hoje
