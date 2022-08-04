@@ -7,10 +7,11 @@ disqusShortname = "https-arthurmco-github-io-blog"
 
 [params]
   fullWidthTheme = false
-  centerTheme = false
+  centerTheme = true
   themeColor = "red"
   enableGitInfo = true
   showLastUpdated = true
+  readingTime = true
   updatedDatePrefix = "Modificado em"
 
   [params.logo]

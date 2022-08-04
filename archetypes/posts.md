@@ -5,5 +5,7 @@ author: "Arthur Mendes"
 authorTwitter: "usrbinarthur"
 showFullContent: false
 
-archive: "{{ .Date.Format "2006@01" }}"
+tags: ["", ""]
+keywords: ["", ""]
+archive: "{{ now.Format "2006@01" }}"
 ---
