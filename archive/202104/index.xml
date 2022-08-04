@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2021@04 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202104/</link><description>Recent content in 2021@04 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Mon, 26 Apr 2021 21:32:29 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202104/index.xml" rel="self" type="application/rss+xml"/><item><title>Criando um 'crash handler' Part 1</title><link>https://arthurmco.github.io/blog/posts/crash-handler-part-1/</link><pubDate>Mon, 26 Apr 2021 21:32:29 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/crash-handler-part-1/</guid><description>Sabe aquelas telas que abarecem quando um programa ou jogo crasha e fecha? BugSplat, a do Firefox, do Chrome? Bem, descobri como elas funcionam. Vou tentar fazer uma igual e mostrar pra vocês como eu fiz.
+Uma coisa que eu descobri é que esse tipo de programa é extremamente dependente de arquitetura de processador e de sistema operacional; portanto nessa primeira parte eu vou mostrar o funcionamento, e como fazer um desses crash handlers no Linux</description><content>&lt;p>Sabe aquelas telas que abarecem quando um programa ou jogo crasha e fecha? &lt;em>BugSplat&lt;/em>,
+a do Firefox, do Chrome? Bem, descobri como elas funcionam. Vou tentar fazer uma igual
+e mostrar pra vocês como eu fiz.&lt;/p>
+&lt;p>Uma coisa que eu descobri é que esse tipo de programa é extremamente dependente de arquitetura de
+processador e de sistema operacional; portanto nessa primeira parte eu vou mostrar o funcionamento,
+e como fazer um desses &lt;em>crash handlers&lt;/em> no Linux&lt;/p>
+&lt;blockquote>
+&lt;p>Um aviso: Isso aqui só vai funcionar se o seu software não tiver nenhum tipo de runtime (ou seja,
+Java e .NET&amp;hellip;), porque iremos mexer diretamente com a pilha de execução do processador.&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="como-um-crash-handler-funciona">Como um crash handler funciona&lt;/h1>
+&lt;p>O crash handler é um programa que faz algo (a parte de &lt;em>handle&lt;/em>) quando um programa &lt;em>crasha&lt;/em>, daí o nome.&lt;/p>
+&lt;p>Geralmente esses programas pegam algumas informações importantes do processo (como a &lt;code>call stack&lt;/code>, ou
+pilha de chamadas, que é uma pilha onde a função no topo é a função mais recente, a função abaixo é a
+função que chamou a primeira, a terceira função é a que chamou a segunda&amp;hellip;), e mandam para algum
+servidor para análise.&lt;/p>
+&lt;p>Um exemplo de call stack está abaixo.
+&lt;img src="https://arthurmco.github.io/blog/blog/images/03-call-stack-example.png" alt="Um exemplo de &amp;amp;lsquo;call stack&amp;amp;rsquo; no GNU Debugger">&lt;/p>
+&lt;p>Em azul estão os endereços de memória; no caso do primeiro da lista é o endereço de memória onde
+o processador estava (o famoso &lt;em>program counter&lt;/em>, ou &lt;em>instruction pointer&lt;/em>), no caso dos restantes
+é o endereço de memória aonde o processador vai retornar quando ele sair da função acima.&lt;/p>
+&lt;blockquote>
+&lt;p>Por exemplo, o endereço de memória do segundo item da lista é aonde o processador vai retornar quando
+ele terminar de executar a primeira função, o endereço de memória do terceiro item é aonde o processador
+vai retornar quando terminar a segunda função, e assim por diante.&lt;/p>
+&lt;/blockquote>
+&lt;p>Em amarelo estão os nomes das funções, em verde os arquivos de código-fonte em que elas se encontram&lt;/p>
+&lt;p>Claro que a do GDB está mais bonita do que vamos gerar inicialmente, mas existe um jeito de você
+mostrar exatamente os nomes de cada função. Pretendo falar disso na parte 2.&lt;/p>
+&lt;p>Existem três jeitos de você carregar um &amp;ldquo;crash handler&amp;rdquo;:&lt;/p>
+&lt;ol>
+&lt;li>como um serviço (ou daemon) rodando na máquina. O Google Chrome faz assim.&lt;br>
+A Microsoft faz também (aquela janela que pede pra você enviar o relatório de erros pra
+Microsoft é uma espécie de &lt;strong>crash handler&lt;/strong>)&lt;/li>
+&lt;li>como um launcher para o seu aplicativo ou jogo. O Minecraft faz desse jeito&lt;/li>
+&lt;li>fazer o próprio aplicativo carregar o handler (no início, ou, caso seja possível, quando o
+programa crashar). A maioria dos programas e jogos fazem assim.&lt;/li>
+&lt;/ol>
+&lt;p>O jeito que eu fiz foi o segundo jeito, como um launcher, porque eu achei mais fácil pra mim.&lt;br>
+Eu pretendo testar o terceiro jeito, porque eu acho que é o mais fácil para o usuário (ele não
+precisa carregar um programa externo pra carregar o programa que ele quer).&lt;/p>
+&lt;p>O &lt;em>crash handler&lt;/em> tem sua ação dividida em duas partes: a parte do software que crashou e a parte
+do handler. O handler não faz nada até o programa monitorado crashar.&lt;/p>
+&lt;h3 id="no-início">No início&lt;/h3>
+&lt;p>Alguns sistemas, dentre eles o Linux, lhe permitem executar funções em determinados eventos, chamados
+de &lt;strong>sinais&lt;/strong>. Essas funções são chamadas de &lt;em>signal handlers&lt;/em> Para alterar essas funções, você
+deve usar uma função chamada &lt;a href="https://www.man7.org/linux/man-pages/man2/sigaction.2.html">sigaction&lt;/a>.&lt;/p>
+&lt;blockquote>
+&lt;p>No Windows, o método é diferente. Veremos isso futuramente também.&lt;/p>
+&lt;/blockquote>
+&lt;p>Alguns desses sinais são executados quando o programa faz algo que não deveria. São eles os que
+queremos.&lt;/p>
+&lt;blockquote>
+&lt;p>A função que passarmos precisa ser uma função normal. Ela &lt;em>não pode&lt;/em> estar dentro de nenhuma
+instância, nem ser um &lt;code>lambda&lt;/code> de C++, nem nada retornado pelo &lt;code>std::bind&lt;/code>, por uma questão de
+lifetimes, e porque você não deve confiar em nenhum trecho da memória que o seu aplicativo
+estava usando, afinal ele crashou!&lt;/p>
+&lt;/blockquote>
+&lt;p>O protótipo dessa função é:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">sigaction&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> signum, &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> sigaction &lt;span style="color:#f92672">*&lt;/span>act, &lt;span style="color:#66d9ef">struct&lt;/span> sigaction &lt;span style="color:#f92672">*&lt;/span>oldact);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>signum é o número do sinal (embora geralmente você use um &lt;code>#define&lt;/code> que já liga o nome ao número).&lt;br>
+Uma lista de sinais está &lt;a href="https://www.man7.org/linux/man-pages/man7/signal.7.html">disponível aqui&lt;/a>,
+na seção &amp;ldquo;Standard signals&amp;rdquo;.&lt;/li>
+&lt;li>&lt;code>sigaction&lt;/code> é uma estrutura que contém alguns valores, um deles é o ponteiro pra nossa função,
+que será executada durante o sinal que queremos&lt;/li>
+&lt;li>&lt;code>act&lt;/code> e &lt;code>oldact&lt;/code> são ponteiros para a estrutura acima: no primeiro você passa o valor que você
+quer setar, no segundo você passa um ponteiro de memória onde essa função vai escrever o valor antigo.&lt;/li>
+&lt;/ul>
+&lt;p>Você deve criar handlers para alguns sinais fatais, mas que podem ser capturados (&lt;code>SIGSTOP&lt;/code> e
+&lt;code>SIGKILL&lt;/code> não podem, afinal, geralmente, eles são causados pelo usuário).&lt;/p>
+&lt;p>Os que eu escolhi para esse tutorial foram &lt;code>SIGSEGV&lt;/code> (o famoso Segmentation fault), &lt;code>SIGABRT&lt;/code>
+(um &amp;ldquo;crash voluntário&amp;rdquo;, geralmente causado por exceções não tratadas em C++) e &lt;code>SIGBUS&lt;/code>
+(um sinal causado para erros de acesso a memória que não são falhas de segmentação), porque eles
+são os mais comuns.&lt;/p>
+&lt;p>Você pode (e deve) pegar todos os sinais fatais, eu só não vou pegar todos pro código ficar um
+pouco menor.&lt;/p>
+&lt;blockquote>
+&lt;p>Os sinais fatais são aqueles que, naquela lista de sinais, tem a &lt;strong>Action&lt;/strong> igual a &lt;strong>Core&lt;/strong>.
+Eles geralmente resultam no fim da execução do programa&lt;/p>
+&lt;/blockquote>
+&lt;p>Existem dois jeitos de iniciar:&lt;/p>
+&lt;ul>
+&lt;li>o handler inicia o programa e pega o Process ID (ou ID do Processo)&lt;/li>
+&lt;li>o programa inicia, executa o handler e passa o próprio Process ID pra ele.&lt;/li>
+&lt;/ul>
+&lt;p>Nos dois casos, o handler precisa do process ID do programa que você quer monitorar.&lt;/p>
+&lt;p>Agora, o que o programa a ser crashado faz é, assim que ele é iniciado, configurar esses &lt;em>handlers&lt;/em>
+para uma função que será executada na hora do crash.&lt;/p>
+&lt;p>O handler espera o processo terminar. &lt;a href="https://linux.die.net/man/2/waitpid">A função &lt;code>waitpid&lt;/code>&lt;/a> lhe
+permite fazer isso. Você passa pra ela o process ID e um ponteiro de memória pra guardar as informações
+de retorno da função e ela só retorna quando o processo cujo PID você passou terminar.&lt;/p>
+&lt;h2 id="na-hora-do-crash">Na hora do crash&lt;/h2>
+&lt;p>Na hora do crash, a função que passamos é executada&lt;/p>
+&lt;p>A assinatura da nossa função precisa ser essa daqui:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">handler&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> signum, siginfo_t&lt;span style="color:#f92672">*&lt;/span> siginfo, &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> context)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* ... */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>signum&lt;/code> é o número do sinal&lt;/li>
+&lt;li>&lt;code>siginfo&lt;/code> é uma estrutura que contém informações sobre o sinal, como o que exatamente o causou.
+Por algum motivo que eu não sei, o valor do &lt;code>instruction pointer&lt;/code> (ou o endereço da instrução
+que o processo estava quando o sinal aconteceu) não está aí, e isso me deixou um pouco puto.&lt;/li>
+&lt;li>&lt;code>context&lt;/code> é o endereço pra uma estrutura onde os valores mais interessantes são dependentes
+da arquitetura&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>Esse guia só funciona pra x86-64. Como eu tenho um Raspberry PI, eu prometo que vou fazer um
+post só com os específicos para ARM no Linux.&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="todo">TODO&lt;/h1>
+&lt;ul>
+&lt;li>falar do context, e de como pegar os valores dos registradores&lt;/li>
+&lt;li>falar como pega a call stack&lt;/li>
+&lt;li>falar como manda a call stack pro processo do crash handler&lt;/li>
+&lt;/ul></content></item><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
+Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu joguinho, porque assim que você fizer seu commit, o seu expediente acabou.
+De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se lembra que o animal que fez esse sistema deixou esses dados como somente leitura.
+Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia e o seu chefe pediu essa alteração, educadamente, para ontem</description><content>&lt;p>18h de uma sexta feira.&lt;/p>
+&lt;p>Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu
+joguinho, porque assim que você fizer seu commit, o seu expediente acabou.&lt;/p>
+&lt;p>De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se
+lembra que o animal que fez esse sistema deixou esses dados como somente leitura.&lt;/p>
+&lt;p>Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia
+e o seu chefe pediu essa alteração, educadamente, para &lt;em>ontem&lt;/em>&lt;/p>
+&lt;p>Você vai ter que alterar eles diretamente no banco.&lt;/p>
+&lt;p>Você se lembra de todas as piadas de &lt;code>UPDATE&lt;/code> sem &lt;code>WHERE&lt;/code>, e como a falta de algumas palavras fez o seu
+colega perder um final de semana inteiro com o suporte atrás de backups.&lt;/p>
+&lt;p>Como fazer isso sem ter medo desses problemas?&lt;/p>
+&lt;p>A resposta é &lt;strong>TRANSAÇÕES&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;p>Quando você logar no seu banco (eu vou usar o postgres, mas hoje em dia qualquer banco* de dados
+decente suporta isso), você dá de cara com isso daqui:&lt;/p>
+&lt;pre tabindex="0">&lt;code>meushell% psql -h IP -U usuario -d banco
+Password for user usuario:
+psql (13.2 (Debian 13.2-1), server 11.9 (Raspbian 11.9-0+deb10u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type &amp;#34;help&amp;#34; for help.
+banco=#
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>Se você usa SQLite, você pode simplesmente copiar o banco antes da alteração :)&lt;/p>
+&lt;/blockquote>
+&lt;p>Para iniciar uma transação, você digita BEGIN&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=# BEGIN;
+BEGIN
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>Observe que o &lt;em>prompt&lt;/em> mudou. Ele vai ficar com esse asterisco durante a transação.&lt;/p>
+&lt;p>Enquanto ele tiver esse asterisco, você digita os comandos que você quiser. Por exemplo, o update
+que o seu chefe pediu, pra abreviar o nome do maior cliente dele, que pode ser considerado um pouco
+constrangedor.&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# update usuarios_do_sistema_do_animal set nome_do_usuario=&amp;#39;Tomás T. Pinto&amp;#39; where id=2020;
+UPDATE 1
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>PRESTE MUITA ATENÇÃO&lt;/strong> no &lt;code>UPDATE 1&lt;/code>. Esse 1 é a quantidade de linhas que o seu comando atualizou.&lt;/p>
+&lt;p>Caso isso seja o que você esperava, você digita &lt;code>COMMIT&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# COMMIT;
+COMMIT
+banco=#
+&lt;/code>&lt;/pre>&lt;p>Com o comando &lt;code>COMMIT&lt;/code>, as suas alterações serão salvas no banco de dados.&lt;/p>
+&lt;blockquote>
+&lt;p>Se você não sabe o que esperar, você precisa primeiro analisar o que você quer. Dê um &lt;code>SELECT&lt;/code>
+primeiro, para você encontrar as linhas que você precisa alterar&lt;/p>
+&lt;/blockquote>
+&lt;p>Caso isso &lt;strong>não&lt;/strong> seja o que você esperava, digite &lt;code>ROLLBACK&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# ROLLBACK;
+ROLLBACK
+banco=#
+&lt;/code>&lt;/pre>&lt;p>As suas alterações serão revertidas.&lt;/p>
+&lt;p>&lt;strong>Cuidado:&lt;/strong> Transações têm um limite de tamanho. Esse limite é bem grande, mas pode ser atingido
+(já atingi esse limite no trabalho uma vez). Provavelmente você não vai atingir, mas, caso você não
+consiga aplicar sua transação por causa de &lt;em>timeout&lt;/em>, o problema pode ser esse&lt;/p>
+&lt;blockquote>
+&lt;p>P.S: Caso você tenha gostado do post, agradeça à Giulia, porque foi ela que deu a ideia de fazer
+ontem à tarde.&lt;/p>
+&lt;/blockquote></content></item></channel></rss>

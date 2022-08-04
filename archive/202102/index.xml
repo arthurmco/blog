@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2021@02 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202102/</link><description>Recent content in 2021@02 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 18 Feb 2021 03:57:10 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202102/index.xml" rel="self" type="application/rss+xml"/><item><title>Projetos pessoais</title><link>https://arthurmco.github.io/blog/posts/personal-projects/</link><pubDate>Thu, 18 Feb 2021 03:57:10 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/personal-projects/</guid><description>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu encontro enquanto desenvolvo, e como eu os solucionei.
+Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas usam, os posts onde eu descrevo esses problemas podem ser mais úteis.
+Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes para mim.</description><content>&lt;p>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu
+encontro enquanto desenvolvo, e como eu os solucionei.&lt;/p>
+&lt;p>Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas
+usam, os posts onde eu descrevo esses problemas podem ser mais úteis.&lt;/p>
+&lt;p>Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes
+para mim.&lt;br>
+E, como eu penso em fazer uma espécie de &amp;ldquo;devlog&amp;rdquo; pra eles, é bom eu falar quais eles
+são, para que ninguém fique perdido quando eu começar a postar coisas sobre eles e, caso alguém
+fique, eu possa linkar a pessoa para esse post aqui.&lt;/p>
+&lt;h1 id="shissue">shissue&lt;/h1>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/742d63d3ef7d7449eb52614be002539757a32b15572ed7e18aad1340d4ee9059/68747470733a2f2f61736369696e656d612e6f72672f612f7144785764717a764f35564c6e426c704f54646e4e7a31496d2e706e67" alt="Print do programa">
+&lt;a href="https://github.com/arthurmco/shissue">Link&lt;/a>&lt;/p>
+&lt;p>O &lt;code>shissue&lt;/code> é uma ferramenta que eu fiz que te permite ver os issues do seu repositório. Com ele,
+você conseguia ver o número do issue, se ele estava aberto ou fechado, o texto e os autores. Ele
+funcionava para o Github e para o Gitlab. Até as labels ele mostrava&lt;/p>
+&lt;p>Eu estava pensando em permitir que você escrevesse issues por ele.&lt;/p>
+&lt;p>Ele foi o meu primeiro programa real em Go, e com ele eu aprendi a fazer requisições HTTP em Go.&lt;/p>
+&lt;p>No momento ele está abandonado, mas, se vocês acharem útil, eu posso dar uma refatorada nele (a
+linguagem mudou muito desde 2018, que foi quando eu criei esse programa).&lt;/p>
+&lt;h1 id="annos">annos&lt;/h1>
+&lt;blockquote>
+&lt;p>ANNOS (Arthur&amp;rsquo;s Not Named Operating System) is a OS, powered by a C++ monolythic kernel.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/074f7f41d2f449a4b9965900e15bc4eb739be1c5a6167c82322b9cd6023670fe/68747470733a2f2f692e696d6775722e636f6d2f684141356148682e706e67" alt="Print dele rodando no QEMU">
+&lt;a href="https://github.com/arthurmco/annOS">Link&lt;/a>&lt;/p>
+&lt;p>O annOS foi um kernel que eu fiz. Não faz muita coisa, mas me ensinou &lt;em>bastante&lt;/em> sobre programação
+low-level, sobre como um kernel real acessa o hardware, um pouco sobre como o protocolo PCI funciona,
+como os sistemas operacionais de antigamente mostravam coisas na tela, como a MMU dos processadores
+x86 funcionam&amp;hellip;&lt;/p>
+&lt;p>No momento ele está parado. Eu o abandonei porque eu não encontrei um objetivo pra ele, e acabei
+desanimando.&lt;/p>
+&lt;p>Há um tempo atrás, eu comecei a fazer um kernel em Rust, mas ele ainda não está no Github. Nem nome
+ele tem!&lt;/p>
+&lt;h1 id="familyline">Familyline&lt;/h1>
+&lt;p>Praticamente o único projeto realmente ativo dessa lista&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/02-fayline.png" alt="Foto dele rodando">
+&lt;a href="https://github.com/arthurmco/familyline">Link&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>It&amp;rsquo;s made with a homebrew engine, for me to exclusively learn while bringing joy to its players. The major objective of this game is fun, to play and develop.&lt;/p>
+&lt;/blockquote>
+&lt;p>É um jogo de estratégia em tempo real, feito com uma engine própria, onde você acompanha a história
+de uma família fictícia (daí o nome) desde o final do Neolítico até mais ou menos 30 d.C.&lt;/p>
+&lt;p>A história real ainda não está feita, nem a engine, mas já aprendi bastante. Tudo o que eu sei de
+C++, CMake e programação OpenGL foi graças a esse jogo.&lt;br>
+Eu também aprendi a usar o &lt;a href="https://github.com/google/googletest">Google Test&lt;/a> (uma suíte de teste
+da Google) pra testar algumas partes da engine.&lt;/p>
+&lt;p>Foi o projeto que eu mais aprendi, e é o que provavelmente vai render mais conteúdo.&lt;/p>
+&lt;p>Recentemente, eu aprendi a usar o AddressSanitizer do GCC, pra resolver alguns problemas de
+corrupção de memória.&lt;/p>
+&lt;p>No momento, eu estou adicionando um modo multiplayer, mais pra confirmar se a engine está rodando
+no tempo certo, se cada &amp;ldquo;tick&amp;rdquo;, ou seja, cada iteração da engine, está acontecendo em seu tempo,
+e também pro jogo ficar um pouco mais interessante.&lt;/p>
+&lt;p>Ele tem uma GUI, feita usando C++ e uma biblioteca de desenho 2D chamada &lt;a href="https://www.cairographics.org/">Cairo&lt;/a>.&lt;/p>
+&lt;p>No futuro, eu quero fazer algumas coisas:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>suporte a Vulkan&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>permitir a você adicionar entidades (as construções e as unidades) usando &lt;a href="https://groups.csail.mit.edu/mac/projects/scheme/">Scheme&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar a GUI (o código está meio feio)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>melhorar o renderer: adicionar um suporte melhor a luzes, renderizar sombras, normal maps, até um
+ambient occlusion.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>mais tipos de terreno, especialmente um com água.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar o pathfinder.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Ele está &lt;em>bem&lt;/em> ativo, com commits pelo menos toda semana.&lt;/p>
+&lt;h1 id="demangler-js">demangler-js&lt;/h1>
+&lt;p>&lt;a href="https://github.com/arthurmco/demangler-js">Link&lt;/a>&lt;/p>
+&lt;p>Um demangler de funções C++.&lt;/p>
+&lt;p>Quando você compila um programa em C++, você tem um problema: C++ tem overloading de tipos nos
+argumentos. Em C, duas funções com o mesmo nome não podem existir, mesmo se elas tiverem argumentos
+diferentes. Em C++, elas podem. O &lt;em>mangling&lt;/em> é feito pelo compilador, então, para encodar essas
+informações de tipos (além de outras, como namespace) no nome da função, para que, na hora de
+debugar, ou qualquer outra hora que você precise saber o nome dessa função, você consiga saber
+os tipos dela.&lt;/p>
+&lt;p>O demangler simplesmente pega esse nome estranho e, a partir dele, obtém o nome real da função e
+os tipos de seus argumentos.&lt;/p>
+&lt;p>Esse projeto está meio parado. Ele também só suporta nomes mangleados pelo GCC&lt;/p></content></item><item><title>Primeiro post (parte 2)</title><link>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</link><pubDate>Tue, 16 Feb 2021 02:04:31 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post-pt2/</guid><description>Na primeira parte, eu ensinei como iniciar o blog, e hoje eu vou mostrar como postar ele no github pages.
+Como botar Eu usei esse guia pra me ajudar, e funcionou. Mas, resumindo:
+você precisa criar um repositório.
+Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites fulano.github.io, é basicamente isso), você cria um repositório chamado fulano.github.io, assumindo que fulano seja seu username do github.</description><content>&lt;p>Na &lt;a href="https://arthurmco.github.io/blog/posts/my-first-post/">primeira parte&lt;/a>, eu ensinei como iniciar o blog, e hoje
+eu vou mostrar como postar ele no github pages.&lt;/p>
+&lt;h2 id="como-botar">Como botar&lt;/h2>
+&lt;p>Eu usei &lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">esse guia&lt;/a> pra me ajudar, e
+funcionou. Mas, resumindo:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>você precisa criar um repositório.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Caso você queria que o seu site do Github Pages seja seu blog, de cara (no caso daqueles sites
+&lt;code>fulano.github.io&lt;/code>, é basicamente isso), você cria um repositório chamado &lt;code>fulano.github.io&lt;/code>,
+assumindo que &lt;code>fulano&lt;/code> seja seu username do github.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Caso você queira criar uma subpágina (eu fiz isso), você cria um repositório com o nome da
+sua subpágina (no meu caso, eu chamei de &lt;code>blog&lt;/code>, por isso que a URL é essa. Você pode ver o
+repositório &lt;a href="https://github.com/arthurmco/blog">aqui&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>dê um &lt;code>mkdir -p .github/workflows&lt;/code> dentro do seu repositório, e dentro dessa pasta &lt;code>workflows&lt;/code>,
+cole &lt;a href="https://github.com/arthurmco/blog/blob/main/.github/workflows/gh_pages.yml">esse arquivo aqui&lt;/a>.&lt;/p>
+&lt;ul>
+&lt;li>Ele vai criar um job no Github Actions (uma espécie de CI do Github) que vai gerar o HTML do site
+a partir do Markdown e colocar esse HTML dentro do branch &lt;code>gh-pages&lt;/code>. O branch &lt;code>gh-pages&lt;/code> é de onde
+o Github vai tirar o HTML do seu site.&lt;br>
+Essa action demora um pouco pra rodar, então demora alguns segundos até seu site ser gerado.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Vá até as configurações do repositório (a engrenagem escrito &amp;ldquo;Settings&amp;rdquo;), clique em Options,
+depois desça até &amp;ldquo;Github Pages&amp;rdquo;. Mude o branch para &lt;code>gh-pages&lt;/code>, assim como está na imagem:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/01-ghpages-image.png" alt="Como deve ficar teu setup">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="outras-coisas">Outras coisas&lt;/h2>
+&lt;p>Existe um jeito bem legal de fazer referências a outras páginas, que eu pesquisei só pra não ter
+que ficar colocando a URL na mão.&lt;/p>
+&lt;p>Um exemplo: o código do começo do post ficou assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Na [&lt;span style="color:#f92672">primeira parte&lt;/span>](&lt;span style="color:#a6e22e">{{&amp;amp;lt; ref &amp;#34;/posts/my-first-post&amp;#34; &amp;amp;gt;}}&lt;/span>), eu ensinei...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Esse &lt;code>&amp;lt;ref &amp;quot;/posts/my-first-post&amp;quot; &amp;gt;&lt;/code> cria um link pro arquivo &lt;code>posts/my-first-post&lt;/code>, que é onde eu salvei o primeiro
+post.&lt;/p>
+&lt;p>Além disso, pra botar imagens, é só você colocar dentro do diretório &lt;code>static&lt;/code>, lá na raiz do
+repositório. Por exemplo, a imagem que eu usei está na pasta &lt;code>static/images/01-ghpages-image.png&lt;/code>,
+pra usá-la eu escrevi assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> depois desça até &amp;#34;Github Pages&amp;#34;. Mude o branch para &lt;span style="color:#e6db74">`gh-pages`&lt;/span>, assim como
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> está na imagem
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>![&lt;span style="color:#f92672">Como deve ficar teu setup&lt;/span>](&lt;span style="color:#a6e22e">/blog/images/01-ghpages-image.png&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Infelizmente, eu tive que botar o &lt;code>blog/&lt;/code>. Parece que, se seu blog não fica na raiz da url, você
+precisa botar o caminho. (Bom, pelo menos eu não preciso colocar a URL inteira.)&lt;/p>
+&lt;hr>
+&lt;p>Então é isso.&lt;/p>
+&lt;p>Enquanto isso, eu vou ver como eu adiciono comentários.&lt;/p>
+&lt;p>Até mais!&lt;/p></content></item><item><title>Primeiro post</title><link>https://arthurmco.github.io/blog/posts/my-first-post/</link><pubDate>Tue, 16 Feb 2021 01:09:54 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/my-first-post/</guid><description>Depois de algum tempo prometendo, finalmente criei um blog!
+Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de tecnologia.
+Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui fazer esse blog, pra ajudar quem quiser começar</description><content>&lt;p>Depois de algum tempo prometendo, finalmente criei um blog!&lt;/p>
+&lt;p>Vou usar esse blog pra falar de várias coisas: coisas dos meus projetinhos pessoais, algo que eu
+achar que alguém queira saber, ou que eu acreditar que vai ser útil. Provavelmente vai ser de
+tecnologia.&lt;/p>
+&lt;p>Eu poderia criar uma página de teste, ou um &amp;ldquo;Olá mundo&amp;rdquo;, mas vou falar sobre como eu consegui
+fazer esse blog, pra ajudar quem quiser começar&lt;/p>
+&lt;h2 id="como">Como?&lt;/h2>
+&lt;p>Ao invés de usar o medium, ou o dev.to, decidi usar uma plataforma que gera sites estáticos
+chamada &lt;a href="https://gohugo.io/">Hugo&lt;/a>, feita em Go.&lt;/p>
+&lt;p>Eu procurei algumas, e estava indeciso entre essa e o &lt;a href="https://jekyllrb.com/">Jekyll&lt;/a>, mas o Jekyll
+é feito em uma linguagem que eu usei muito pouco, e mal passei do tutorial; além disso eu iria
+precisar instalar o Ruby.&lt;/p>
+&lt;p>Instalar o Hugo não foi difícil, basicamente é tão simples quanto instalar um programa qualquer.&lt;/p>
+&lt;p>Pra criar o site, você digita &lt;code>hugo new site &amp;lt;nome&amp;gt;&lt;/code>, e ele vai criar um site dentro da pasta
+&lt;code>&amp;lt;nome&amp;gt;&lt;/code>. Ele não cria um repositório git automaticamente, então você vai ter que fazer isso.&lt;/p>
+&lt;p>Existe um arquivo de configuração, que você vai ter que mexer pra colocar o que você quiser. O meu
+(até o presente momento) é assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-toml" data-lang="toml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">baseURL&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;https://arthurmco.github.io/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">languageCode&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;pt-br&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">title&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;Blog do Arthur M.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">theme&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;terminal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#a6e22e">params&lt;/span>]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fullWidthTheme&lt;/span> = &lt;span style="color:#66d9ef">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">centerTheme&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">themeColor&lt;/span> = &lt;span style="color:#e6db74">&amp;#34;green&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">enableGitInfo&lt;/span> = &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>(Maravilhoso que o syntax highlighting funciona)&lt;/p>
+&lt;p>Pra mudar o tema, você pode fazer duas coisas: mover os arquivos dentro da pasta &lt;code>themes/&amp;lt;nomedotema&amp;gt;&lt;/code>,
+ou criar um submódulo git nessa pasta aí. Lembre-se de editar o &lt;code>config.toml&lt;/code> e botar o tema lá (que
+deve ser &lt;code>&amp;lt;nomedotema&amp;gt;&lt;/code>).&lt;/p>
+&lt;p>Lembre-se que alguns temas possuem opções adicionais, algumas obrigatórias e outras não. Elas vão
+dentro de &lt;code>[params]&lt;/code>&lt;br>
+O que eu instalei (que eu achei bonito pra caramba, pra falar a verdade), possui essas duas opções
+de cima obrigatórias, e as outras são opcionais&lt;/p>
+&lt;p>Pra criar um post, você digita &lt;code> hugo new posts/my-first-post.md&lt;/code>. Ele vai criar um arquivo
+&lt;code>my-first-post.md&lt;/code> dentro de &lt;code>posts/&lt;/code>, e é onde você vai criar sua postagem. Lembre-se de escolher
+um nome que tenha a ver com o post.&lt;/p>
+&lt;p>O comando &lt;code>hugo serve&lt;/code> te ajuda a visualizar como vai ficar teu site.&lt;/p>
+&lt;hr>
+&lt;p>Eu ainda não coloquei o blog no Github Pages. Depois que eu colocar, eu vou fazer a Parte 2 desse
+post.&lt;/p>
+&lt;p>&lt;strong>EDIT&lt;/strong>: A parte 2 está &lt;a href="https://arthurmco.github.io/blog/posts/my-first-post-pt2/">aqui&lt;/a>&lt;/p>
+&lt;p>Até mais!&lt;/p></content></item></channel></rss>

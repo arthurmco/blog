@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/</link><description>Recent content on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 29 Jul 2022 18:23:32 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Não dá pra usar `git-lfs` no blog</title><link>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</link><pubDate>Fri, 29 Jul 2022 18:23:32 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</guid><description>Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava experimentando colocar as imagens no git-lfs
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/</link><description>Recent content on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 04 Aug 2022 20:07:38 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Meu disquete não tá lendo!</title><link>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</link><pubDate>Thu, 04 Aug 2022 20:07:38 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</guid><description>Há alguns dias atrás, eu consegui um teclado de música usado, um Yamaha PSR-350 pra aprender a tocar música, já que era algo que eu sempre quis aprender. O que faltava, na real, era dinheiro pra comprar algum instrumento.
+Não é um teclado muito novo, mas também não é muito antigo: é de algum lugar dos anos 2000.
+O teclado aí. Fonte: fr.audiofanzine.com Uma das coisas que me chamou a atenção foi o fato de ele ter um belo leitor de disquetes, pra você poder salvar suas músicas pra tocar no PC, ou pra transmitir músicas pra tocá-las no teclado.</description><content>&lt;p>Há alguns dias atrás, eu consegui um teclado de música usado, um Yamaha PSR-350 pra aprender a
+tocar música, já que era algo que eu sempre quis aprender. O que faltava, na real, era dinheiro pra
+comprar algum instrumento.&lt;/p>
+&lt;p>Não é um teclado muito novo, mas também não é muito antigo: é de algum lugar dos anos 2000.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="https://arthurmco.github.io/blog/blog/images/key/yamaha-psr-350.jpg" />
+&lt;figcaption class="center" >O teclado aí. Fonte: fr.audiofanzine.com&lt;/figcaption>
+&lt;/figure>
+&lt;p>Uma das coisas que me chamou a atenção foi o fato de ele ter um belo leitor de disquetes, pra você
+poder salvar suas músicas pra tocar no PC, ou pra transmitir músicas pra tocá-las no teclado.&lt;/p>
+&lt;p>Depois de algumas semanas esperando meu leitor de disquete USB chegar da China, eu pude testá-lo com
+alguns disquetes que eu tinha comprado.&lt;/p>
+&lt;p>Infelizmente, para minha surpresa, o disco mostrou uma mensagem nada amigável.&lt;/p>
+&lt;pre tabindex="0">&lt;code>[ 1780.060701] sd 7:0:0:0: [sdc] Attached SCSI removable disk
+[ 1827.483175] sd 7:0:0:0: [sdc] Read Capacity(10) failed: Result: hostbyte=DID_OK driverbyte=DRIVER_SENSE
+[ 1827.483178] sd 7:0:0:0: [sdc] Sense Key : Medium Error [current]
+[ 1827.483179] sd 7:0:0:0: [sdc] Add. Sense: Cannot read medium - unknown format
+&lt;/code>&lt;/pre>&lt;p>Claro que eu pensei que o leitor estava quebrado.&lt;/p>
+&lt;p>Porém, como ele estaria quebrado se ele foi reconhecido? Provavelmente era algum problema com o
+disquete que eu usei.&lt;/p>
+&lt;p>Então eu tentei outro, novinho em folha. Mesmo erro.&lt;/p>
+&lt;hr>
+&lt;p>Irei poupar a vocês as horas de pesquisa vendo fóruns e mais fóruns, e lhes mostrar direto o que
+eu fiz pra resolver:&lt;/p>
+&lt;p>O problema era que o disquete não estava formatado em &lt;strong>baixo nível&lt;/strong>.&lt;/p>
+&lt;p>Você deve ter reparado, caso você tenha uns 30 e poucos anos no mínimo, que um disquete de 720KB ou
+1.44MB podia ser usado em várias arquiteturas de computador diferente, mas eles eram incompatíveis
+entre si: um disquete no PC não funcionava no Apple II e vice-versa.&lt;/p>
+&lt;p>Isso se devia ao fato que esses sistemas esperavam que &lt;em>os setores estivessem em lugares diferentes
+do disco&lt;/em>.&lt;/p>
+&lt;p>O disquete é uma mídia dividida em &lt;em>cabeças&lt;/em>, &lt;em>trilhas&lt;/em> e &lt;em>setores&lt;/em> (heads, tracks e
+sectors). Um disquete de 1.44 MB contém 2 cabeças, 80 trilhas e 18 setores por trilha,
+cada setor tendo 512 bytes.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="https://arthurmco.github.io/blog/blog/images/key/heads.jpg" />
+&lt;figcaption class="center" >Como o disquete é organizado fisicamente. Fonte: researchgate.net&lt;/figcaption>
+&lt;/figure>
+&lt;p>A quantidade de cabeças é pré-definida, mas, em alguns discos, as trilhas e os setores, não são. Eles
+são definidos por software, em padrões de bits gravados no disquete que informam onde a trilha começa e
+o tamanho de cada setor. Essa definição é chamada de &lt;em>formatação de baixo-nível&lt;/em>, ou &lt;em>low-level formatting&lt;/em>&lt;/p>
+&lt;p>O problema é que os disquetes que eu comprei não tinham esses padrões de bits, eles não estavam
+&amp;ldquo;formatados&amp;rdquo;.&lt;/p>
+&lt;h2 id="solucionando">Solucionando&lt;/h2>
+&lt;p>Para você fazer isso no Linux, você deve baixar um utilitário chamado ufiformat.
+&lt;a href="https://github.com/tedigh/ufiformat">O link para o repositório&lt;/a>.&lt;/p>
+&lt;p>Ele não está compilado, mas compilar é tranquilo: instale o pacote &lt;code>e2fs-progs&lt;/code> para compilar
+(deve ser algo chamado &lt;code>e2fsprogs-dev&lt;/code> no Debian e derivados), depois é só dar &lt;code>./configure&lt;/code> e
+&lt;code>make&lt;/code>.&lt;/p>
+&lt;p>Para listar os dispositivos disponíveis, digite &lt;code>./ufiformat -i&lt;/code>.&lt;/p>
+&lt;p>Para rodar, digite &lt;code>./ufiformat -V -v /dev/&amp;lt;teu disquete&amp;gt;&lt;/code>. Ele vai rodar e depois verificar para
+ver se deu certo.&lt;br>
+Depois que ele terminar, tire o disquete e coloque denovo.&lt;br>
+Se isso daqui aparecer no &lt;code>dmesg&lt;/code>:&lt;/p>
+&lt;pre tabindex="0">&lt;code>[ 2213.047066] usb 3-4: reset full-speed USB device number 8 using xhci_hcd
+[ 2213.273042] sd 7:0:0:0: Power-on or device reset occurred
+[ 2214.872958] sd 7:0:0:0: [sdc] 2880 512-byte logical blocks: (1.47 MB/1.41 MiB)
+[ 2321.016219] sdc:
+&lt;/code>&lt;/pre>&lt;p>significa que deu certo.&lt;/p>
+&lt;h1 id="e-no-windows">E no Windows?&lt;/h1>
+&lt;p>No Windows é mais fácil que parece.&lt;/p>
+&lt;p>Quando você inserir o disquete, ele vai dar uma mensagem de erro dizendo que o disco pode não estar
+formatado.&lt;/p>
+&lt;p>Você pode achar que ele está falando do sistema de arquivos, mas ele está falando mesmo da definição
+de setores, do low level.&lt;/p>
+&lt;p>Clique com o botão direito no disquete e vá em &amp;ldquo;Formatar&amp;rdquo;. Uma janela assim vai aparecer:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/key/winformat.png" alt="A janela te pedindo pra formatar">&lt;/p>
+&lt;p>Sabe essa opção &amp;ldquo;Formatação Rápida&amp;rdquo;? &lt;strong>Não marque ela.&lt;/strong> Se ela tiver selecionada, &lt;strong>desmarque&lt;/strong>.
+Se você selecionar, ela não vai formatar o disquete em baixo nível.&lt;/p>
+&lt;p>Clique em OK e espere uns minutinhos.&lt;/p>
+&lt;p>Depois disso, corre pro abraço!&lt;/p></content></item><item><title>Não dá pra usar `git-lfs` no blog</title><link>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</link><pubDate>Fri, 29 Jul 2022 18:23:32 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/nao-da-pra-usar-git-lfs-no-blog/</guid><description>Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava experimentando colocar as imagens no git-lfs
 O git-lfs é uma extensão do git que guarda certos arquivos, geralmente binários, separadamente, em um servidor separado, o que é bom, já que o git não é otimizado pra arquivos binários.
 Pra quem estiver afim de usar, já saiba que não rola.
 Ironicamente, essa extensão tem dedo da própria equipe do GitHub.</description><content>&lt;p>Se você entrou no blog e percebeu que as imagens sumiram, é porque eu estava
@@ -814,7 +885,126 @@ página HTML?&lt;/li>
 &lt;/ul>
 &lt;p>Essas coisas vão ficar pra &lt;a href="https://arthurmco.github.io/blog/posts/webpack-howto-part-2/">parte 2&lt;/a>, onde eu mostro como criar esse
 arquivo webpack.config.js, o arquivo de configuração do webpack, e o
-que vem nele.&lt;/p></content></item><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
+que vem nele.&lt;/p></content></item><item><title>Criando um 'crash handler' Part 1</title><link>https://arthurmco.github.io/blog/posts/crash-handler-part-1/</link><pubDate>Mon, 26 Apr 2021 21:32:29 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/crash-handler-part-1/</guid><description>Sabe aquelas telas que abarecem quando um programa ou jogo crasha e fecha? BugSplat, a do Firefox, do Chrome? Bem, descobri como elas funcionam. Vou tentar fazer uma igual e mostrar pra vocês como eu fiz.
+Uma coisa que eu descobri é que esse tipo de programa é extremamente dependente de arquitetura de processador e de sistema operacional; portanto nessa primeira parte eu vou mostrar o funcionamento, e como fazer um desses crash handlers no Linux</description><content>&lt;p>Sabe aquelas telas que abarecem quando um programa ou jogo crasha e fecha? &lt;em>BugSplat&lt;/em>,
+a do Firefox, do Chrome? Bem, descobri como elas funcionam. Vou tentar fazer uma igual
+e mostrar pra vocês como eu fiz.&lt;/p>
+&lt;p>Uma coisa que eu descobri é que esse tipo de programa é extremamente dependente de arquitetura de
+processador e de sistema operacional; portanto nessa primeira parte eu vou mostrar o funcionamento,
+e como fazer um desses &lt;em>crash handlers&lt;/em> no Linux&lt;/p>
+&lt;blockquote>
+&lt;p>Um aviso: Isso aqui só vai funcionar se o seu software não tiver nenhum tipo de runtime (ou seja,
+Java e .NET&amp;hellip;), porque iremos mexer diretamente com a pilha de execução do processador.&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="como-um-crash-handler-funciona">Como um crash handler funciona&lt;/h1>
+&lt;p>O crash handler é um programa que faz algo (a parte de &lt;em>handle&lt;/em>) quando um programa &lt;em>crasha&lt;/em>, daí o nome.&lt;/p>
+&lt;p>Geralmente esses programas pegam algumas informações importantes do processo (como a &lt;code>call stack&lt;/code>, ou
+pilha de chamadas, que é uma pilha onde a função no topo é a função mais recente, a função abaixo é a
+função que chamou a primeira, a terceira função é a que chamou a segunda&amp;hellip;), e mandam para algum
+servidor para análise.&lt;/p>
+&lt;p>Um exemplo de call stack está abaixo.
+&lt;img src="https://arthurmco.github.io/blog/blog/images/03-call-stack-example.png" alt="Um exemplo de &amp;amp;lsquo;call stack&amp;amp;rsquo; no GNU Debugger">&lt;/p>
+&lt;p>Em azul estão os endereços de memória; no caso do primeiro da lista é o endereço de memória onde
+o processador estava (o famoso &lt;em>program counter&lt;/em>, ou &lt;em>instruction pointer&lt;/em>), no caso dos restantes
+é o endereço de memória aonde o processador vai retornar quando ele sair da função acima.&lt;/p>
+&lt;blockquote>
+&lt;p>Por exemplo, o endereço de memória do segundo item da lista é aonde o processador vai retornar quando
+ele terminar de executar a primeira função, o endereço de memória do terceiro item é aonde o processador
+vai retornar quando terminar a segunda função, e assim por diante.&lt;/p>
+&lt;/blockquote>
+&lt;p>Em amarelo estão os nomes das funções, em verde os arquivos de código-fonte em que elas se encontram&lt;/p>
+&lt;p>Claro que a do GDB está mais bonita do que vamos gerar inicialmente, mas existe um jeito de você
+mostrar exatamente os nomes de cada função. Pretendo falar disso na parte 2.&lt;/p>
+&lt;p>Existem três jeitos de você carregar um &amp;ldquo;crash handler&amp;rdquo;:&lt;/p>
+&lt;ol>
+&lt;li>como um serviço (ou daemon) rodando na máquina. O Google Chrome faz assim.&lt;br>
+A Microsoft faz também (aquela janela que pede pra você enviar o relatório de erros pra
+Microsoft é uma espécie de &lt;strong>crash handler&lt;/strong>)&lt;/li>
+&lt;li>como um launcher para o seu aplicativo ou jogo. O Minecraft faz desse jeito&lt;/li>
+&lt;li>fazer o próprio aplicativo carregar o handler (no início, ou, caso seja possível, quando o
+programa crashar). A maioria dos programas e jogos fazem assim.&lt;/li>
+&lt;/ol>
+&lt;p>O jeito que eu fiz foi o segundo jeito, como um launcher, porque eu achei mais fácil pra mim.&lt;br>
+Eu pretendo testar o terceiro jeito, porque eu acho que é o mais fácil para o usuário (ele não
+precisa carregar um programa externo pra carregar o programa que ele quer).&lt;/p>
+&lt;p>O &lt;em>crash handler&lt;/em> tem sua ação dividida em duas partes: a parte do software que crashou e a parte
+do handler. O handler não faz nada até o programa monitorado crashar.&lt;/p>
+&lt;h3 id="no-início">No início&lt;/h3>
+&lt;p>Alguns sistemas, dentre eles o Linux, lhe permitem executar funções em determinados eventos, chamados
+de &lt;strong>sinais&lt;/strong>. Essas funções são chamadas de &lt;em>signal handlers&lt;/em> Para alterar essas funções, você
+deve usar uma função chamada &lt;a href="https://www.man7.org/linux/man-pages/man2/sigaction.2.html">sigaction&lt;/a>.&lt;/p>
+&lt;blockquote>
+&lt;p>No Windows, o método é diferente. Veremos isso futuramente também.&lt;/p>
+&lt;/blockquote>
+&lt;p>Alguns desses sinais são executados quando o programa faz algo que não deveria. São eles os que
+queremos.&lt;/p>
+&lt;blockquote>
+&lt;p>A função que passarmos precisa ser uma função normal. Ela &lt;em>não pode&lt;/em> estar dentro de nenhuma
+instância, nem ser um &lt;code>lambda&lt;/code> de C++, nem nada retornado pelo &lt;code>std::bind&lt;/code>, por uma questão de
+lifetimes, e porque você não deve confiar em nenhum trecho da memória que o seu aplicativo
+estava usando, afinal ele crashou!&lt;/p>
+&lt;/blockquote>
+&lt;p>O protótipo dessa função é:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">sigaction&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> signum, &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> sigaction &lt;span style="color:#f92672">*&lt;/span>act, &lt;span style="color:#66d9ef">struct&lt;/span> sigaction &lt;span style="color:#f92672">*&lt;/span>oldact);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>signum é o número do sinal (embora geralmente você use um &lt;code>#define&lt;/code> que já liga o nome ao número).&lt;br>
+Uma lista de sinais está &lt;a href="https://www.man7.org/linux/man-pages/man7/signal.7.html">disponível aqui&lt;/a>,
+na seção &amp;ldquo;Standard signals&amp;rdquo;.&lt;/li>
+&lt;li>&lt;code>sigaction&lt;/code> é uma estrutura que contém alguns valores, um deles é o ponteiro pra nossa função,
+que será executada durante o sinal que queremos&lt;/li>
+&lt;li>&lt;code>act&lt;/code> e &lt;code>oldact&lt;/code> são ponteiros para a estrutura acima: no primeiro você passa o valor que você
+quer setar, no segundo você passa um ponteiro de memória onde essa função vai escrever o valor antigo.&lt;/li>
+&lt;/ul>
+&lt;p>Você deve criar handlers para alguns sinais fatais, mas que podem ser capturados (&lt;code>SIGSTOP&lt;/code> e
+&lt;code>SIGKILL&lt;/code> não podem, afinal, geralmente, eles são causados pelo usuário).&lt;/p>
+&lt;p>Os que eu escolhi para esse tutorial foram &lt;code>SIGSEGV&lt;/code> (o famoso Segmentation fault), &lt;code>SIGABRT&lt;/code>
+(um &amp;ldquo;crash voluntário&amp;rdquo;, geralmente causado por exceções não tratadas em C++) e &lt;code>SIGBUS&lt;/code>
+(um sinal causado para erros de acesso a memória que não são falhas de segmentação), porque eles
+são os mais comuns.&lt;/p>
+&lt;p>Você pode (e deve) pegar todos os sinais fatais, eu só não vou pegar todos pro código ficar um
+pouco menor.&lt;/p>
+&lt;blockquote>
+&lt;p>Os sinais fatais são aqueles que, naquela lista de sinais, tem a &lt;strong>Action&lt;/strong> igual a &lt;strong>Core&lt;/strong>.
+Eles geralmente resultam no fim da execução do programa&lt;/p>
+&lt;/blockquote>
+&lt;p>Existem dois jeitos de iniciar:&lt;/p>
+&lt;ul>
+&lt;li>o handler inicia o programa e pega o Process ID (ou ID do Processo)&lt;/li>
+&lt;li>o programa inicia, executa o handler e passa o próprio Process ID pra ele.&lt;/li>
+&lt;/ul>
+&lt;p>Nos dois casos, o handler precisa do process ID do programa que você quer monitorar.&lt;/p>
+&lt;p>Agora, o que o programa a ser crashado faz é, assim que ele é iniciado, configurar esses &lt;em>handlers&lt;/em>
+para uma função que será executada na hora do crash.&lt;/p>
+&lt;p>O handler espera o processo terminar. &lt;a href="https://linux.die.net/man/2/waitpid">A função &lt;code>waitpid&lt;/code>&lt;/a> lhe
+permite fazer isso. Você passa pra ela o process ID e um ponteiro de memória pra guardar as informações
+de retorno da função e ela só retorna quando o processo cujo PID você passou terminar.&lt;/p>
+&lt;h2 id="na-hora-do-crash">Na hora do crash&lt;/h2>
+&lt;p>Na hora do crash, a função que passamos é executada&lt;/p>
+&lt;p>A assinatura da nossa função precisa ser essa daqui:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">handler&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> signum, siginfo_t&lt;span style="color:#f92672">*&lt;/span> siginfo, &lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">*&lt;/span> context)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* ... */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>signum&lt;/code> é o número do sinal&lt;/li>
+&lt;li>&lt;code>siginfo&lt;/code> é uma estrutura que contém informações sobre o sinal, como o que exatamente o causou.
+Por algum motivo que eu não sei, o valor do &lt;code>instruction pointer&lt;/code> (ou o endereço da instrução
+que o processo estava quando o sinal aconteceu) não está aí, e isso me deixou um pouco puto.&lt;/li>
+&lt;li>&lt;code>context&lt;/code> é o endereço pra uma estrutura onde os valores mais interessantes são dependentes
+da arquitetura&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>Esse guia só funciona pra x86-64. Como eu tenho um Raspberry PI, eu prometo que vou fazer um
+post só com os específicos para ARM no Linux.&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="todo">TODO&lt;/h1>
+&lt;ul>
+&lt;li>falar do context, e de como pegar os valores dos registradores&lt;/li>
+&lt;li>falar como pega a call stack&lt;/li>
+&lt;li>falar como manda a call stack pro processo do crash handler&lt;/li>
+&lt;/ul></content></item><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
 Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu joguinho, porque assim que você fizer seu commit, o seu expediente acabou.
 De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se lembra que o animal que fez esse sistema deixou esses dados como somente leitura.
 Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia e o seu chefe pediu essa alteração, educadamente, para ontem</description><content>&lt;p>18h de uma sexta feira.&lt;/p>
