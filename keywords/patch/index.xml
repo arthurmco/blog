@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>patch on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/patch/</link><description>Recent content in patch on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Sun, 13 Mar 2022 14:28:37 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/patch/index.xml" rel="self" type="application/rss+xml"/><item><title>Coisas interessantes sobre patchfiles</title><link>https://arthurmco.github.io/blog/posts/about-patch-files/</link><pubDate>Sun, 13 Mar 2022 14:28:37 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/about-patch-files/</guid><description>Hoje eu precisei editar um arquivo patch na mão, algo relacionado com um projeto pessoal meu.
+Para quem não sabe, arquivos patch são aqueles com extensão .patch. Eles têm um monte de linhas que começam com + e -.
+A sintaxe desse arquivo é a mesma sintaxe que o comando git diff mostra em um repositório válido,
+Um arquivo diff é mais ou menos assim:
+diff --git a/src/common/CMakeLists.txt b/src/common/CMakeLists.txt index edeeeec.</description><content>&lt;p>Hoje eu precisei editar um arquivo &lt;code>patch&lt;/code> na mão, algo relacionado
+com um projeto pessoal meu.&lt;/p>
+&lt;p>Para quem não sabe, arquivos &lt;code>patch&lt;/code> são aqueles com extensão .patch.
+Eles têm um monte de linhas que começam com &lt;code>+&lt;/code> e &lt;code>-&lt;/code>.&lt;br>
+A sintaxe desse arquivo é a mesma sintaxe que o comando &lt;code>git diff&lt;/code>
+mostra em um repositório válido,&lt;/p>
+&lt;p>Um arquivo diff é mais ou menos assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/src/common/CMakeLists.txt b/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index edeeeec..fcbe64c 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/src/common/CMakeLists.txt
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -48,13 +48,11 @@ add_dependencies(familyline-common input-flatbuffer input-ser-flatbuffer network
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_compile_features(familyline-common PRIVATE cxx_std_20)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(fmt 6...7.2 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(ZLIB REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span> find_package(tl-expected 1 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(nlohmann_json REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(FlatBuffers REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(SDL2 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(range-v3 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(glm REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if (FLINE_USE_VCPKG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(${CMAKE_TOOLCHAIN_FILE})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -79,8 +77,9 @@ else()
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_link_libraries(familyline-common PUBLIC ${CURLPP_LDFLAGS})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_include_directories(familyline-common PUBLIC ${CURLPP_INCLUDE_DIRS})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> endif()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+ pkg_search_module(ZLIB REQUIRED zlib)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">- target_link_libraries(familyline-common PUBLIC fmt::fmt glm::glm ${ZLIB_LIBRARIES})
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+ target_link_libraries(familyline-common PUBLIC fmt::fmt glm ${ZLIB_LIBRARIES})
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span> target_link_libraries(familyline-common PUBLIC tl::expected range-v3::range-v3)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_link_libraries(familyline-common PUBLIC nlohmann_json::nlohmann_json)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> target_include_directories(familyline-common PUBLIC
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/src/common/generated.cmake b/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index d30ff1c..b105a41 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/src/common/generated.cmake
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -5,6 +5,8 @@
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> # called INPUT_FLATBUFFER_INCLUDE, where the generated header file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> # is.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+# TODO: solve the issue of us having to run cmake twice to get the flatbuffers path
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">+
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span> include_guard(GLOBAL)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(&amp;#34;${CMAKE_SOURCE_DIR}/cmake/BuildFlatBuffers.cmake&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>diff --git a/tools/bump_version.py b/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>index 5b79583..46f736c 100644
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">--- a/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+++ b/tools/bump_version.py
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>&lt;span style="color:#75715e">@@ -127,7 +127,7 @@ update_cmakelists(current_ver, next_ver)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> ####################
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> os.system(&amp;#34;git add CMakeLists.txt&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-os.system(&amp;#34;git commit -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+os.system(&amp;#34;git commit --no-verify -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ####################
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Existem vários formatos de arquivos de patch. O mais comum é esse aí de cima,
+chamado de &lt;code>unified format&lt;/code>&lt;/p>
+&lt;p>Um arquivo de patch pode conter vários arquivos. Eles são delimitados
+por duas coisas:&lt;/p>
+&lt;ul>
+&lt;li>o comando usado pra gerar o diff:&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>diff --git a/tools/bump_version.py b/tools/bump_version.py
+index 5b79583..46f736c 100644
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>o &lt;code>header&lt;/code> do arquivo:&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>--- a/tools/bump_version.py
++++ b/tools/bump_version.py
+&lt;/code>&lt;/pre>&lt;p>Opcionalmente, esse header pode conter uma data. É útil para ver se o
+seu arquivo é mais novo ou mais velho do que o patch&lt;/p>
+&lt;pre tabindex="0">&lt;code>--- a/tools/bump_version.py 2022-03-07 01:34:08.815661222 -0300
++++ b/tools/bump_version.py 2022-03-09 18:29:20.993654217 -0300
+&lt;/code>&lt;/pre>&lt;p>O &lt;code>---&lt;/code> delimita o arquivo &amp;ldquo;antigo&amp;rdquo;. O &lt;code>+++&lt;/code> delimita o arquivo
+&amp;ldquo;novo&amp;rdquo;, que vai surgir depois do path.&lt;/p>
+&lt;p>O que conta pro formato é o caminho depois do &lt;code>a/&lt;/code> ou do &lt;code>b&lt;/code>, esses
+dois nomes são só de referência&lt;/p>
+&lt;p>Depois disso, para cada arquivo, nós temos vários &amp;ldquo;chunks&amp;rdquo;, pedaços de alteração.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -127,7 +127,7 @@ update_cmakelists(current_ver, next_ver)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> ####################
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> os.system(&amp;#34;git add CMakeLists.txt&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-os.system(&amp;#34;git commit -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>&lt;span style="color:#a6e22e">+os.system(&amp;#34;git commit --no-verify -m \&amp;#34;Bump version (v{} -&amp;gt; v{})\&amp;#34;&amp;#34;.format(current_ver, next_ver))
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ####################
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O formato é mais ou menos assim:&lt;/p>
+&lt;p>&lt;code>@@ -linhaA, quantidadeA +linhaB, quantidadeB @@&lt;/code>&lt;/p>
+&lt;p>A &lt;code>linhaA&lt;/code> é o número da linha onde o chunk começa, onde a alteração
+vai acontecer no arquivo antigo. A &lt;code>quantidadeA&lt;/code> é a quantidade do
+número de linhas nesse &amp;ldquo;chunk&amp;rdquo; no arquivo original&lt;/p>
+&lt;p>A &lt;code>linhaB&lt;/code> é o número da linha onde o chunk começa, onde a alteração
+vai acontecer no arquivo novo. A &lt;code>quantidadeB&lt;/code> é a quantidade do
+número de linhas nesse &amp;ldquo;chunk&amp;rdquo; depois que todas as alterações forem
+aplicadas.&lt;/p>
+&lt;p>Por exemplo, nesse chunk aí de cima, ele começa na linha 127 do
+arquivo, temos 7 linhas nele antes das alterações, e 7 linhas nele
+depois&lt;/p>
+&lt;p>Nesse aqui:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-diff" data-lang="diff">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">@@ -48,13 +48,11 @@ add_dependencies(familyline-common input-flatbuffer input-ser-flatbuffer network
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> target_compile_features(familyline-common PRIVATE cxx_std_20)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(fmt 6...7.2 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(ZLIB REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span> find_package(tl-expected 1 CONFIG REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(nlohmann_json REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(FlatBuffers REQUIRED)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(SDL2 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> find_package(range-v3 CONFIG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-find_package(glm REQUIRED)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if (FLINE_USE_VCPKG)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> include(${CMAKE_TOOLCHAIN_FILE})
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ele começa na linha 48 do arquivo original, temos 13 linhas nele antes
+das alterações e teremos 11 linhas depois.&lt;/p>
+&lt;p>Depois disso, vêm algumas linhas do arquivo original, para dar
+contexto.&lt;/p>
+&lt;p>As linhas sem nada antes são linhas que não sofrerão alterações.&lt;/p>
+&lt;p>As linhas com &lt;code>-&lt;/code> serão removidas.&lt;/p>
+&lt;p>As linhas com &lt;code>+&lt;/code> serão adicionadas.&lt;/p>
+&lt;hr>
+&lt;p>E é isso.&lt;/p>
+&lt;p>É um formato relativamente simples, mas bem útil para dizer
+alterações.&lt;/p>
+&lt;p>Se você quiser mais detalhes sobre o formato, pode vir &lt;a href="https://www.artima.com/weblogs/viewpost.jsp?thread=164293">nesse post do
+Guido van
+Rossum&lt;/a>,
+onde ele escreveu uma mini-especificação do formato.&lt;/p></content></item></channel></rss>

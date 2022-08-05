@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>projetos on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/tags/projetos/</link><description>Recent content in projetos on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 23 Sep 2021 13:11:22 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/tags/projetos/index.xml" rel="self" type="application/rss+xml"/><item><title>Como usar o Webpack - Parte 2</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</link><pubDate>Thu, 23 Sep 2021 13:11:22 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-2/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+Vimos na parte 1 como o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como vimos, o uso sem configuração se torna bastante limitado, porque, dentre muitas outras coisas, os nomes dos arquivos não podem ser customizados,</description><content>&lt;p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.&lt;/p>
+&lt;p>&lt;a href="https://arthurmco.github.io/blog/posts/webpack-howto-part-1/">Vimos na parte
+1&lt;/a> como
+o Webpack funciona, e que podemos usá-lo sem configuração. Porém, como
+vimos, o uso sem configuração se torna bastante limitado, porque,
+dentre muitas outras coisas, os nomes dos arquivos não podem ser
+customizados,&lt;/p>
+&lt;p>Usando um arquivo de configuração, porém, você pode customizar várias
+coisas, e usar vários &lt;strong>plugins&lt;/strong> e &lt;strong>loaders&lt;/strong> (eu expliquei o que são
+esses dois na parte 1).&lt;/p>
+&lt;p>O nome do arquivo de configuração do webpack é o
+&lt;code>webpack.config.js&lt;/code>. Ele fica na raiz do seu projeto, no diretório
+principal. Lembrando da estrutura de arquivos que tínhamos, na parte
+1, incluindo esse arquivo, ela ficaria assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>.
+├── webpack.config.js
+└── src
+├── continhas.js
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>De cara, eu vou introduzir algumas opções dele para você.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;path&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">module&lt;/span>.&lt;span style="color:#a6e22e">exports&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">mode&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;development&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/index.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;bundle.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Primeiro, dá pra perceber que ele é um arquivo javascript comum. A
+configuração em si é só o que ele exporta.&lt;/p>
+&lt;p>A opção &lt;strong>mode&lt;/strong> identifica o ambiente onde esse script vai rodar,
+&lt;code>development&lt;/code> pra desenvolvimento, &lt;code>production&lt;/code> pra produção. Isso
+você provavelmente deixaria em uma variável de ambiente, ou em outro
+arquivo.&lt;/p>
+&lt;p>A opção &lt;strong>entry&lt;/strong> identifica o arquivo de entrada. Lembrando o que eu
+disse:&lt;/p>
+&lt;blockquote>
+&lt;p>O arquivo de entrada é chamado de &lt;em>entry&lt;/em>, e o de saída é chamado de
+&lt;em>bundle&lt;/em>.&lt;/p>
+&lt;/blockquote>
+&lt;p>Você pode definir mais de um arquivo de entrada assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivoum&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo1.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivodois&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo2.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Os nomes dos atributos não são muito importantes até onde eu sei, mas
+os caminhos dos arquivos são onde esses arquivos estão.&lt;/p>
+&lt;p>A opção &lt;strong>output&lt;/strong> define a saída, onde esses bundles serão
+salvos. &lt;code>output.path&lt;/code> define o caminho, e &lt;code>output.filename&lt;/code> o nome do
+arquivo.&lt;/p>
+&lt;p>Ele pode gerar um arquivo de output por cada arquivo de entrada,
+usando a string de substituição &lt;code>[name]&lt;/code>. Por exemplo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivoum&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo1.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">arquivodois&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/arquivo2.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;[name]_out.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>geraria dois arquivos na pasta &lt;code>dist&lt;/code>: &lt;code>arquivoum_out.js&lt;/code> e
+&lt;code>arquivodois_out.js&lt;/code>&lt;/p>
+&lt;p>Usando esse arquivo super básico, você pode controlar os arquivos de
+entrada e os de saída.&lt;/p>
+&lt;p>Mas existem mais coisas que você pode fazer:&lt;/p>
+&lt;h1 id="módulos">Módulos&lt;/h1>
+&lt;p>Algumas bibliotecas lhe permitem importar um arquivo CSS dentro de um
+arquivo Javascript, mais ou menos assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./style/style.css&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./style/style.css&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Você pode fazer isso usando loaders, não só com CSS, mas com outros
+tipos de arquivos também. Até com JSON, por mais engraçado que isso
+possa parecer.&lt;/p>
+&lt;p>Usaremos dois loaders:&lt;/p>
+&lt;ul>
+&lt;li>o &lt;strong>style-loader&lt;/strong> serve como uma base para carregar estilos CSS&lt;/li>
+&lt;li>o &lt;strong>css-loader&lt;/strong> serve para o style-loader reconhecer imports de
+CSS, geralmente usados para importar um arquivo CSS em outro.&lt;/li>
+&lt;/ul>
+&lt;p>Os dois são geralmente usados juntos.&lt;/p>
+&lt;p>Instale-os assim:&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ npm i --save-dev css-loader style-loader
+&lt;/code>&lt;/pre>&lt;p>E adicione essa linha abaixo de &lt;code>output&lt;/code>, ainda dentro do &lt;code>module.exports&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">module:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">rules:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">test:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">/\.css$/i,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">use:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">[&amp;#39;style-loader&amp;#39;,&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;css-loader&amp;#39;],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&lt;span style="color:#960050;background-color:#1e0010">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">},&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ele vai usar o css-loader e o style-loader em qualquer arquivo que
+terminar com &lt;code>.css&lt;/code>.&lt;/p>
+&lt;p>(aliás, quem quer um post sobre regex?)&lt;/p>
+&lt;h1 id="plugins">Plugins&lt;/h1>
+&lt;p>Como eu disse antes, um plugin do webpack tem autoridade pra mexer nos
+bundles. Um dos plugins mais usados é o &lt;code>html-webpack-plugin&lt;/code>, e ele
+serve para gerar uma página HTML que automaticamente inclui todos os
+bundles, assim você não precisa criar nenhuma página&lt;/p>
+&lt;p>O HTML que ele gera é mais ou menos assim, nas configurações default:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;utf-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;título&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;viewport&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">content&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;width=device-width, initial-scale=1&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">defer&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;defer&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;bundle.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Sendo que o título você pode definir quando instancia o plugin.&lt;/p>
+&lt;p>Para instalar o &lt;code>html-webpack-plugin&lt;/code>, você deve executar o seguinte
+comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>npm i --save-dev html-webpack-plugin
+&lt;/code>&lt;/pre>&lt;p>Dentro do webpack.config.js, insira essa linha, lá no começo&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;html-webpack-plugin&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Isso vai incluir a classe responsável por instanciar o plugin.&lt;/p>
+&lt;p>Ao contrário dos loaders, os plugins devem ser requeridos.&lt;/p>
+&lt;p>Agora, insira essas linhas depois de &lt;code>module&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;título da sua página&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O construtor dessa classe aceita mais atributos além de &lt;code>title&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>filename&lt;/strong>: o path do arquivo para o qual você quer escrever a
+página. O padrão é index.html&lt;/li>
+&lt;li>&lt;strong>template&lt;/strong>: um path para um template, cujo conteúdo HTML será
+copiado para o arquivo principal. &lt;a href="https://github.com/jantimon/html-webpack-plugin#writing-your-own-templates">A documentação do
+plugin&lt;/a>
+pode ajudar em como criar o template&lt;/li>
+&lt;li>&lt;strong>showErrors&lt;/strong>: mostra erros (de compilação do bundle,
+provavelmente) na página HTML.&lt;/li>
+&lt;/ul>
+&lt;p>Para gerar mais de um arquivo HTML, você deve declarar esse plugin
+mais de uma vez, e mudar o filename para outro arquivo, e o template
+para outro arquivo também se necessário.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;título da sua página&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;outra página&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">__dirname&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#34;/outrapagina.html&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">template&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;src/assets/outrotemplate.html&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>O seu webpack.config.js provavelmente vai ficar assim:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;path&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">require&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;html-webpack-plugin&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">module&lt;/span>.&lt;span style="color:#a6e22e">exports&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">mode&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;development&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">entry&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./src/index.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">output&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">path&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">path&lt;/span>.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">__dirname&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;dist&amp;#39;&lt;/span>),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;bundle.js&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">module&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">rules&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">test&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">/\.css$/i&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">use&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [&lt;span style="color:#e6db74">&amp;#39;style-loader&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;css-loader&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">plugins&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">HtmlWebpackPlugin&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">title&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;titulo da página&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">xhtml&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;p>Então, por enquanto é isso. Já dá pra desenvolver alguma coisa&lt;/p>
+&lt;p>Na próxima parte falaremos de opções para desenvolvedores.&lt;/p>
+&lt;p>Além disso, falaremos sobre como usar o jest junto com o seu app,
+porque você já deve ter percebido que, em 2021, o &lt;code>import&lt;/code> não
+é muito bem suportado no Node, só o &lt;code>require&lt;/code>. O Webpack entende os
+imports, mas o Node não. Mas os testes rodam no Node, então temos um
+problema.&lt;br>
+Esse problema eu já resolvi nesse app que eu estou escrevendo, então
+vou explicar como eu fiz isso pra vocês&lt;/p></content></item><item><title>Como usar o Webpack - Parte 1</title><link>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</link><pubDate>Sat, 11 Sep 2021 23:15:56 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/webpack-howto-part-1/</guid><description>Depois de muito tempo com medo de usar o Webpack, já que eu não entendia muito bem, finalmente estou usando em um projeto pessoal, e queria mostrar aquilo que eu aprendi para vocês.
+Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu vou explicar o que eu estou aprendendo.
+O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que esse projeto vai usar) do zero.</description><content>&lt;p>Depois de muito tempo com medo de usar o Webpack, já que eu não
+entendia muito bem, finalmente estou usando em um projeto pessoal, e
+queria mostrar aquilo que eu aprendi para vocês.&lt;/p>
+&lt;p>Isso vai ser o começo uma série sobre o Webpack nesse blog, onde eu
+vou explicar o que eu estou aprendendo.&lt;/p>
+&lt;p>O meu intuito é chegar no ponto de &amp;ldquo;criar&amp;rdquo; um projeto Vue (que é o que
+esse projeto vai usar) do zero. Eu poderia ter usado Vue direto, mas
+queria testar algumas coisas antes usando Javascript puro, e o Webpack
+me proporcionou isso.&lt;/p>
+&lt;p>Vou ser bem honesto: hoje em dia é mais viável usar o Webpack direto
+caso você queira fazer algo usando Javascript puro, com Javascript,
+HTML e CSS. Caso você queira usar React ou Vue, eles já vêm com
+ferramentas que abstraem o Webpack. Você não precisa configurar nada.&lt;/p>
+&lt;p>Eu vou usar o Webpack 5. Eu não usei o 4 porque eu queria usar a
+versão mais nova, mas eu posso ver o 4 caso vocês estejam interessados.&lt;/p>
+&lt;h1 id="o-que-é">O que é?&lt;/h1>
+&lt;p>Antes de tudo, vamos falar sobre o que é o Webpack?&lt;/p>
+&lt;p>Copiando da documentação deles:&lt;/p>
+&lt;blockquote>
+&lt;p>At its core, webpack is a static module bundler for modern
+JavaScript applications. When webpack processes your application, it
+internally builds a dependency graph from one or more entry points
+and then combines every module your project needs into one or more
+bundles, which are static assets to serve your content from.&lt;/p>
+&lt;/blockquote>
+&lt;p>Traduzindo:&lt;/p>
+&lt;blockquote>
+&lt;p>Em sua essência, o webpack é um empacotador de módulo estático para
+aplicativos JavaScript modernos. Quando o webpack processa seu
+aplicativo, ele constrói internamente um gráfico de dependência a
+partir de um ou mais pontos de entrada e, em seguida, combina cada
+módulo de que seu projeto precisa em um ou mais pacotes, que são
+ativos estáticos para servir seu conteúdo.&lt;/p>
+&lt;/blockquote>
+&lt;p>Resumindo: ele pega um arquivo de entrada (que você pode especificar
+qual), identifica todas as dependências dele e junta tudo em um
+arquivo de saída. O arquivo de entrada é chamado de &lt;em>entry&lt;/em>, e o de
+saída é chamado de &lt;em>bundle&lt;/em>. Você pode ter vários arquivos de saída em
+um projeto.&lt;/p>
+&lt;p>Esses arquivos de saída são o que você inclui na sua página HTML&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span> &lt;span style="color:#a6e22e">lang&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;en&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;UTF-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;Minha página&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;saidadowebpack.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">&amp;lt;!-- várias coisas maneiras e supimpas --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Isso é muito bom para fazer deploy de bibliotecas Javascript nesses
+CDNs, já que você pode separar tudo em vários arquivos no ambiente de
+dev e gerar um arquivo só. Antes do Node se tornar popular,
+ferramentas assim provavelmente eram bem usadas.&lt;/p>
+&lt;p>O Webpack tambem, usando &lt;strong>loaders&lt;/strong> e &lt;strong>plugins&lt;/strong>, pode converter
+arquivos de uma maneira que eles sejam usáveis dentro do
+Javascript. Os &lt;strong>loaders&lt;/strong> simplesmente convertem arquivos em módulos
+Javascript, enquanto os &lt;strong>plugins&lt;/strong> podem fazer mais coisas além
+disso, coisas que envolvem o bundle inteiro.&lt;/p>
+&lt;p>Por exemplo, o &lt;em>css-loader&lt;/em>, que é um loader que você pode usar para
+importar CSS dentro do Javascript, só precisa saber dos arquivos de
+entrada, então ele pode ser um loader mesmo. Já o
+&lt;strong>HtmlWebpackPlugin&lt;/strong>, um plugin que gera páginas HTML para a
+aplicação que usa o Webpack, precisa saber o nome final do bundle,
+coisa que um loader não vai te fornecer, então ele só pode ser
+implementado como um plugin mesmo&lt;/p>
+&lt;h2 id="criação">Criação&lt;/h2>
+&lt;p>Inicialmente, você vai precisar instalar três pacotes: &lt;code>webpack&lt;/code>,
+&lt;code>webpack-cli&lt;/code> e &lt;code>webpack-dev-server&lt;/code>&lt;/p>
+&lt;p>O &lt;strong>webpack&lt;/strong> é o webpack em si, o &lt;strong>webpack-cli&lt;/strong> é o pacote que contém a
+ferramentea de linha de comando do webpack (quando você digita
+&lt;code>webpack&lt;/code> no console, você está chamando uma ferramenta do CLI), e o
+&lt;strong>webpack-dev-server&lt;/strong> é um web server de desenvolvimento do webpack,
+que suporta várias coisas interessantes, como recarregar a página
+automaticamente quando uma mudança é feita.&lt;/p>
+&lt;p>Para instalar os três:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+npm install webpack webpack-cli webpack-dev-server
+&lt;/code>&lt;/pre>&lt;p>A estrutura de pastas padrão esperada pelo webpack é a seguinte:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+.
+├── dist
+└── src
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>O arquivo &lt;code>src/index.js&lt;/code> é o arquivo de entrada padrão. Isso significa
+que o webpack vai converter esse arquivo e todos os arquivos que ele
+importar (usando o &lt;code>import ... from ...&lt;/code> do Javascript) em um arquivo
+de saída, ou bundle. O local padrão do bundle é &lt;code>dist/main.js&lt;/code>, e esse
+arquivo é criado automaticamente.&lt;/p>
+&lt;p>Você, então, pode incluir esse dist/main.js em qualquer página
+HTML.&lt;/p>
+&lt;p>Dos arquivos importados, o webpack só vai incluir no bundle aquilo que
+foi realmente usado: funções, variáveis, etc. Ou seja, se um módulo
+define a função &lt;code>soma&lt;/code> e a função &lt;code>subtração&lt;/code>, mas você só usa a
+função &lt;code>soma&lt;/code>, apenas essa função será incluída no bundle.&lt;/p>
+&lt;p>Por exemplo, digamos que eu tenha dois arquivos (além do packages.json
+e a pasta node_modules, que eu tirei pra focarmos apenas nos arquivos
+importantes
+)&lt;/p>
+&lt;pre tabindex="0">&lt;code>.
+└── src
+├── continhas.js
+└── index.js
+&lt;/code>&lt;/pre>&lt;p>com o continhas.js sendo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Soma dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Subtrai dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">subtracao&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">soma&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">subtracao&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>e o index.js (nossa entrada) sendo:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> {&lt;span style="color:#a6e22e">soma&lt;/span>} &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./continhas.js&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">30&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello world &amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#ae81ff">20&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello world &amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#ae81ff">20&lt;/span>));
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Lembre-se: o webpack começa pelo index.js, vai pegando os arquivos
+que o index.js importa e, de certa forma, os incluindo (na verdade,
+como você vai ver, ele faz mais do que isso)&lt;/p>
+&lt;p>Rode o seguinte comando:&lt;/p>
+&lt;pre tabindex="0">&lt;code>
+$ npx webpack
+&lt;/code>&lt;/pre>&lt;p>Ele vai rodar o webpack.&lt;br>
+Algumas mensagens de WARNING podem aparecer, mas elas só aparecem
+porque uma propriedade não foi definida no arquivo de configuração, e
+esse arquivo nós ainda não criamos.&lt;/p>
+&lt;p>O arquivo dist/main.js vai ficar assim (na verdade, esse resultado
+pode mudar um pouco de versão pra versão do Webpack):&lt;/p>
+&lt;pre tabindex="0">&lt;code>(()=&amp;gt;{&amp;#34;use strict&amp;#34;;function o(o,l){return o+l}console.log(&amp;#34;Hello world &amp;#34;,o(10,20)),console.log(&amp;#34;Hello world &amp;#34;,o(30,20))})();
+&lt;/code>&lt;/pre>&lt;p>Perceba que os &lt;code>console.log&lt;/code>s ainda estão aqui. Mas algumas coisas
+aconteceram além disso. Por exemplo:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Todos os comentários foram embora&lt;/strong>.&lt;br>
+O Webpack remove os comentários no bundle final, já que o que ele
+faz é semelhante a uma compilação. Esse bundle é como um arquivo
+compilado&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A função de subtração sumiu.&lt;/strong>&lt;br>
+Como eu disse antes, funções não usadas são removidas. Isso faz o
+arquivo final ser bem menor que os arquivos-fonte&lt;/p>
+&lt;pre tabindex="0">&lt;code>[tuts@lula2022 webpack-test]$ ls -l dist/*.js
+-rw-rw-r--. 1 tuts tuts 124 Sep 11 22:31 dist/main.js
+[tuts@lula2022 webpack-test]$ ls -l src/*
+-rw-rw-r--. 1 tuts tuts 169 Sep 11 22:06 src/continhas.js
+-rw-rw-r--. 1 tuts tuts 155 Sep 11 22:30 src/index.js
+&lt;/code>&lt;/pre>&lt;p>169 + 155 = 324&lt;br>
+61% de redução do tamanho total do arquivo. Esse percentual pode
+variar, mas o arquivo final sempre vai ser menor que os fontes, já
+que ele é como se fosse um arquivo compilado. Ele não é feito pra
+ser lido por pessoas, como você pôde ver quando listamos o conteúdo
+dele.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A função de soma sumiu.&lt;/strong>&lt;br>
+Na verdade, a função soma ainda está aqui. O webpack só deu outro
+nome pra ela:&lt;/p>
+&lt;pre tabindex="0">&lt;code>function o(o,l){return o+l}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>function soma(o, l) {return o+l;}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>function soma(a, b) {return a + b;}
+&lt;/code>&lt;/pre>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/** Soma dois valores **/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">soma&lt;/span>(&lt;span style="color:#a6e22e">a&lt;/span>, &lt;span style="color:#a6e22e">b&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Viu?
+A função &lt;code>o(o, l)&lt;/code>, logo depois do &amp;ldquo;use strict&amp;rdquo;, é a nossa função
+soma. O webpack mudou o nome dela pro arquivo final ficar menor.&lt;br>
+Esse processo de remoção de coisas (como comentários e mudança de
+nome de variáveis) pro arquivo ficar menor é chamado de
+&lt;strong>minificação&lt;/strong>. O webpack faz isso por padrão em modo de produção.&lt;br>
+Usar o modo de desenvolvimento ou o de produção pode ser especificado
+no arquivo de configuração, mas, caso ele não exista, o modo de produção
+é usado por padrão.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Caso você inclua esse arquivo main.js numa página HTML, você vai ver esses
+&lt;code>console.log()&lt;/code>s printando Hello World&lt;/p>
+&lt;p>Por exemplo, crie um arquivo index.html na mesma pasta do main.js, e
+coloque isso aqui nele:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-html" data-lang="html">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">html&lt;/span> &lt;span style="color:#a6e22e">lang&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;en&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">meta&lt;/span> &lt;span style="color:#a6e22e">charset&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;UTF-8&amp;#34;&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">title&lt;/span>&amp;gt;Teste Webpack&amp;lt;/&lt;span style="color:#f92672">title&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">head&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;main.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">body&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">html&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Caso você abra no navegador, vai aparecer isso:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/webpack-01-console.png" alt="O console dessa página HTML aí em cima">&lt;/p>
+&lt;p>Existem algumas perguntas que ficaram sem ser respondidas:&lt;/p>
+&lt;ul>
+&lt;li>Como eu uso essas funções fora do bundle? Acessando elas da minha
+página HTML?&lt;/li>
+&lt;li>Como eu mudo o caminho do bundle de saída?&lt;/li>
+&lt;li>Como eu uso esse &lt;code>webpack-dev-server&lt;/code> aí?&lt;/li>
+&lt;/ul>
+&lt;p>Essas coisas vão ficar pra &lt;a href="https://arthurmco.github.io/blog/posts/webpack-howto-part-2/">parte 2&lt;/a>, onde eu mostro como criar esse
+arquivo webpack.config.js, o arquivo de configuração do webpack, e o
+que vem nele.&lt;/p></content></item><item><title>Projetos pessoais</title><link>https://arthurmco.github.io/blog/posts/personal-projects/</link><pubDate>Thu, 18 Feb 2021 03:57:10 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/personal-projects/</guid><description>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu encontro enquanto desenvolvo, e como eu os solucionei.
+Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas usam, os posts onde eu descrevo esses problemas podem ser mais úteis.
+Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes para mim.</description><content>&lt;p>Um dos motivos pelos quais eu criei esse blog é registrar meus pensamentos e problemas que eu
+encontro enquanto desenvolvo, e como eu os solucionei.&lt;/p>
+&lt;p>Alguns problemas eu encontro no trabalho e, como no trabalho eu uso tecnologias que mais pessoas
+usam, os posts onde eu descrevo esses problemas podem ser mais úteis.&lt;/p>
+&lt;p>Porém, os posts sobre meus projetos fora do trabalho são aqueles que serão mais interessantes
+para mim.&lt;br>
+E, como eu penso em fazer uma espécie de &amp;ldquo;devlog&amp;rdquo; pra eles, é bom eu falar quais eles
+são, para que ninguém fique perdido quando eu começar a postar coisas sobre eles e, caso alguém
+fique, eu possa linkar a pessoa para esse post aqui.&lt;/p>
+&lt;h1 id="shissue">shissue&lt;/h1>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/742d63d3ef7d7449eb52614be002539757a32b15572ed7e18aad1340d4ee9059/68747470733a2f2f61736369696e656d612e6f72672f612f7144785764717a764f35564c6e426c704f54646e4e7a31496d2e706e67" alt="Print do programa">
+&lt;a href="https://github.com/arthurmco/shissue">Link&lt;/a>&lt;/p>
+&lt;p>O &lt;code>shissue&lt;/code> é uma ferramenta que eu fiz que te permite ver os issues do seu repositório. Com ele,
+você conseguia ver o número do issue, se ele estava aberto ou fechado, o texto e os autores. Ele
+funcionava para o Github e para o Gitlab. Até as labels ele mostrava&lt;/p>
+&lt;p>Eu estava pensando em permitir que você escrevesse issues por ele.&lt;/p>
+&lt;p>Ele foi o meu primeiro programa real em Go, e com ele eu aprendi a fazer requisições HTTP em Go.&lt;/p>
+&lt;p>No momento ele está abandonado, mas, se vocês acharem útil, eu posso dar uma refatorada nele (a
+linguagem mudou muito desde 2018, que foi quando eu criei esse programa).&lt;/p>
+&lt;h1 id="annos">annos&lt;/h1>
+&lt;blockquote>
+&lt;p>ANNOS (Arthur&amp;rsquo;s Not Named Operating System) is a OS, powered by a C++ monolythic kernel.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://camo.githubusercontent.com/074f7f41d2f449a4b9965900e15bc4eb739be1c5a6167c82322b9cd6023670fe/68747470733a2f2f692e696d6775722e636f6d2f684141356148682e706e67" alt="Print dele rodando no QEMU">
+&lt;a href="https://github.com/arthurmco/annOS">Link&lt;/a>&lt;/p>
+&lt;p>O annOS foi um kernel que eu fiz. Não faz muita coisa, mas me ensinou &lt;em>bastante&lt;/em> sobre programação
+low-level, sobre como um kernel real acessa o hardware, um pouco sobre como o protocolo PCI funciona,
+como os sistemas operacionais de antigamente mostravam coisas na tela, como a MMU dos processadores
+x86 funcionam&amp;hellip;&lt;/p>
+&lt;p>No momento ele está parado. Eu o abandonei porque eu não encontrei um objetivo pra ele, e acabei
+desanimando.&lt;/p>
+&lt;p>Há um tempo atrás, eu comecei a fazer um kernel em Rust, mas ele ainda não está no Github. Nem nome
+ele tem!&lt;/p>
+&lt;h1 id="familyline">Familyline&lt;/h1>
+&lt;p>Praticamente o único projeto realmente ativo dessa lista&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/02-fayline.png" alt="Foto dele rodando">
+&lt;a href="https://github.com/arthurmco/familyline">Link&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>It&amp;rsquo;s made with a homebrew engine, for me to exclusively learn while bringing joy to its players. The major objective of this game is fun, to play and develop.&lt;/p>
+&lt;/blockquote>
+&lt;p>É um jogo de estratégia em tempo real, feito com uma engine própria, onde você acompanha a história
+de uma família fictícia (daí o nome) desde o final do Neolítico até mais ou menos 30 d.C.&lt;/p>
+&lt;p>A história real ainda não está feita, nem a engine, mas já aprendi bastante. Tudo o que eu sei de
+C++, CMake e programação OpenGL foi graças a esse jogo.&lt;br>
+Eu também aprendi a usar o &lt;a href="https://github.com/google/googletest">Google Test&lt;/a> (uma suíte de teste
+da Google) pra testar algumas partes da engine.&lt;/p>
+&lt;p>Foi o projeto que eu mais aprendi, e é o que provavelmente vai render mais conteúdo.&lt;/p>
+&lt;p>Recentemente, eu aprendi a usar o AddressSanitizer do GCC, pra resolver alguns problemas de
+corrupção de memória.&lt;/p>
+&lt;p>No momento, eu estou adicionando um modo multiplayer, mais pra confirmar se a engine está rodando
+no tempo certo, se cada &amp;ldquo;tick&amp;rdquo;, ou seja, cada iteração da engine, está acontecendo em seu tempo,
+e também pro jogo ficar um pouco mais interessante.&lt;/p>
+&lt;p>Ele tem uma GUI, feita usando C++ e uma biblioteca de desenho 2D chamada &lt;a href="https://www.cairographics.org/">Cairo&lt;/a>.&lt;/p>
+&lt;p>No futuro, eu quero fazer algumas coisas:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>suporte a Vulkan&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>permitir a você adicionar entidades (as construções e as unidades) usando &lt;a href="https://groups.csail.mit.edu/mac/projects/scheme/">Scheme&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar a GUI (o código está meio feio)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>melhorar o renderer: adicionar um suporte melhor a luzes, renderizar sombras, normal maps, até um
+ambient occlusion.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>mais tipos de terreno, especialmente um com água.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>refatorar o pathfinder.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Ele está &lt;em>bem&lt;/em> ativo, com commits pelo menos toda semana.&lt;/p>
+&lt;h1 id="demangler-js">demangler-js&lt;/h1>
+&lt;p>&lt;a href="https://github.com/arthurmco/demangler-js">Link&lt;/a>&lt;/p>
+&lt;p>Um demangler de funções C++.&lt;/p>
+&lt;p>Quando você compila um programa em C++, você tem um problema: C++ tem overloading de tipos nos
+argumentos. Em C, duas funções com o mesmo nome não podem existir, mesmo se elas tiverem argumentos
+diferentes. Em C++, elas podem. O &lt;em>mangling&lt;/em> é feito pelo compilador, então, para encodar essas
+informações de tipos (além de outras, como namespace) no nome da função, para que, na hora de
+debugar, ou qualquer outra hora que você precise saber o nome dessa função, você consiga saber
+os tipos dela.&lt;/p>
+&lt;p>O demangler simplesmente pega esse nome estranho e, a partir dele, obtém o nome real da função e
+os tipos de seus argumentos.&lt;/p>
+&lt;p>Esse projeto está meio parado. Ele também só suporta nomes mangleados pelo GCC&lt;/p></content></item></channel></rss>

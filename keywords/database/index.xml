@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>database on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/database/</link><description>Recent content in database on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Sat, 24 Apr 2021 00:34:30 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Como meter a mão no banco de dados com segurança</title><link>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</link><pubDate>Sat, 24 Apr 2021 00:34:30 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/tip-when-messing-with-db/</guid><description>18h de uma sexta feira.
+Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu joguinho, porque assim que você fizer seu commit, o seu expediente acabou.
+De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se lembra que o animal que fez esse sistema deixou esses dados como somente leitura.
+Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia e o seu chefe pediu essa alteração, educadamente, para ontem</description><content>&lt;p>18h de uma sexta feira.&lt;/p>
+&lt;p>Você está tranquilo no seu computador, fazendo o seu último trabalho do dia. Você já até abriu o seu
+joguinho, porque assim que você fizer seu commit, o seu expediente acabou.&lt;/p>
+&lt;p>De repente, algum chefe lhe pede para alterar dados de um cliente. Seria muito fácil, mas aí você se
+lembra que o animal que fez esse sistema deixou esses dados como somente leitura.&lt;/p>
+&lt;p>Você não tem tempo pra alterar o código do sistema do animal, já que isso vai levar mais de um dia
+e o seu chefe pediu essa alteração, educadamente, para &lt;em>ontem&lt;/em>&lt;/p>
+&lt;p>Você vai ter que alterar eles diretamente no banco.&lt;/p>
+&lt;p>Você se lembra de todas as piadas de &lt;code>UPDATE&lt;/code> sem &lt;code>WHERE&lt;/code>, e como a falta de algumas palavras fez o seu
+colega perder um final de semana inteiro com o suporte atrás de backups.&lt;/p>
+&lt;p>Como fazer isso sem ter medo desses problemas?&lt;/p>
+&lt;p>A resposta é &lt;strong>TRANSAÇÕES&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;p>Quando você logar no seu banco (eu vou usar o postgres, mas hoje em dia qualquer banco* de dados
+decente suporta isso), você dá de cara com isso daqui:&lt;/p>
+&lt;pre tabindex="0">&lt;code>meushell% psql -h IP -U usuario -d banco
+Password for user usuario:
+psql (13.2 (Debian 13.2-1), server 11.9 (Raspbian 11.9-0+deb10u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type &amp;#34;help&amp;#34; for help.
+banco=#
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>Se você usa SQLite, você pode simplesmente copiar o banco antes da alteração :)&lt;/p>
+&lt;/blockquote>
+&lt;p>Para iniciar uma transação, você digita BEGIN&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=# BEGIN;
+BEGIN
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>Observe que o &lt;em>prompt&lt;/em> mudou. Ele vai ficar com esse asterisco durante a transação.&lt;/p>
+&lt;p>Enquanto ele tiver esse asterisco, você digita os comandos que você quiser. Por exemplo, o update
+que o seu chefe pediu, pra abreviar o nome do maior cliente dele, que pode ser considerado um pouco
+constrangedor.&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# update usuarios_do_sistema_do_animal set nome_do_usuario=&amp;#39;Tomás T. Pinto&amp;#39; where id=2020;
+UPDATE 1
+banco=*#
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>PRESTE MUITA ATENÇÃO&lt;/strong> no &lt;code>UPDATE 1&lt;/code>. Esse 1 é a quantidade de linhas que o seu comando atualizou.&lt;/p>
+&lt;p>Caso isso seja o que você esperava, você digita &lt;code>COMMIT&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# COMMIT;
+COMMIT
+banco=#
+&lt;/code>&lt;/pre>&lt;p>Com o comando &lt;code>COMMIT&lt;/code>, as suas alterações serão salvas no banco de dados.&lt;/p>
+&lt;blockquote>
+&lt;p>Se você não sabe o que esperar, você precisa primeiro analisar o que você quer. Dê um &lt;code>SELECT&lt;/code>
+primeiro, para você encontrar as linhas que você precisa alterar&lt;/p>
+&lt;/blockquote>
+&lt;p>Caso isso &lt;strong>não&lt;/strong> seja o que você esperava, digite &lt;code>ROLLBACK&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>banco=*# ROLLBACK;
+ROLLBACK
+banco=#
+&lt;/code>&lt;/pre>&lt;p>As suas alterações serão revertidas.&lt;/p>
+&lt;p>&lt;strong>Cuidado:&lt;/strong> Transações têm um limite de tamanho. Esse limite é bem grande, mas pode ser atingido
+(já atingi esse limite no trabalho uma vez). Provavelmente você não vai atingir, mas, caso você não
+consiga aplicar sua transação por causa de &lt;em>timeout&lt;/em>, o problema pode ser esse&lt;/p>
+&lt;blockquote>
+&lt;p>P.S: Caso você tenha gostado do post, agradeça à Giulia, porque foi ela que deu a ideia de fazer
+ontem à tarde.&lt;/p>
+&lt;/blockquote></content></item></channel></rss>
