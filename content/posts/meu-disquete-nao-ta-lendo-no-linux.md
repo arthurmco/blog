@@ -117,6 +117,6 @@ Clique com o botão direito no disquete e vá em "Formatar". Uma janela assim va
 Sabe essa opção "Formatação Rápida"? **Não marque ela.** Se ela tiver selecionada, **desmarque**. 
 Se você selecionar, ela não vai formatar o disquete em baixo nível.
 
-Clique em OK e espere uns minutinhos.
+Clique em Iniciar e espere uns minutinhos.
 
 Depois disso, corre pro abraço!
