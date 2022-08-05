@@ -29,3 +29,5 @@ disqusShortname = "https-arthurmco-github-io-blog"
 
 [taxonomies]
 archive = 'archive'
+tags = 'tags'
+keywords = 'keywords'
