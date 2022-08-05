@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022@08 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202208/</link><description>Recent content in 2022@08 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 04 Aug 2022 20:07:38 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202208/index.xml" rel="self" type="application/rss+xml"/><item><title>Meu disquete não tá lendo!</title><link>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</link><pubDate>Thu, 04 Aug 2022 20:07:38 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</guid><description>Há alguns dias atrás, eu consegui um teclado de música usado, um Yamaha PSR-350 pra aprender a tocar música, já que era algo que eu sempre quis aprender. O que faltava, na real, era dinheiro pra comprar algum instrumento.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022@08 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202208/</link><description>Recent content in 2022@08 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 04 Aug 2022 20:57:41 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202208/index.xml" rel="self" type="application/rss+xml"/><item><title>Nova série de posts: Formatinhos</title><link>https://arthurmco.github.io/blog/posts/nova-serie-formatinhos/</link><pubDate>Thu, 04 Aug 2022 20:57:41 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/nova-serie-formatinhos/</guid><description>&lt;p>Nesse mês, eu comecei a pensar em alguns jeitos de movimentar esse blog um pouco mais.&lt;/p>
+&lt;p>Um desses jeitos foi criar uma espécie de &amp;ldquo;série&amp;rdquo; de postagens, várias postagens sobre um mesmo
+tema, que ensinassem algo interessante de aprender.&lt;/p>
+&lt;p>Depois de pensar bastante, cheguei numa ideia.&lt;/p>
+&lt;p>A série &lt;strong>Formatinhos&lt;/strong>.&lt;/p>
+&lt;p>Uma vez por semana, eu vou trazer aqui um formato de arquivo diferente. Irei ensinar o que significa
+cada coisa dentro do formato enquanto nós fazemos um &lt;em>parser&lt;/em> para ele e o mostramos.&lt;br>
+Como ele vai ser mostrado depende do arquivo.&lt;/p></description><content>&lt;p>Nesse mês, eu comecei a pensar em alguns jeitos de movimentar esse blog um pouco mais.&lt;/p>
+&lt;p>Um desses jeitos foi criar uma espécie de &amp;ldquo;série&amp;rdquo; de postagens, várias postagens sobre um mesmo
+tema, que ensinassem algo interessante de aprender.&lt;/p>
+&lt;p>Depois de pensar bastante, cheguei numa ideia.&lt;/p>
+&lt;p>A série &lt;strong>Formatinhos&lt;/strong>.&lt;/p>
+&lt;p>Uma vez por semana, eu vou trazer aqui um formato de arquivo diferente. Irei ensinar o que significa
+cada coisa dentro do formato enquanto nós fazemos um &lt;em>parser&lt;/em> para ele e o mostramos.&lt;br>
+Como ele vai ser mostrado depende do arquivo.&lt;/p>
+&lt;p>Alguns formatos que eu já estou pensando em falar aqui (sem uma ordem específica):&lt;/p>
+&lt;ul>
+&lt;li>ZIP&lt;/li>
+&lt;li>TAR.GZ (são 2 formatos diferentes mas é um arquivo só)&lt;/li>
+&lt;li>ISO&lt;/li>
+&lt;li>BMP&lt;/li>
+&lt;li>WAV (PCM, A-Law, µ-Law, ADPCM)&lt;/li>
+&lt;li>o sistema de arquivos FAT (12, 16 e 32)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>Além disso, você também pode sugerir novos formatos, embora existam algumas regras:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Nada que dependa apenas de libs&lt;/strong>: sim, eu sei que eu posso usar alguma biblioteca pra abrir. Mas qual
+é a graça?&lt;br>
+As unicas libs que serão permitidas serão bibliotecas de compressão (zlib, gzip&amp;hellip;) ou criptografia
+(openssl, libressl&amp;hellip;), porque:&lt;/p>
+&lt;ol>
+&lt;li>implementar essas duas coisas na mão é só pra quem tem muito tempo livre ou muita vontade.&lt;/li>
+&lt;li>não é o foco do formato, o foco do formato são as estruturas de dados dentro dele.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Se pelo menos uma pessoa usar, tá válido&lt;/strong>: e essa pessoa inclui você!&lt;br>
+Se você criou um formato e quer que ele apareça aqui, você pode sugerir.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Tamanho não importa, mas tenha noção&lt;/strong>: Se ficar muito grande, eu posso dividir em várias
+partes, mas tenha noção de que eu quero pelo menos poder mostrar algo na parte 1, nem que só seja
+um &amp;ldquo;Hello World&amp;rdquo;, um pixel ou um simples segundo de áudio.&lt;br>
+Se precisar de dez mil páginas só pra mostrar um &amp;ldquo;OI&amp;rdquo; na tela, aí vai ser f#da.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Complexidade não importa, mas tenha noção&lt;/strong>: Formatos complexos que exigem um conhecimento
+matemático decente, como JPEG e MP3, podem ser sugeridos, mas eles vão ficar num limbo até eu
+entender, porque a minha faculdade não me deu esses conhecimentos.&lt;br>
+E eu aposto que várias pessoas tiveram uma faculdade ruim. Alguns &lt;em>devs&lt;/em> nem fizeram faculdade
+ou têm uma base matemática decente. Isso significa que eu precisaria explicar tudo ou linkar
+para um site que explique certos conceitos como transformada de Fourier de uma forma facilitada.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>E é isso.&lt;/p>
+&lt;p>O primeiro post sai na próxima sexta, à noite.&lt;/p></content></item><item><title>Meu disquete não tá lendo!</title><link>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</link><pubDate>Thu, 04 Aug 2022 20:07:38 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/meu-disquete-nao-ta-lendo-no-linux/</guid><description>Há alguns dias atrás, eu consegui um teclado de música usado, um Yamaha PSR-350 pra aprender a tocar música, já que era algo que eu sempre quis aprender. O que faltava, na real, era dinheiro pra comprar algum instrumento.
 Não é um teclado muito novo, mas também não é muito antigo: é de algum lugar dos anos 2000.
 O teclado aí. Fonte: fr.audiofanzine.com Uma das coisas que me chamou a atenção foi o fato de ele ter um belo leitor de disquetes, pra você poder salvar suas músicas pra tocar no PC, ou pra transmitir músicas pra tocá-las no teclado.</description><content>&lt;p>Há alguns dias atrás, eu consegui um teclado de música usado, um Yamaha PSR-350 pra aprender a
 tocar música, já que era algo que eu sempre quis aprender. O que faltava, na real, era dinheiro pra
@@ -68,5 +125,5 @@ de setores, do low level.&lt;/p>
 &lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/key/winformat.png" alt="A janela te pedindo pra formatar">&lt;/p>
 &lt;p>Sabe essa opção &amp;ldquo;Formatação Rápida&amp;rdquo;? &lt;strong>Não marque ela.&lt;/strong> Se ela tiver selecionada, &lt;strong>desmarque&lt;/strong>.
 Se você selecionar, ela não vai formatar o disquete em baixo nível.&lt;/p>
-&lt;p>Clique em OK e espere uns minutinhos.&lt;/p>
+&lt;p>Clique em Iniciar e espere uns minutinhos.&lt;/p>
 &lt;p>Depois disso, corre pro abraço!&lt;/p></content></item></channel></rss>
