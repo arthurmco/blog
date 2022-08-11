@@ -23,8 +23,8 @@ a ver a série dos formatinhos.&lt;/p>
 &lt;p>O código será mostrado assim (aprendi a formatar o código desse jeito nessa semana, e fica bem
 mais bonito, dá pra expandir e fica melhor em mobile.)&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="941853267" type="checkbox" />
-&lt;label for="941853267">
+&lt;input id="819574326" type="checkbox" />
+&lt;label for="819574326">
 &lt;span class="collapsable-code__language">c&amp;#43;&amp;#43;&lt;/span>
 &lt;span class="collapsable-code__title">Código exemplo&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
