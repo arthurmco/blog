@@ -87,8 +87,8 @@ Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta `src` cha
 /* Funções auxiliares para ler valores de 1, 2 e 4 bytes 
  * Endianness ignorada por simplicidade */
 const get8 = (buffer, index) => buffer[index];
-const get16 = (buffer, index) => (buffer[index] | (buffer[index+1] <<< 8));
-const get32 = (buffer, index) => (get16(buffer, index) | get16(buffer, index+2) <<< 16);
+const get16 = (buffer, index) => (buffer[index] | (buffer[index+1] << 8));
+const get32 = (buffer, index) => (get16(buffer, index) | get16(buffer, index+2) << 16);
 
 const hasBMPHeader = (buffer) => get16(buffer, 0) == 0x4d42;
 
