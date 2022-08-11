@@ -51,7 +51,7 @@ Mas, por ora, apenas RGB e BITFIELDS. RGB primeiro.
 
 {{< figure src="/blog/images/formats/bmp/paint.png" caption="PaintBrush, o maior popularizador dos arquivos BMP. Fonte: bc-programming.com" >}}
 
-Para iniciarmos, vá até [esse repositório](https://github.com/arthurmco/formats-base-repo), baixe
+Para iniciarmos, vá até [esse repositório](https://github.com/arthurmco/formatties-base), baixe
 os arquivos da pasta "bmp", vá até a pasta e rode o `npm install`
 
 Depois disso, iremos começar.
@@ -87,8 +87,8 @@ Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta `src` cha
 /* Funções auxiliares para ler valores de 1, 2 e 4 bytes 
  * Endianness ignorada por simplicidade */
 const get8 = (buffer, index) => buffer[index];
-const get16 = (buffer, index) => (buffer[index] | (buffer[index+1] << 8));
-const get32 = (buffer, index) => (get16(buffer, index) | get16(buffer, index+2) << 16);
+const get16 = (buffer, index) => (buffer[index] | (buffer[index+1] <<< 8));
+const get32 = (buffer, index) => (get16(buffer, index) | get16(buffer, index+2) <<< 16);
 
 const hasBMPHeader = (buffer) => get16(buffer, 0) == 0x4d42;
 

@@ -55,11 +55,11 @@ function getColors32(y, x, buffer, pixelpos) {
 function getColors16(y, x, buffer, pixelpos) {
     const value = get16(buffer, pixelpos(y, x));
 
-    const cast16to24 = (v) => v/64*255;
+    const cast16to24 = (v) => Math.floor(v / 32 * 255);
 
-    const b = cast16to24((value >> 0) & 0x1f);
-    const g = cast16to24((value >> 5) & 0x1f);
-    const r = cast16to24((value >> 10) & 0x1f);
+    const b = cast16to24((value >>> 0) & 0x1f);
+    const g = cast16to24((value >>> 5) & 0x1f);
+    const r = cast16to24((value >>> 10) & 0x1f);
 
     return [r, g, b, 0xff];
 }
