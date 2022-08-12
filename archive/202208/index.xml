@@ -1,4 +1,426 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022@08 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202208/</link><description>Recent content in 2022@08 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Thu, 11 Aug 2022 14:25:28 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202208/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: Prelúdio</title><link>https://arthurmco.github.io/blog/posts/meta-glossario-formatinhos/</link><pubDate>Thu, 11 Aug 2022 14:25:28 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/meta-glossario-formatinhos/</guid><description>&lt;p>Amanhã é o lançamento da minha série dos formatinhos, com o primeiro episódio sendo o dos
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2022@08 on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/archive/202208/</link><description>Recent content in 2022@08 on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 12 Aug 2022 14:26:18 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/archive/202208/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: BMP - Parte 1: Abrindo um bitmap</title><link>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</link><pubDate>Fri, 12 Aug 2022 14:26:18 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</guid><description>O primeiro episódio da série começa com um dos formatos de imagens historicamente mais fáceis de parsear.
+Isso é bom, já que eu posso testar a qualidade da minha explicação e ir melhorando conforme os formatos forem ficando cada vez mais complexos.
+O formato de arquivos BMP (bitmap, literalmente mapa de bits) é um dos formatos mais antigos de armazenamento de imagens, criado para que máquinas mais fracas pudessem renderizar imagens com facilidade.</description><content>&lt;p>O primeiro episódio da série começa com um dos formatos de imagens historicamente mais fáceis de
+parsear.&lt;br>
+Isso é bom, já que eu posso testar a qualidade da minha explicação e ir melhorando conforme
+os formatos forem ficando cada vez mais complexos.&lt;/p>
+&lt;p>O formato de arquivos BMP (bitmap, literalmente &lt;em>mapa de bits&lt;/em>) é um dos formatos mais antigos de
+armazenamento de imagens, criado para que máquinas mais fracas pudessem renderizar imagens com
+facilidade. Ele foi criado pela Microsoft e pela IBM para os x86. Portanto, todas as estruturas
+estão em &lt;em>little endian&lt;/em>, já que o x86 é &lt;em>little endian&lt;/em>.&lt;/p>
+&lt;p>Você provavelmente já criou um arquivo BMP quando você era criança, já que era o formato principal
+do &lt;strong>PaintBrush&lt;/strong>, do Windows 7 pra trás.&lt;/p>
+&lt;p>Ele também é, se você usar os modos de cor e implementação padrões, um dos formatos mais fáceis
+de fazer &lt;em>parsing&lt;/em>.&lt;/p>
+&lt;p>Ele suporta até 32 bits de cor por pixel (bpp), embora os formatos mais comuns sejam 24, 8 e 1bpp.
+Inicialmente, iremos fazer o parsing de arquivos com 24 bits por pixel, depois expandiremos para
+as outras profundidades de cor.&lt;/p>
+&lt;p>O arquivo BMP também suporta alguns métodos de organização de pixel que ele chama de &lt;em>compressão&lt;/em>,
+embora nem todos sejam compressão:&lt;/p>
+&lt;ul>
+&lt;li>RGB&lt;/li>
+&lt;li>RLE (apenas com 8 e 4 bpp)&lt;/li>
+&lt;li>BITFIELDS (uma máscara de bits define onde ficam as cores)&lt;/li>
+&lt;li>JPEG&lt;/li>
+&lt;li>PNG&lt;/li>
+&lt;/ul>
+&lt;p>Destes, os programas que eu uso apenas escrevem arquivos com &lt;strong>RGB&lt;/strong> e &lt;strong>BITFIELDS&lt;/strong>.&lt;br>
+Eu achei um programa &lt;em>bem&lt;/em> antigo que suporta RLE8, mas eu ainda não consegui fazer ele rodar.
+Quando eu conseguir, a gente adiciona RLE8 na lista de formatos suportados.&lt;/p>
+&lt;p>Mas, por ora, apenas RGB e BITFIELDS. RGB primeiro.&lt;/p>
+&lt;figure class="left" >
+&lt;img src="https://arthurmco.github.io/blog/blog/images/formats/bmp/paint.png" />
+&lt;figcaption class="center" >PaintBrush, o maior popularizador dos arquivos BMP. Fonte: bc-programming.com&lt;/figcaption>
+&lt;/figure>
+&lt;p>Para iniciarmos, vá até &lt;a href="https://github.com/arthurmco/formatties-base">esse repositório&lt;/a>, baixe
+os arquivos da pasta &amp;ldquo;bmp&amp;rdquo;, vá até a pasta e rode o &lt;code>npm install&lt;/code>&lt;/p>
+&lt;p>Depois disso, iremos começar.&lt;/p>
+&lt;h1 id="file-header">File Header&lt;/h1>
+&lt;p>No arquivo BMP, o &lt;em>header&lt;/em> é uma das primeiras informações.&lt;/p>
+&lt;pre tabindex="0">&lt;code>00000000 42 4d 56 cc 0a 00 00 00 00 00 36 00 00 00 28 00 |BMV.......6...(.|
+&lt;/code>&lt;/pre>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Posição&lt;/th>
+&lt;th>Tamanho&lt;/th>
+&lt;th>Campo&lt;/th>
+&lt;th>Valor&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>0x0 (0)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>bfType&lt;/td>
+&lt;td>&lt;code>42 4d&lt;/code> = &lt;code>BM&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x2 (2)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>bfSize&lt;/td>
+&lt;td>&lt;code>0xACC56&lt;/code> = 707670&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x6 (6)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>bfReserved1&lt;/td>
+&lt;td>&lt;code>00 00&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x8 (8)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>bfReserved2&lt;/td>
+&lt;td>&lt;code>00 00&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0xA (10)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>bfOffBits&lt;/td>
+&lt;td>&lt;code>0x36&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>O campo &lt;code>bfType&lt;/code> é o nosso &amp;ldquo;Header&amp;rdquo;. Existem vários formatos, mas nós só vamos nos concentrar
+no &amp;ldquo;BM&amp;rdquo;, que significa &amp;ldquo;&lt;strong>B&lt;/strong>it&lt;strong>M&lt;/strong>ap&amp;rdquo;.&lt;/li>
+&lt;li>O &lt;code>bfSize&lt;/code> é o tamanho do arquivo. (Pode conferir se você quiser :P)&lt;/li>
+&lt;li>Os dois reservados são, bem, reservados para o aplicativo que criou o arquivo, e nós devemos
+ignorar&lt;/li>
+&lt;li>O &lt;code>bfOffBits&lt;/code> mostra a posição (ou offset) do bitmap, dos &amp;ldquo;pixels&amp;rdquo; da imagem, a partir do começo
+do arquivo&lt;/li>
+&lt;/ul>
+&lt;p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta &lt;code>src&lt;/code> chamado de
+&lt;code>bmp.js&lt;/code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="793816524" type="checkbox" />
+&lt;label for="793816524">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing do header do arquivo bitmap&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+/* Funções auxiliares para ler valores de 1, 2 e 4 bytes
+* Endianness ignorada por simplicidade */
+const get8 = (buffer, index) =&amp;gt; buffer[index];
+const get16 = (buffer, index) =&amp;gt; (buffer[index] | (buffer[index&amp;#43;1] &amp;lt;&amp;lt; 8));
+const get32 = (buffer, index) =&amp;gt; (get16(buffer, index) | get16(buffer, index&amp;#43;2) &amp;lt;&amp;lt; 16);
+const hasBMPHeader = (buffer) =&amp;gt; get16(buffer, 0) == 0x4d42;
+function openBMPHeader(buffer) {
+if (!hasBMPHeader(buffer))
+return null;
+// Nós só pegamos apenas o que precisamos.
+//
+// É importante pegar o tamanho do header, já que o próximo header vai vir logo depois
+// desse, e uma tabela de cores opcional virá logo depois desses dois. Saber onde estamos
+// é muito importante!
+return {
+fileHeaderSize: 14,
+bmpSize: get32(buffer, 2),
+pixelDataOffset: get32(buffer, 10)
+}
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="dib-header">DIB Header&lt;/h1>
+&lt;p>O &lt;em>header DIB&lt;/em> vem logo depois do &lt;em>header do arquivo&lt;/em>, e contém informações sobre os pixels
+em si.&lt;/p>
+&lt;p>DIB significa &lt;em>Device Independent Bitmap&lt;/em>, ou Bitmap Independente de Dispositivo. Teoricamente
+ele não vai ter diferença onde quer que você veja, seja numa tela ou numa folha.&lt;/p>
+&lt;p>Existem vários tipos de headers, mas eles meio que se complementam, compartilhando campos
+semelhantes. Eu vou mostrar apenas um por enquanto, que é o que o Paint suporta.&lt;/p>
+&lt;pre tabindex="0">&lt;code>00000000 42 4d 56 cc 0a 00 00 00 00 00 36 00 00 00 [28 00 |BMV.......6...(.|
+00000010 00 00 70 02 00 00 7a 01 00 00 01 00 18 00 00 00 |..p...z.........|
+00000020 00 00 20 cc 0a 00 00 00 00 00 00 00 00 00 00 00 |.. .............|
+00000030 00 00 00 00 00 00]
+&lt;/code>&lt;/pre>&lt;p>O header DIB está demarcado em colchetes nesse dump. As posições (ou offsets) são relativas
+ao header DIB.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Posição&lt;/th>
+&lt;th>Tamanho&lt;/th>
+&lt;th>Campo&lt;/th>
+&lt;th>Valor&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>0x0 (0)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biSize&lt;/td>
+&lt;td>&lt;code>0x28&lt;/code> = 40&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x4 (4)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biWidth&lt;/td>
+&lt;td>&lt;code>0x270&lt;/code> = 624&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x8 (8)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biHeight&lt;/td>
+&lt;td>&lt;code>0x17a&lt;/code> = 378&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0xC (12)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>biPlanes&lt;/td>
+&lt;td>&lt;code>0x0001&lt;/code> = 1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0xE (14)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>biBitCount&lt;/td>
+&lt;td>&lt;code>0x0018&lt;/code> = 24&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x10 (16)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biCompression&lt;/td>
+&lt;td>&lt;code>0x0&lt;/code> = &lt;code>BI_RGB&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x14 (20)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biSizeImage&lt;/td>
+&lt;td>&lt;code>0xacc20&lt;/code> = 707616&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x18 (24)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biXPelsPerMeter&lt;/td>
+&lt;td>&lt;code>0&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x1c (28)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biYPelsPerMeter&lt;/td>
+&lt;td>&lt;code>0&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x20 (32)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biClrUsed&lt;/td>
+&lt;td>&lt;code>0&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x24 (36)&lt;/code>&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>biClrImportant&lt;/td>
+&lt;td>&lt;code>0&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>&lt;code>biSize&lt;/code> é o tamanho da estrutura, usado para diferenciar as diferentes versões. E a estrutura
+toda menos esse campo. A versão de 40 bytes é a mais comum
+&lt;ul>
+&lt;li>Existe uma versão da estrutura onde &lt;code>biSize&lt;/code> = 12. Ele só vai até &lt;code>biBitCount&lt;/code>, a imagem é
+RGB por padrão. Essa versão é usada pelos Windows 2.x e 3.0.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>biWidth&lt;/code> e &lt;code>biHeight&lt;/code> definem a largura e a altura, respectivamente, do bitmap, em pixels.&lt;/li>
+&lt;li>Você não precisa se preocupar com &lt;code>biPlanes&lt;/code>, é uma herança da época em que a memória gráfica era
+dividia em partes chamadas de planos. O valor padrão é 1.&lt;/li>
+&lt;li>&lt;code>biBitCount&lt;/code> é a quantidade de bits por pixels da imagem.
+&lt;ul>
+&lt;li>O padrão é &lt;strong>24 bits&lt;/strong>, ou seja &lt;strong>3 bytes por pixel&lt;/strong> (1 byte pra vermelho, 1 pra verde e
+1 pra azul).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>O campo &lt;code>biSizeImage&lt;/code> define a quantidade de bytes do bitmap, quanto de espaço os pixels ocupam.&lt;/li>
+&lt;li>Os campos que têm &lt;code>PelsPerMeter&lt;/code> definem a resolução em pixels por metro. Geralmente esse parâmetro
+é zerado.&lt;/li>
+&lt;li>&lt;code>blClrUsed&lt;/code> é usado pra definir uma tabela de cores. Se o bitmap tiver 16 bits por pixel ou mais,
+esse campo pode ser ignorado.&lt;/li>
+&lt;li>&lt;code>blClrImportant&lt;/code> é usado pra mostrar a quantidade de cores necessárias para mostrar o bitmap.
+Geralmente é 0.&lt;/li>
+&lt;/ul>
+&lt;p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
+depois do trecho anterior&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="142786593" type="checkbox" />
+&lt;label for="142786593">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function parseCompression(val) {
+if (val &amp;gt;= 4)
+return null;
+else
+return [&amp;#34;rgb&amp;#34;, &amp;#34;rle8&amp;#34;, &amp;#34;rle4&amp;#34;, &amp;#34;bitfields&amp;#34;][val]
+}
+function openDIBHeader(buffer) {
+const headerSize = get32(buffer, 14);
+const baseHeader = {
+width: get32(buffer, 18),
+height: get32(buffer, 22),
+planes: get16(buffer, 26),
+bpp: get16(buffer, 28),
+compression: &amp;#39;rgb&amp;#39;
+};
+const dibHeader = {
+compression: parseCompression(get32(buffer, 30)),
+bitmapSize: get32(buffer, 34),
+horizontalRes: get32(buffer, 38),
+verticalRes: get32(buffer, 42),
+paletteColors: get32(buffer, 46),
+importantColors: get32(buffer, 50)
+};
+return {
+size: headerSize,
+...baseHeader,
+...(headerSize &amp;gt;= 40 ? dibHeader : {})
+}
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>Altere as linhas da função &lt;code>openBMPHeader&lt;/code> pra incluir o header DIB&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="286317954" type="checkbox" />
+&lt;label for="286317954">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+return {
+fileHeaderSize: 14,
+bmpSize: get32(buffer, 2),
+pixelDataOffset: get32(buffer, 10)
+// Adicione essa linha aqui embaixo:
+dibHeader: openDIBHeader(buffer),
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="pixels">Pixels&lt;/h1>
+&lt;p>O campo &lt;code>bfOffBits&lt;/code> (no código como &lt;code>pixelDataOffset&lt;/code> pra ficar mais claro) aponta para uma lista
+de pixels, organizadas desse jeito:&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/formats/bmp/pixelgrid.png" alt="Array de pixels, em formato BGR (Blue, Green, Yellow)">&lt;/p>
+&lt;p>Cada quadrado dessa imagem é 1 byte. Primeiro vem o valor azul do pixel, depois o verde e depois
+o vermelho, e por aí vai. Em 24 bits por pixel, o formato mais comum hoje em dia, é desse jeito aí:&lt;/p>
+&lt;p>Essa lista de pixels é dividida em tiras. Cada tira tem um pixel de altura e a largura é a largura
+da imagem. O começo de cada tira de pixels deve estar numa posição divisível por 4. Se não tiver,
+bytes adicionais (chamados de &lt;em>padding&lt;/em> são adicionados ao final da tira.)&lt;/p>
+&lt;p>O código pra ler isso não é muito difícil não.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="857649231" type="checkbox" />
+&lt;label for="857649231">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+/// Pega o tamanho da tira, em bytes
+const getRowSize = (header) =&amp;gt; (
+(header.dibHeader.width * (header.dibHeader.bpp / 8)) &amp;#43; 3) &amp;amp; 0xfffffffc;
+/**
+* Faz o parsing dos pixels do arquivo BMP, retorna um array de arrays, em formato RGBA, o
+* padrão do `canvas` do Javascript.
+* O primeiro array é uma tira, o segundo é um pixel.
+* @param {*} header
+* @param {Uint8Buffer} buffer O buffer do arquivo BMP. Eu faço o comentário assim pro
+* VSCode fazer o typecheck do javascript e o autocomplete funcionar direito.
+* @returns
+*/
+function parseColors(header, buffer) {
+let pixels = [];
+const rowsize = getRowSize(header);
+const pixeloff = header.pixelDataOffset;
+// Posição do pixel.
+// O Math.floor enforça uma &amp;#34;divisão inteira&amp;#34;, já que o javascript não tem um operador de divisão que
+// retorne um inteiro. Isso é importante, já que não dá pra ler o byte 16.666666, é só 16 ou 17.
+// Um valor floating também vai cagar a conta mais pra frente, quando formos ler cores de arrays de
+// pixels menores que 1 byte.
+const pixelpos = (y, x) =&amp;gt; pixeloff &amp;#43; (y * getRowSize(header)) &amp;#43; Math.floor(x * header.dibHeader.bpp/8);
+for (let y = 0; y &amp;lt; header.dibHeader.height; y&amp;#43;&amp;#43;) {
+let row = [];
+for (let x = 0; x &amp;lt; header.dibHeader.width; x&amp;#43;&amp;#43;) {
+row.push([
+get8(buffer, pixelpos(y, x) &amp;#43; 2),
+get8(buffer, pixelpos(y, x) &amp;#43; 1),
+get8(buffer, pixelpos(y, x) &amp;#43; 0),
+0xff
+])
+}
+pixels.push(row);
+}
+return pixels;
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="mostrando-os-valores">Mostrando os valores.&lt;/h1>
+&lt;p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:&lt;/p>
+&lt;p>Coloque isso no final do arquivo &lt;code>bmp.js&lt;/code>&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="893742516" type="checkbox" />
+&lt;label for="893742516">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function openBMPFile(buffer) {
+const header = openBMPHeader(buffer);
+if (!header)
+return null;
+return {
+header,
+colors: parseColors(header, buffer)
+};
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>No arquivo &lt;code>index.js&lt;/code>, no lugar do &lt;code>const idata...&lt;/code>, coloque essa linha:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">idata&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">plot&lt;/span>(&lt;span style="color:#a6e22e">buffer&lt;/span>, &lt;span style="color:#a6e22e">canvas&lt;/span>);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A função plot vai ficar assim:&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="964215837" type="checkbox" />
+&lt;label for="964215837">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">index.js: Visualização dos pixels&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function plot(buffer, canvas) {
+const file = openBMPFile(buffer);
+const w = file.header.dibHeader.width;
+const h = file.header.dibHeader.height;
+let imagedata = canvas.createImageData(w, h);
+for (let y = 0; y &amp;lt; h; y&amp;#43;&amp;#43; ) {
+for (let x = 0; x &amp;lt; w; x&amp;#43;&amp;#43;) {
+const pos = (y*w*4) &amp;#43; (x*4);
+imagedata.data[pos] = file.colors[y][x][0];
+imagedata.data[pos&amp;#43;1] = file.colors[y][x][1];
+imagedata.data[pos&amp;#43;2] = file.colors[y][x][2];
+imagedata.data[pos&amp;#43;3] = file.colors[y][x][3];
+}
+}
+return imagedata;
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>Agora a imagem vai funcionar&amp;hellip;&lt;/p>
+&lt;p>Ou &lt;em>quase&lt;/em>.&lt;/p>
+&lt;p>Você deve ter reparado que a imagem está de ponta cabeça. No formato BMP, a primeira &amp;ldquo;tira&amp;rdquo; do arquivo
+fica embaixo, e a última fica em cima.&lt;/p>
+&lt;p>Existe um fix para isso, e é &lt;em>super&lt;/em> fácil, mas eu vou deixar como um exercício para o leitor.&lt;/p>
+&lt;h1 id="parte-2">Parte 2&lt;/h1>
+&lt;p>Você pode reparar que você consegue abrir quase todos os tipos de arquivos que o Paint gera.&lt;/p>
+&lt;p>&lt;em>Quase&lt;/em>.&lt;/p>
+&lt;p>&lt;img src="https://arthurmco.github.io/blog/blog/images/formats/bmp/others.png" alt="Nós só suportamos apenas 24bpp. E esses outros?">&lt;/p>
+&lt;p>Nós só suportamos o &amp;ldquo;Bitmap de 24 bits&amp;rdquo; até agora.&lt;/p>
+&lt;p>Tente importar os outros formatos. Veja o que acontece.&lt;/p>
+&lt;p>Na próxima parte iremos ver como se abrem esses outros formatos de cor. Felizmente, todos são
+&amp;ldquo;rgb&amp;rdquo;, mas eles têm diferentes &lt;strong>densidades de pixel&lt;/strong>&lt;/p>
+&lt;h1 id="referências">Referências&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.microsoft.com/pt-br/windows/win32/gdi/bitmap-storage">https://docs.microsoft.com/pt-br/windows/win32/gdi/bitmap-storage&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://datatracker.ietf.org/doc/html/rfc7903#section-1.2">https://datatracker.ietf.org/doc/html/rfc7903#section-1.2&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>Formatinhos: Prelúdio</title><link>https://arthurmco.github.io/blog/posts/meta-glossario-formatinhos/</link><pubDate>Thu, 11 Aug 2022 14:25:28 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/meta-glossario-formatinhos/</guid><description>&lt;p>Amanhã é o lançamento da minha série dos formatinhos, com o primeiro episódio sendo o dos
 arquivos &lt;strong>.bmp&lt;/strong>&lt;/p>
 &lt;p>Os posts da série terão descrições padronizadas de algumas estruturas de dados. Alguns de vocês
 podem estar familiarizados com esse tipo de descrição, mas, como eu tento escrever para os
@@ -23,8 +445,8 @@ a ver a série dos formatinhos.&lt;/p>
 &lt;p>O código será mostrado assim (aprendi a formatar o código desse jeito nessa semana, e fica bem
 mais bonito, dá pra expandir e fica melhor em mobile.)&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="819574326" type="checkbox" />
-&lt;label for="819574326">
+&lt;input id="312589746" type="checkbox" />
+&lt;label for="312589746">
 &lt;span class="collapsable-code__language">c&amp;#43;&amp;#43;&lt;/span>
 &lt;span class="collapsable-code__title">Código exemplo&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
