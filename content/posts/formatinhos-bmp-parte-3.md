@@ -61,7 +61,7 @@ até o primeiro valor 1 e shiftamos esse valor para a direita.
 
 No caso, o valor é 4.
 
-`Valor final: 0000 0000 0101 0000` >> 4 = `Valor final: 0000 0000 0000 0101`
+`Valor final: 0000 0000 0101 0000` >> 4 = `0000 0000 0000 0101`
 
 > Valor final: 5
 
