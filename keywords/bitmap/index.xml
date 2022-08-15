@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bitmap on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/bitmap/</link><description>Recent content in bitmap on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 12 Aug 2022 14:26:18 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/bitmap/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: BMP - Parte 1: Abrindo um bitmap</title><link>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</link><pubDate>Fri, 12 Aug 2022 14:26:18 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</guid><description>O primeiro episódio da série começa com um dos formatos de imagens historicamente mais fáceis de parsear.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bitmap on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/bitmap/</link><description>Recent content in bitmap on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Sun, 14 Aug 2022 14:40:54 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/bitmap/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: BMP - Parte 2: Outras profundidades de cor</title><link>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-2/</link><pubDate>Sun, 14 Aug 2022 14:40:54 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-2/</guid><description>Na primeira parte, aprendemos o básico sobre como ler um arquivo de bitmap.
+Mas nós lemos apenas uma profundidade de cor
+Nesse post, aprenderemos a ler as outras profundidades
+O arquivo bitmap suporta 6 profundidades de cor: 32bpp, 24bpp, 16bpp, 8bpp, 4bpp, e 1bpp.
+Elas são divididas em três grupos:
+16 bpp e maiores têm as informações de cor escritas diretamente no array de pixels. 8 bpp e menores têm, no lugar das cores, um índice para uma paleta de cores, que fica entre o header DIB e o array de pixels.</description><content>&lt;p>Na &lt;a href="https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/">primeira parte&lt;/a>, aprendemos o básico sobre como
+ler um arquivo de bitmap.&lt;/p>
+&lt;p>Mas nós lemos apenas uma profundidade de cor&lt;/p>
+&lt;p>Nesse post, aprenderemos a ler as outras profundidades&lt;/p>
+&lt;p>O arquivo bitmap suporta 6 profundidades de cor: 32bpp, 24bpp, 16bpp, 8bpp, 4bpp, e 1bpp.&lt;/p>
+&lt;p>Elas são divididas em três grupos:&lt;/p>
+&lt;ul>
+&lt;li>16 bpp e maiores têm as informações de cor escritas diretamente no array de pixels.&lt;/li>
+&lt;li>8 bpp e menores têm, no lugar das cores, um índice para uma paleta de cores, que fica entre
+o header DIB e o array de pixels.&lt;/li>
+&lt;/ul>
+&lt;p>As três primeiras são &lt;em>bem fáceis&lt;/em>&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="346291785" type="checkbox" />
+&lt;label for="346291785">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function getColors32(y, x, buffer, pixelpos) {
+// format RGBA
+return [
+get8(buffer, pixelpos(y, x) &amp;#43; 2),
+get8(buffer, pixelpos(y, x) &amp;#43; 1),
+get8(buffer, pixelpos(y, x) &amp;#43; 0),
+0xff
+];
+}
+function getColors24(y, x, buffer, pixelpos) {
+// format RGBA
+return [
+get8(buffer, pixelpos(y, x) &amp;#43; 2),
+get8(buffer, pixelpos(y, x) &amp;#43; 1),
+get8(buffer, pixelpos(y, x) &amp;#43; 0),
+0xff
+];
+}
+function getColors16(y, x, buffer, pixelpos) {
+const value = get16(buffer, pixelpos(y, x));
+const cast16to24 = (v) =&amp;gt; Math.floor(v / 32 * 255);
+const b = cast16to24((value &amp;gt;&amp;gt;&amp;gt; 0) &amp;amp; 0x1f);
+const g = cast16to24((value &amp;gt;&amp;gt;&amp;gt; 5) &amp;amp; 0x1f);
+const r = cast16to24((value &amp;gt;&amp;gt;&amp;gt; 10) &amp;amp; 0x1f);
+return [r, g, b, 0xff];
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;blockquote>
+&lt;p>(Juntar essas funções no código anterior fica como um exercício para o leitor. Mas &lt;em>não é difícil&lt;/em>.
+É só prestar atenção no conteúdo das funções.)&lt;/p>
+&lt;/blockquote>
+&lt;p>A mais complicada é 16bpp, já que, nela, cada canal de cor tem menos do que um byte.&lt;/p>
+&lt;p>Antes de falar dos canais com profundidade de cor menor, eu preciso falar da &lt;strong>paleta&lt;/strong>&lt;/p>
+&lt;h1 id="paleta">Paleta&lt;/h1>
+&lt;p>Obrigatoriamente, se a profundidade de cor de sua imagem for menor ou igual a 8 bits por pixel, a
+paleta será sempre definida.&lt;/p>
+&lt;p>O tamanho da paleta é definida pelo campo &lt;code>blClrUsed&lt;/code> (definida no código como &lt;code>paletteColors&lt;/code>).&lt;br>
+Se ele for 0, e a imagem tiver 8 bits por pixel ou menor, é a quantidade máxima permitida (2
+elevado a quantidade de bits por pixel).&lt;br>
+Se ele for maior que 0, a quantidade de cores ali vai ser o tamanho da paleta.&lt;/p>
+&lt;p>Logo depois do header (ou seja, você vai até o começo do header e soma &lt;code>biSize&lt;/code>), teremos um array
+de pixels em formato BGRX. &lt;br>
+Isso significa que primeiro vem o azul, depois verde, depois vermelho e depois um byte de &lt;em>padding&lt;/em>,
+que &lt;strong>não é o canal alfa&lt;/strong>.&lt;/p>
+&lt;p>Pra quem parseou um header, ler essas cores é muito simples. É a mesma coisa que ler o array de
+pixels, na verdade.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="857423196" type="checkbox" />
+&lt;label for="857423196">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing da paleta de cores&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function getColorTable(header, buffer) {
+if (header.dibHeader.bpp &amp;gt; 8)
+return null;
+const colorTableOffset = header.fileHeaderSize &amp;#43; header.dibHeader.size;
+const tableSize = (header.dibHeader.paletteColors === 0 ) ?
+2 ** header.dibHeader.bpp :
+header.dibHeader.paletteColors;
+let table = [];
+const getColor = (i) =&amp;gt; {
+const off = colorTableOffset &amp;#43; (i * 4);
+return {
+b: get8(buffer, off),
+g: get8(buffer, off &amp;#43; 1),
+r: get8(buffer, off &amp;#43; 2),
+a: get8(buffer, off &amp;#43; 3)
+};
+}
+for (let i = 0; i &amp;lt; tableSize; i&amp;#43;&amp;#43;) {
+table.push(getColor(i));
+}
+return table;
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;h1 id="as-profundidades-de-cor-finais">As profundidades de cor finais&lt;/h1>
+&lt;p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="192863574" type="checkbox" />
+&lt;label for="192863574">
+&lt;span class="collapsable-code__language">javascript&lt;/span>
+&lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor II&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-javascript" >&lt;code>
+function getColors8(y, x, buffer, pixelpos, table) {
+const { r, g, b } = table[get8(buffer, pixelpos(y, x))];
+return [r, g, b, 0xff];
+}
+function getColors4(y, x, buffer, pixelpos, table) {
+const byte = get8(buffer, pixelpos(y, x));
+const value = (x % 2 == 0) ? (byte &amp;gt;&amp;gt; 4) : (byte &amp;amp; 0xf);
+const { r, g, b } = table[value];
+return [r, g, b, 0xff];
+}
+function getColors1(y, x, buffer, pixelpos, table) {
+const byte = get8(buffer, pixelpos(y, x));
+const bit = x % 8;
+const value = (byte &amp;gt;&amp;gt; (7-bit)) &amp;amp; 1;
+const { r, g, b } = table[value];
+return [r, g, b, 0xff];
+}
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>Novamente, juntar essas funções vai ficar a cargo do leitor :)&lt;/p>
+&lt;hr>
+&lt;p>Agora, qualquer bitmap que o Paint gerar você consegue abrir. Mas e quanto os outros programas?&lt;/p>
+&lt;p>Você deve ter reparado que, por exemplo, alguns bitmaps salvos pelo Gimp não conseguem ser abertos
+corretamente. Isso porque eles usam um método de &amp;ldquo;compressão&amp;rdquo; (que não é compressão, é só a
+definição do formato) chamado &lt;code>BITFIELDS&lt;/code>. Esse método nos permite especificar exatamente quanto de
+verde, vermelho e azul a imagem vai ter,&lt;/p>
+&lt;p>Na próxima parte, iremos ler as informações de bitfields do arquivo de bitmap.&lt;/p>
+&lt;h1 id="referências">Referências&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.microsoft.com/pt-br/windows/win32/gdi/bitmap-storage">https://docs.microsoft.com/pt-br/windows/win32/gdi/bitmap-storage&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://datatracker.ietf.org/doc/html/rfc7903#section-1.2">https://datatracker.ietf.org/doc/html/rfc7903#section-1.2&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>Formatinhos: BMP - Parte 1: Abrindo um bitmap</title><link>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</link><pubDate>Fri, 12 Aug 2022 14:26:18 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/</guid><description>O primeiro episódio da série começa com um dos formatos de imagens historicamente mais fáceis de parsear.
 Isso é bom, já que eu posso testar a qualidade da minha explicação e ir melhorando conforme os formatos forem ficando cada vez mais complexos.
 O formato de arquivos BMP (bitmap, literalmente mapa de bits) é um dos formatos mais antigos de armazenamento de imagens, criado para que máquinas mais fracas pudessem renderizar imagens com facilidade.</description><content>&lt;p>O primeiro episódio da série começa com um dos formatos de imagens historicamente mais fáceis de
 parsear.&lt;br>
@@ -92,8 +237,8 @@ do arquivo&lt;/li>
 &lt;p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta &lt;code>src&lt;/code> chamado de
 &lt;code>bmp.js&lt;/code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="793816524" type="checkbox" />
-&lt;label for="793816524">
+&lt;input id="261458937" type="checkbox" />
+&lt;label for="261458937">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header do arquivo bitmap&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -240,8 +385,8 @@ Geralmente é 0.&lt;/li>
 &lt;p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
 depois do trecho anterior&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="142786593" type="checkbox" />
-&lt;label for="142786593">
+&lt;input id="164537892" type="checkbox" />
+&lt;label for="164537892">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -280,8 +425,8 @@ size: headerSize,
 &lt;/div>
 &lt;p>Altere as linhas da função &lt;code>openBMPHeader&lt;/code> pra incluir o header DIB&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="286317954" type="checkbox" />
-&lt;label for="286317954">
+&lt;input id="187459326" type="checkbox" />
+&lt;label for="187459326">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -307,8 +452,8 @@ da imagem. O começo de cada tira de pixels deve estar numa posição divisível
 bytes adicionais (chamados de &lt;em>padding&lt;/em> são adicionados ao final da tira.)&lt;/p>
 &lt;p>O código pra ler isso não é muito difícil não.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="857649231" type="checkbox" />
-&lt;label for="857649231">
+&lt;input id="856913427" type="checkbox" />
+&lt;label for="856913427">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -356,8 +501,8 @@ return pixels;
 &lt;p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:&lt;/p>
 &lt;p>Coloque isso no final do arquivo &lt;code>bmp.js&lt;/code>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="893742516" type="checkbox" />
-&lt;label for="893742516">
+&lt;input id="427891563" type="checkbox" />
+&lt;label for="427891563">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -378,8 +523,8 @@ colors: parseColors(header, buffer)
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">idata&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">plot&lt;/span>(&lt;span style="color:#a6e22e">buffer&lt;/span>, &lt;span style="color:#a6e22e">canvas&lt;/span>);
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A função plot vai ficar assim:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="964215837" type="checkbox" />
-&lt;label for="964215837">
+&lt;input id="246987531" type="checkbox" />
+&lt;label for="246987531">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">index.js: Visualização dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
