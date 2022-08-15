@@ -14,8 +14,8 @@ minutos
 estimados de leitura</span></div><span class=post-tags>#<a href=https://arthurmco.github.io/blog/tags/code/>code</a>&nbsp;
 #<a href=https://arthurmco.github.io/blog/tags/formats/>formats</a>&nbsp;</span><div class=post-content><div><p>Na <a href=https://arthurmco.github.io/blog/posts/formatinhos-bmp-parte-1/>primeira parte</a>, aprendemos o básico sobre como
 ler um arquivo de bitmap.</p><p>Mas nós lemos apenas uma profundidade de cor</p><p>Nesse post, aprenderemos a ler as outras profundidades</p><p>O arquivo bitmap suporta 6 profundidades de cor: 32bpp, 24bpp, 16bpp, 8bpp, 4bpp, e 1bpp.</p><p>Elas são divididas em três grupos:</p><ul><li>16 bpp e maiores têm as informações de cor escritas diretamente no array de pixels.</li><li>8 bpp e menores têm, no lugar das cores, um índice para uma paleta de cores, que fica entre
-o header DIB e o array de pixels.</li></ul><p>As três primeiras são <em>bem fáceis</em></p><div class=collapsable-code><input id=346291785 type=checkbox>
-<label for=346291785><span class=collapsable-code__language>javascript</span>
+o header DIB e o array de pixels.</li></ul><p>As três primeiras são <em>bem fáceis</em></p><div class=collapsable-code><input id=917846523 type=checkbox>
+<label for=917846523><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing dos pixels por profundidade de cor</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function getColors32(y, x, buffer, pixelpos) {
@@ -56,8 +56,8 @@ paleta será sempre definida.</p><p>O tamanho da paleta é definida pelo campo <
 elevado a quantidade de bits por pixel).<br>Se ele for maior que 0, a quantidade de cores ali vai ser o tamanho da paleta.</p><p>Logo depois do header (ou seja, você vai até o começo do header e soma <code>biSize</code>), teremos um array
 de pixels em formato BGRX.<br>Isso significa que primeiro vem o azul, depois verde, depois vermelho e depois um byte de <em>padding</em>,
 que <strong>não é o canal alfa</strong>.</p><p>Pra quem parseou um header, ler essas cores é muito simples. É a mesma coisa que ler o array de
-pixels, na verdade.</p><div class=collapsable-code><input id=857423196 type=checkbox>
-<label for=857423196><span class=collapsable-code__language>javascript</span>
+pixels, na verdade.</p><div class=collapsable-code><input id=652739481 type=checkbox>
+<label for=652739481><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing da paleta de cores</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function getColorTable(header, buffer) {
@@ -88,8 +88,8 @@ function getColorTable(header, buffer) {
 
     return table;
 }
-</code></pre></div><h1 id=as-profundidades-de-cor-finais>As profundidades de cor finais<a href=#as-profundidades-de-cor-finais class=hanchor arialabel=Anchor>&#8983;</a></h1><p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.</p><div class=collapsable-code><input id=192863574 type=checkbox>
-<label for=192863574><span class=collapsable-code__language>javascript</span>
+</code></pre></div><h1 id=as-profundidades-de-cor-finais>As profundidades de cor finais<a href=#as-profundidades-de-cor-finais class=hanchor arialabel=Anchor>&#8983;</a></h1><p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.</p><div class=collapsable-code><input id=195648723 type=checkbox>
+<label for=195648723><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing dos pixels por profundidade de cor II</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function getColors8(y, x, buffer, pixelpos, table) {

@@ -16,8 +16,8 @@ o header DIB e o array de pixels.&lt;/li>
 &lt;/ul>
 &lt;p>As três primeiras são &lt;em>bem fáceis&lt;/em>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="346291785" type="checkbox" />
-&lt;label for="346291785">
+&lt;input id="917846523" type="checkbox" />
+&lt;label for="917846523">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -71,8 +71,8 @@ que &lt;strong>não é o canal alfa&lt;/strong>.&lt;/p>
 &lt;p>Pra quem parseou um header, ler essas cores é muito simples. É a mesma coisa que ler o array de
 pixels, na verdade.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="857423196" type="checkbox" />
-&lt;label for="857423196">
+&lt;input id="652739481" type="checkbox" />
+&lt;label for="652739481">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing da paleta de cores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -105,8 +105,8 @@ return table;
 &lt;h1 id="as-profundidades-de-cor-finais">As profundidades de cor finais&lt;/h1>
 &lt;p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="192863574" type="checkbox" />
-&lt;label for="192863574">
+&lt;input id="195648723" type="checkbox" />
+&lt;label for="195648723">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor II&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -237,8 +237,8 @@ do arquivo&lt;/li>
 &lt;p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta &lt;code>src&lt;/code> chamado de
 &lt;code>bmp.js&lt;/code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="261458937" type="checkbox" />
-&lt;label for="261458937">
+&lt;input id="451692387" type="checkbox" />
+&lt;label for="451692387">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header do arquivo bitmap&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -385,8 +385,8 @@ Geralmente é 0.&lt;/li>
 &lt;p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
 depois do trecho anterior&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="164537892" type="checkbox" />
-&lt;label for="164537892">
+&lt;input id="372614895" type="checkbox" />
+&lt;label for="372614895">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -425,8 +425,8 @@ size: headerSize,
 &lt;/div>
 &lt;p>Altere as linhas da função &lt;code>openBMPHeader&lt;/code> pra incluir o header DIB&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="187459326" type="checkbox" />
-&lt;label for="187459326">
+&lt;input id="431628759" type="checkbox" />
+&lt;label for="431628759">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -452,8 +452,8 @@ da imagem. O começo de cada tira de pixels deve estar numa posição divisível
 bytes adicionais (chamados de &lt;em>padding&lt;/em> são adicionados ao final da tira.)&lt;/p>
 &lt;p>O código pra ler isso não é muito difícil não.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="856913427" type="checkbox" />
-&lt;label for="856913427">
+&lt;input id="143279865" type="checkbox" />
+&lt;label for="143279865">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -501,8 +501,8 @@ return pixels;
 &lt;p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:&lt;/p>
 &lt;p>Coloque isso no final do arquivo &lt;code>bmp.js&lt;/code>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="427891563" type="checkbox" />
-&lt;label for="427891563">
+&lt;input id="965174328" type="checkbox" />
+&lt;label for="965174328">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -523,8 +523,8 @@ colors: parseColors(header, buffer)
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">idata&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">plot&lt;/span>(&lt;span style="color:#a6e22e">buffer&lt;/span>, &lt;span style="color:#a6e22e">canvas&lt;/span>);
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A função plot vai ficar assim:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="246987531" type="checkbox" />
-&lt;label for="246987531">
+&lt;input id="491752368" type="checkbox" />
+&lt;label for="491752368">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">index.js: Visualização dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

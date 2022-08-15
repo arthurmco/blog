@@ -29,8 +29,8 @@ os arquivos da pasta &ldquo;bmp&rdquo;, vá até a pasta e rode o <code>npm inst
 no &ldquo;BM&rdquo;, que significa &ldquo;<strong>B</strong>it<strong>M</strong>ap&rdquo;.</li><li>O <code>bfSize</code> é o tamanho do arquivo. (Pode conferir se você quiser :P)</li><li>Os dois reservados são, bem, reservados para o aplicativo que criou o arquivo, e nós devemos
 ignorar</li><li>O <code>bfOffBits</code> mostra a posição (ou offset) do bitmap, dos &ldquo;pixels&rdquo; da imagem, a partir do começo
 do arquivo</li></ul><p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta <code>src</code> chamado de
-<code>bmp.js</code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo</p><div class=collapsable-code><input id=261458937 type=checkbox>
-<label for=261458937><span class=collapsable-code__language>javascript</span>
+<code>bmp.js</code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo</p><div class=collapsable-code><input id=451692387 type=checkbox>
+<label for=451692387><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing do header do arquivo bitmap</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 /* Funções auxiliares para ler valores de 1, 2 e 4 bytes 
@@ -73,8 +73,8 @@ dividia em partes chamadas de planos. O valor padrão é 1.</li><li><code>biBitC
 é zerado.</li><li><code>blClrUsed</code> é usado pra definir uma tabela de cores. Se o bitmap tiver 16 bits por pixel ou mais,
 esse campo pode ser ignorado.</li><li><code>blClrImportant</code> é usado pra mostrar a quantidade de cores necessárias para mostrar o bitmap.
 Geralmente é 0.</li></ul><p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
-depois do trecho anterior</p><div class=collapsable-code><input id=164537892 type=checkbox>
-<label for=164537892><span class=collapsable-code__language>javascript</span>
+depois do trecho anterior</p><div class=collapsable-code><input id=372614895 type=checkbox>
+<label for=372614895><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing do header DIB</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function parseCompression(val) {
@@ -112,8 +112,8 @@ function openDIBHeader(buffer) {
     }
 }
 
-</code></pre></div><p>Altere as linhas da função <code>openBMPHeader</code> pra incluir o header DIB</p><div class=collapsable-code><input id=187459326 type=checkbox>
-<label for=187459326><span class=collapsable-code__language>javascript</span>
+</code></pre></div><p>Altere as linhas da função <code>openBMPHeader</code> pra incluir o header DIB</p><div class=collapsable-code><input id=431628759 type=checkbox>
+<label for=431628759><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing do header DIB</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
   return {
@@ -127,8 +127,8 @@ function openDIBHeader(buffer) {
 de pixels, organizadas desse jeito:</p><p><img src=/blog/images/formats/bmp/pixelgrid.png alt="Array de pixels, em formato BGR (Blue, Green, Yellow)"></p><p>Cada quadrado dessa imagem é 1 byte. Primeiro vem o valor azul do pixel, depois o verde e depois
 o vermelho, e por aí vai. Em 24 bits por pixel, o formato mais comum hoje em dia, é desse jeito aí:</p><p>Essa lista de pixels é dividida em tiras. Cada tira tem um pixel de altura e a largura é a largura
 da imagem. O começo de cada tira de pixels deve estar numa posição divisível por 4. Se não tiver,
-bytes adicionais (chamados de <em>padding</em> são adicionados ao final da tira.)</p><p>O código pra ler isso não é muito difícil não.</p><div class=collapsable-code><input id=856913427 type=checkbox>
-<label for=856913427><span class=collapsable-code__language>javascript</span>
+bytes adicionais (chamados de <em>padding</em> são adicionados ao final da tira.)</p><p>O código pra ler isso não é muito difícil não.</p><div class=collapsable-code><input id=143279865 type=checkbox>
+<label for=143279865><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing dos pixels</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 /// Pega o tamanho da tira, em bytes
@@ -173,8 +173,8 @@ function parseColors(header, buffer) {
     }
     return pixels;
 }
-</code></pre></div><h1 id=mostrando-os-valores>Mostrando os valores.<a href=#mostrando-os-valores class=hanchor arialabel=Anchor>&#8983;</a></h1><p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:</p><p>Coloque isso no final do arquivo <code>bmp.js</code></p><div class=collapsable-code><input id=427891563 type=checkbox>
-<label for=427891563><span class=collapsable-code__language>javascript</span>
+</code></pre></div><h1 id=mostrando-os-valores>Mostrando os valores.<a href=#mostrando-os-valores class=hanchor arialabel=Anchor>&#8983;</a></h1><p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:</p><p>Coloque isso no final do arquivo <code>bmp.js</code></p><div class=collapsable-code><input id=965174328 type=checkbox>
+<label for=965174328><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>bmp.js: Parsing dos pixels</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function openBMPFile(buffer) {
@@ -189,8 +189,8 @@ function openBMPFile(buffer) {
     };
 }
 </code></pre></div><p>No arquivo <code>index.js</code>, no lugar do <code>const idata...</code>, coloque essa linha:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>idata</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>plot</span>(<span style=color:#a6e22e>buffer</span>, <span style=color:#a6e22e>canvas</span>);
-</span></span></code></pre></div><p>A função plot vai ficar assim:</p><div class=collapsable-code><input id=246987531 type=checkbox>
-<label for=246987531><span class=collapsable-code__language>javascript</span>
+</span></span></code></pre></div><p>A função plot vai ficar assim:</p><div class=collapsable-code><input id=491752368 type=checkbox>
+<label for=491752368><span class=collapsable-code__language>javascript</span>
 <span class=collapsable-code__title>index.js: Visualização dos pixels</span>
 <span class=collapsable-code__toggle data-label-expand=△ data-label-collapse=▽></span></label><pre class=language-javascript><code>
 function plot(buffer, canvas) {
