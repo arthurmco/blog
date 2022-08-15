@@ -106,9 +106,9 @@ function getColorTable(header, buffer) {
     const getColor = (i) => {
         const off = colorTableOffset + (i * 4);
         return {
-            r: get8(buffer, off),
+            b: get8(buffer, off),
             g: get8(buffer, off + 1),
-            b: get8(buffer, off + 2),
+            r: get8(buffer, off + 2),
             a: get8(buffer, off + 3)
         };
 
@@ -129,7 +129,7 @@ Agora que vocÃª tem a tabela de cores, ler os outros formatos fica muito mais fÃ
 {{< code language="javascript" title="bmp.js: Parsing dos pixels por profundidade de cor II">}}
 function getColors8(y, x, buffer, pixelpos, table) {
     const { r, g, b } = table[get8(buffer, pixelpos(y, x))];
-    return [b, g, r, 0xff];
+    return [r, g, b, 0xff];
 }
 
 
@@ -138,7 +138,7 @@ function getColors4(y, x, buffer, pixelpos, table) {
     const value = (x % 2 == 0) ? (byte >> 4) : (byte & 0xf);
 
     const { r, g, b } = table[value];
-    return [b, g, r, 0xff];
+    return [r, g, b, 0xff];
 }
 
 function getColors1(y, x, buffer, pixelpos, table) {
@@ -148,7 +148,7 @@ function getColors1(y, x, buffer, pixelpos, table) {
     const value = (byte >> (7-bit)) & 1;
 
     const { r, g, b } = table[value];
-    return [b, g, r, 0xff];
+    return [r, g, b, 0xff];
 }
 {{< /code >}}
 
