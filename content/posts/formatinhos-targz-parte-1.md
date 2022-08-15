@@ -340,6 +340,8 @@ class TarFile:
 
 {{< /code >}}
 
+Essa função acima só vai ler o header. Depois do header vem o arquivo.
+
 E é isso. O necessário para ler o formato está descrito
 
 Se você quiser, você pode transformar esse código que eu mostrei em um parser de arquivo `.tar`:

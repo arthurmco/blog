@@ -1,6 +1,6 @@
 ---
 title: "Formatinhos: BMP - Parte 3: Layout do pixel"
-date: "2022-08-16T15:59:20-03:00"
+date: "2022-08-15T08:59:20-03:00"
 author: "Arthur Mendes"
 authorTwitter: "usrbinarthur"
 showFullContent: false
@@ -99,7 +99,7 @@ Por padrão, cada pixel é organizado desse jeito:
 16 bits:
 ```
 15 14 13 12 11 10 09 08 | 07 06 05 04 03 02 01 00
--  B  B  B  B  B  G  G  | G  G  G  R  R  R  R  R
+-  R  R  R  R  R  G  G  | G  G  G  B  B  B  B  B
 ``` 
 
 
