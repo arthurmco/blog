@@ -1,5 +1,5 @@
 ---
-title: "Formatinhos: TAR.GZ - Parte 1: TAR padrão"
+title: "Formatinhos: TAR.GZ"
 date: "2022-08-19T23:22:11-03:00"
 author: "Arthur Mendes"
 authorTwitter: "usrbinarthur"
@@ -353,7 +353,6 @@ Se você quiser, você pode transformar esse código que eu mostrei em um parser
  - Lembre-se que dois blocos vazios, cheios de 0, identificam o final do arquivo...
  - Converta esse código para a sua linguagem favorita
 
-Na próxima parte, iremos ver um `tar` com mais funcionalidades, conhecida como formato PAX.
 
 # Referências:
  - https://www.gnu.org/software/tar/manual/html_node/Standard.html
