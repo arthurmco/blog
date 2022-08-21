@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>arquivamento on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/arquivamento/</link><description>Recent content in arquivamento on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 19 Aug 2022 23:22:11 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/arquivamento/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: TAR.GZ</title><link>https://arthurmco.github.io/blog/posts/formatinhos-targz/</link><pubDate>Fri, 19 Aug 2022 23:22:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-targz/</guid><description>O tar é o formato mais tradicional de arquivamento do universo Unix, sendo usado desde o final da década de 70, muito antes do ZIP sequer ser pensado.
+O tar é diferente de outros formatos de arquivamento porque ele não comprime arquivos individualmente. Todos o arquivo tar é comprimido junto. Para extrair os arquivos, você deve primeiro descomprimir o arquivo .tar inteiro.
+Para identificar o formato de compressão, você adiciona um sufixo no arquivo.</description><content>&lt;p>O &lt;code>tar&lt;/code> é o formato mais tradicional de arquivamento do universo Unix, sendo usado desde o final da
+década de 70, muito antes do ZIP sequer ser pensado.&lt;/p>
+&lt;p>O &lt;code>tar&lt;/code> é diferente de outros formatos de arquivamento porque ele não comprime arquivos individualmente.
+Todos o arquivo tar é comprimido junto. Para extrair os arquivos, você deve primeiro descomprimir o
+arquivo &lt;code>.tar&lt;/code> inteiro.&lt;/p>
+&lt;p>Para identificar o formato de compressão, você adiciona um sufixo no arquivo. Os formatos e sufixos
+suportados são:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Sufixo&lt;/th>
+&lt;th>Formato&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>‘.gz’&lt;/td>
+&lt;td>gzip&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tgz’&lt;/td>
+&lt;td>gzip&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.taz’&lt;/td>
+&lt;td>gzip&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.Z’&lt;/td>
+&lt;td>compress&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.taZ’&lt;/td>
+&lt;td>compress&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.bz2’&lt;/td>
+&lt;td>bzip2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tz2’&lt;/td>
+&lt;td>bzip2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tbz2’&lt;/td>
+&lt;td>bzip2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tbz’&lt;/td>
+&lt;td>bzip2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.lz’&lt;/td>
+&lt;td>lzip&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.lzma’&lt;/td>
+&lt;td>lzma&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tlz’&lt;/td>
+&lt;td>lzma&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.lzo’&lt;/td>
+&lt;td>lzop&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.xz’&lt;/td>
+&lt;td>xz&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.zst’&lt;/td>
+&lt;td>zstd&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>‘.tzst’&lt;/td>
+&lt;td>zstd&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>O sufixo mais visto e o mais suportado é o .gz. Por isso que você vê muito &lt;code>.tar.gz&lt;/code>.&lt;/p>
+&lt;h1 id="o-formato">O formato&lt;/h1>
+&lt;p>O lado bom do arquivo .tar é que não existem valores binários: os valores binários dele estão nos
+arquivos, não nos metadados.&lt;/p>
+&lt;p>Todos os números são salvos em octal. Por exemplo, se você ver um &lt;code>10&lt;/code> no arquivo, significa que
+o valor que está ali é 8, pois &lt;code>10&lt;/code> em octal é 8 em decimal. Assim como &lt;code>11&lt;/code>=9, &lt;code>12&lt;/code>=10, &lt;code>13&lt;/code>=11,
+&lt;code>17&lt;/code>=15 e &lt;code>20&lt;/code>=16.&lt;/p>
+&lt;p>As &lt;em>strings&lt;/em> têm um tamanho fixo. Se o tamanho delas no arquivo for menor que o tamanho fixo, vários
+bytes &lt;code>0&lt;/code> são adicionados até chegarem nesse tamanho.&lt;/p>
+&lt;p>O arquivo tar é dividido em blocos. Cada bloco possui 512 bytes. Esse também é o tamanho do header
+contendo os metadados dos arquivos.&lt;/p>
+&lt;p>O arquivo já começa com o header do primeiro arquivo:&lt;/p>
+&lt;pre tabindex="0">&lt;code>00000000 67 72 61 70 68 69 63 61 6c 73 62 6f 75 6e 64 69 |graphicalsboundi|
+00000010 6e 67 2e 72 73 00 00 00 00 00 00 00 00 00 00 00 |ng.rs...........|
+00000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |................|
+*
+00000060 00 00 00 00 30 30 30 30 37 37 37 00 30 30 30 31 |....0000777.0001|
+00000070 37 35 30 00 30 30 30 31 37 35 30 00 30 30 30 30 |750.0001750.0000|
+00000080 30 30 30 37 36 30 33 00 31 34 32 37 33 30 30 32 |0007603.14273002|
+00000090 32 37 35 00 30 31 35 37 37 34 00 20 30 00 00 00 |275.015774. 0...|
+000000a0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |................|
+*
+00000100 00 75 73 74 61 72 20 20 00 61 72 74 68 75 72 6d |.ustar .arthurm|
+00000110 63 6f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |co..............|
+00000120 00 00 00 00 00 00 00 00 00 61 72 74 68 75 72 6d |.........arthurm|
+00000130 63 6f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |co..............|
+00000140 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |................|
+*
+000001f0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 |................|
+&lt;/code>&lt;/pre>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Posição&lt;/th>
+&lt;th>Tamanho&lt;/th>
+&lt;th>Campo&lt;/th>
+&lt;th>Valor&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>0x0 (0)&lt;/code>&lt;/td>
+&lt;td>100&lt;/td>
+&lt;td>name&lt;/td>
+&lt;td>&lt;code>graphicalsbounding.rs&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x64 (100)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>mode&lt;/td>
+&lt;td>&lt;code>0000777&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x6c (108)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>uid&lt;/td>
+&lt;td>&lt;code>0001750&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x74 (116)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>gid&lt;/td>
+&lt;td>&lt;code>0001750&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x7c (124)&lt;/code>&lt;/td>
+&lt;td>12&lt;/td>
+&lt;td>size&lt;/td>
+&lt;td>&lt;code>00000007603&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x88 (136)&lt;/code>&lt;/td>
+&lt;td>12&lt;/td>
+&lt;td>mtime&lt;/td>
+&lt;td>&lt;code>14273002275&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x94 (148)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>chksum&lt;/td>
+&lt;td>&lt;code>015774&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x9c (156)&lt;/code>&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>typeflag&lt;/td>
+&lt;td>&lt;code>30&lt;/code> = &lt;code>REGTYPE&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x9d (157)&lt;/code>&lt;/td>
+&lt;td>100&lt;/td>
+&lt;td>linkname&lt;/td>
+&lt;td>&lt;code> &lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x101 (257)&lt;/code>&lt;/td>
+&lt;td>6&lt;/td>
+&lt;td>magic&lt;/td>
+&lt;td>&lt;code>ustar &lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x107 (263)&lt;/code>&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>version&lt;/td>
+&lt;td>&lt;code>0x20 0x00&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x109 (265)&lt;/code>&lt;/td>
+&lt;td>32&lt;/td>
+&lt;td>uname&lt;/td>
+&lt;td>&lt;code>arthurmco&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x129 (297)&lt;/code>&lt;/td>
+&lt;td>32&lt;/td>
+&lt;td>gname&lt;/td>
+&lt;td>&lt;code>arthurmco&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x149 (329)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>devmajor&lt;/td>
+&lt;td>&lt;code> &lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x151 (337)&lt;/code>&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>devminor&lt;/td>
+&lt;td>&lt;code> &lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x159 (345)&lt;/code>&lt;/td>
+&lt;td>155&lt;/td>
+&lt;td>prefix&lt;/td>
+&lt;td>&lt;code> &lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Como eu falei, &lt;strong>todos os números estão em formato octal&lt;/strong>.&lt;/p>
+&lt;p>Depois desse header, no próximo bloco está o conteúdo do arquivo.&lt;/p>
+&lt;p>Quando o arquivo termina, o header começa no próximo bloco, no próximo byte múltiplo de 512.&lt;/p>
+&lt;p>Ou seja, se o arquivo acabar no byte 5090, o header só vai começar no byte 5120, já que é o próximo
+múltiplo de 512.&lt;/p>
+&lt;p>Para sinalizar o final do arquivo, dois blocos vazios (ou seja, cheios de bytes 0) são escritos.&lt;/p>
+&lt;p>O arquivo &lt;code>tar&lt;/code> é identificado pelo valor no campo &lt;code>magic&lt;/code>, ou seja &lt;code>ustar&lt;/code>. Existem mais tipos de
+arquivos tar, e eles serão discutidos nas próximas partes.&lt;/p>
+&lt;p>O checksum (escrito no campo &lt;code>chksum&lt;/code>) é calculado somando todos os bytes do header. Os bytes que
+estariam no checksum são substituídos, na função do cálculo, por espaços (&lt;code> &lt;/code>, byte 32). O resultado
+é escrito no campo (no caso da escrita) ou comparado com o valor do campo (no caso da leitura)&lt;/p>
+&lt;p>&lt;code>uname&lt;/code> e &lt;code>gname&lt;/code> são os nomes do usuário e do grupo que criaram o arquivo. &lt;code>uid&lt;/code> e &lt;code>gid&lt;/code> são os IDs
+de usuário e grupo.&lt;/p>
+&lt;p>&lt;code>mtime&lt;/code> é a data da última modificação do arquivo, ou de criação se o arquivo nunca foi alterado. O
+valor é a quantidade de segundos desde 01/01/1970.&lt;/p>
+&lt;p>&lt;code>name&lt;/code> é o nome do arquivo. Se ele é um link que aponta pra outro arquivo, o nome desse arquivo
+vai estar em &lt;code>linkname&lt;/code>.&lt;/p>
+&lt;p>&lt;code>devmajor&lt;/code> e &lt;code>devminor&lt;/code> só fazem sentido se o arquivo for um device, tipo aqueles arquivos que
+estão dentro da pasta &lt;code>/dev&lt;/code> nos linuxes e unixes da vida.&lt;/p>
+&lt;h2 id="códigos">Códigos&lt;/h2>
+&lt;p>Inicialmente, definiremos os valores possíveis nos campos &lt;code>mode&lt;/code> e &lt;code>typeflag&lt;/code>:&lt;/p>
+&lt;div class="collapsable-code">
+&lt;input id="495627183" type="checkbox" />
+&lt;label for="495627183">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">tarfile.py: Estruturas possíveis nos valores&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+from enum import Enum, IntFlag
+# Isso são flags.
+# Significa que mais de um valor pode ser possível aqui.
+class FileMode(IntFlag):
+# O modo do arquivo
+# Quando você dá `ls -l` no terminal, tem um monte de rwxrwxrwx.
+# Isso é codificado aqui.&amp;#39;
+# O significado está claro se você manja um pouco de inglês.
+# Se não, separa as duas palavras e joga no google tradutor que vai estar
+# correto.
+OtherExec = 1
+OtherWrite = 2
+OtherRead = 4
+GroupExec = 8
+GroupWrite = 16
+GroupRead = 32
+OwnerExec = 64
+OwnerWrite = 128
+OwnerRead = 256
+SetGid = 1024
+SetUid = 2048
+class FileType(Enum):
+## O tipo de arquivo
+# Um arquivo comum
+Regular = 0
+# Um link pra outro arquivo
+Link = 1
+# Um link simbólico. Esse valor está depreciado e não é usado
+Symlink = 2
+# Se você sabe o que são essas duas coisas abaixo, então você sabe o que
+# significa tudo aqui nesse enum, e não está nem lendo esses comentários.
+CharacterDevice = 3
+BlockDevice = 4
+# Representa uma pasta. Uma coisa engraçada é que, dentro do arquivo tar,
+# logo depois da pasta, vêm os arquivos que estão dentro dela.
+# Isso pode ser útil pra você.
+Directory = 5
+# Se você sabe o que é isso daqui, então você nem precisa desses comentários
+FIFOPipe = 6
+# Campo reservado.
+Reserved = 7
+# Como converter do valor do arquivo pro valor do enum
+# O `val` é o caractere que vem do arquivo.
+@staticmethod
+def from_value(val):
+selections = {
+&amp;#34;0&amp;#34;: FileType.Regular,
+&amp;#34;\0&amp;#34;: FileType.Regular,
+&amp;#34;1&amp;#34;: FileType.Link,
+&amp;#34;2&amp;#34;: FileType.Symlink,
+&amp;#34;3&amp;#34;: FileType.CharacterDevice,
+&amp;#34;4&amp;#34;: FileType.BlockDevice,
+&amp;#34;5&amp;#34;: FileType.Directory,
+&amp;#34;6&amp;#34;: FileType.FIFOPipe,
+&amp;#34;7&amp;#34;: FileType.Reserved
+}
+return selections.get(val, FileType.Reserved)
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;p>Algumas funções auxiliares, que vão ajudar a ler o arquivo
+&lt;div class="collapsable-code">
+&lt;input id="936854712" type="checkbox" />
+&lt;label for="936854712">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">tarfile.py: Funções auxiliares&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+# Isso aqui embaixo vem no final:
+# Lê uma string do arquivo
+def read_string(value):
+return value.decode(&amp;#39;utf-8&amp;#39;).rstrip(&amp;#39;\x00 &amp;#39;)
+# Lê um número do arquivo. Ele está em octal, então devemos converter.
+def read_number(value, default=None):
+try:
+return int(read_string(value), base=8)
+except ValueError:
+return default
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/p>
+&lt;p>Depois, vamos ler o arquivo TAR:
+&lt;div class="collapsable-code">
+&lt;input id="593168247" type="checkbox" />
+&lt;label for="593168247">
+&lt;span class="collapsable-code__language">python&lt;/span>
+&lt;span class="collapsable-code__title">tarfile.py: Estruturas do arquivo tar&lt;/span>
+&lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
+&lt;/label>
+&lt;pre class="language-python" >&lt;code>
+## Coloque isso no começo do arquivo, antes do `from enum`
+from dataclasses import dataclass
+## Isso aqui embaixo vem no final:
+# O tamanho do bloco:
+BLOCK_SIZE = 512
+@dataclass
+class TarFile:
+# Você já conhece esses campos :)
+name: str
+mode: FileMode
+uid: int
+gid: int
+size: int
+mtime: dt.datetime
+checksum: int
+typeflag: FileType
+linkname: str
+magic: str
+version: int
+uname: str
+gname: str
+devmajor: int
+devminor: int
+prefix: str
+# O offset do arquivo que segue esse header, pra gente poder ler ele
+# depois
+offset: int
+# O offset do próprio header.
+header: int
+def read_file(self, fileobject):
+# Lê o conteúdo do arquivo que esse header representa
+tell = fileobject.tell()
+fileobject.seek(self.offset)
+data = fileobject.read(self.size)
+fileobject.seek(tell)
+return data
+def get_header_offset(self):
+return self.offset - BLOCK_SIZE
+def verify_checksum(self, fileobject):
+# Verifica o checksum desse header, pra ver se ele é válido ou não.
+tell = fileobject.tell()
+fileobject.seek(self.get_header_offset())
+data = fileobject.read(BLOCK_SIZE)
+checksum = sum([v if i not in range(148, 156) else ord(&amp;#39; &amp;#39;)
+for i, v in enumerate(data)])
+fileobject.seek(tell)
+return checksum == self.checksum
+@staticmethod
+def from_file(fileobject):
+# Lê um arquivo.
+#
+# Esse `fileobject` é um objeto de arquivo, gerado pelo método `open`, ou
+# por qualquer método que represente um arquivo, como `GzipFile` e outros
+# similares.
+#
+# Esse método vai alterar o fileobject, fazendo ele apontar pro próximo
+# bloco, que na maior parte das vezes vai ser o conteúdo do arquivo.
+offset = fileobject.tell()
+name = read_string(fileobject.read(100))
+if name == &amp;#34;&amp;#34;:
+return None
+mode = FileMode(read_number(fileobject.read(8)))
+uid = read_number(fileobject.read(8))
+gid = read_number(fileobject.read(8))
+size = read_number(fileobject.read(12))
+mtime = dt.datetime.fromtimestamp(read_number(fileobject.read(12)))
+checksum = read_number(fileobject.read(8))
+typeflag = FileType.from_value(read_string(fileobject.read(1)))
+linkname = read_string(fileobject.read(100))
+magic = read_string(fileobject.read(6))
+version = read_number(fileobject.read(2), 0)
+if not magic.startswith(&amp;#34;ustar&amp;#34;):
+raise ValueError(f&amp;#34;Invalid header at offset {offset}&amp;#34;)
+uname = read_string(fileobject.read(32))
+gname = read_string(fileobject.read(32))
+devmajor = read_number(fileobject.read(8))
+devminor = read_number(fileobject.read(8))
+prefix = fileobject.read(155)
+pad = fileobject.read(12)
+return TarFile(name, mode, uid, gid, size, mtime, checksum, typeflag,
+linkname, magic, version, uname, gname, devmajor, devminor,
+prefix, offset &amp;#43; BLOCK_SIZE, offset)
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;/p>
+&lt;p>Essa função acima só vai ler o header. Depois do header vem o arquivo.&lt;/p>
+&lt;p>E é isso. O necessário para ler o formato está descrito&lt;/p>
+&lt;p>Se você quiser, você pode transformar esse código que eu mostrei em um parser de arquivo &lt;code>.tar&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>Você pode simplesmente usar &lt;code>open&lt;/code> para ler um arquivo &lt;code>tar&lt;/code> puro. O método &lt;code>TarFile.from_file&lt;/code>
+aceita um objeto de arquivo que a função &lt;code>open&lt;/code> retorna&lt;/li>
+&lt;li>Para ler um arquivo &lt;code>.tar.gz&lt;/code>, use a classe &lt;code>GzipFile&lt;/code> para ler o arquivo, já que esse é o
+formato que o tar está comprimido&lt;/li>
+&lt;li>Outros formatos têm outras bibliotecas de suporte. Se você quiser, pode suportá-las.&lt;/li>
+&lt;li>Lembre-se que dois blocos vazios, cheios de 0, identificam o final do arquivo&amp;hellip;&lt;/li>
+&lt;li>Converta esse código para a sua linguagem favorita&lt;/li>
+&lt;/ul>
+&lt;h1 id="referências">Referências:&lt;/h1>
+&lt;ul>
+&lt;li>&lt;a href="https://www.gnu.org/software/tar/manual/html_node/Standard.html">https://www.gnu.org/software/tar/manual/html_node/Standard.html&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.gnu.org/software/tar/manual/html_chapter/Formats.html#Compression">https://www.gnu.org/software/tar/manual/html_chapter/Formats.html#Compression&lt;/a>&lt;/li>
+&lt;/ul></content></item></channel></rss>
