@@ -240,8 +240,8 @@ estão dentro da pasta &lt;code>/dev&lt;/code> nos linuxes e unixes da vida.&lt;
 &lt;h2 id="códigos">Códigos&lt;/h2>
 &lt;p>Inicialmente, definiremos os valores possíveis nos campos &lt;code>mode&lt;/code> e &lt;code>typeflag&lt;/code>:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="495627183" type="checkbox" />
-&lt;label for="495627183">
+&lt;input id="692187543" type="checkbox" />
+&lt;label for="692187543">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas possíveis nos valores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -308,8 +308,8 @@ return selections.get(val, FileType.Reserved)
 &lt;/div>
 &lt;p>Algumas funções auxiliares, que vão ajudar a ler o arquivo
 &lt;div class="collapsable-code">
-&lt;input id="936854712" type="checkbox" />
-&lt;label for="936854712">
+&lt;input id="784392156" type="checkbox" />
+&lt;label for="784392156">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Funções auxiliares&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -330,8 +330,8 @@ return default
 &lt;/p>
 &lt;p>Depois, vamos ler o arquivo TAR:
 &lt;div class="collapsable-code">
-&lt;input id="593168247" type="checkbox" />
-&lt;label for="593168247">
+&lt;input id="439521768" type="checkbox" />
+&lt;label for="439521768">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas do arquivo tar&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

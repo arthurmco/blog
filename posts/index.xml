@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/posts/</link><description>Recent content in Posts on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Fri, 19 Aug 2022 23:22:11 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Formatinhos: TAR.GZ</title><link>https://arthurmco.github.io/blog/posts/formatinhos-targz/</link><pubDate>Fri, 19 Aug 2022 23:22:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-targz/</guid><description>O tar é o formato mais tradicional de arquivamento do universo Unix, sendo usado desde o final da década de 70, muito antes do ZIP sequer ser pensado.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/posts/</link><description>Recent content in Posts on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Mon, 26 Sep 2022 17:41:23 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Como ver o programa que não deixa você tirar seu dispositivo USB</title><link>https://arthurmco.github.io/blog/posts/como-ver-o-programa-que-usa-dispositivo-usb/</link><pubDate>Mon, 26 Sep 2022 17:41:23 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/como-ver-o-programa-que-usa-dispositivo-usb/</guid><description>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando eu tava fazendo backup.
+Como eu tava achei legal, trouxe pra cá
+A data original é 26/09/2019
+Ás vezes, você está no Windão e quer remover seu dispositivo USB, mas aparece aquela mensagem dizendo que o dispositivo está sendo usado
+Pra ver o programa que está usando o dispositivo, faça o seguinte</description><content>&lt;p>&lt;strong>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando&lt;/strong>
+&lt;strong>eu tava fazendo backup.&lt;/strong>&lt;br>
+&lt;strong>Como eu tava achei legal, trouxe pra cá&lt;/strong>&lt;br>
+&lt;strong>A data original é 26/09/2019&lt;/strong>&lt;/p>
+&lt;p>Ás vezes, você está no Windão e quer remover seu dispositivo USB, mas
+aparece aquela mensagem dizendo que o dispositivo está sendo usado&lt;/p>
+&lt;p>Pra ver o programa que está usando o dispositivo, faça o seguinte&lt;/p>
+&lt;ul>
+&lt;li>Botão direito no símbolo do Windows&lt;/li>
+&lt;li>Clique em &amp;ldquo;Visualizador de Eventos&amp;rdquo;&lt;/li>
+&lt;li>Na lista à esquerda, clique em Sistema&lt;/li>
+&lt;/ul>
+&lt;figure class="left" >
+&lt;img src="https://arthurmco.github.io/blog/blog/images/event-log-device-removal.png" />
+&lt;figcaption class="center" >O visualizador de eventos&lt;/figcaption>
+&lt;/figure>
+&lt;ul>
+&lt;li>
+&lt;p>Na lista à esquerda, vão aparecer alguns avisos. Clique no primeiro
+cuja &amp;ldquo;Fonte&amp;rdquo; for &amp;ldquo;Kernel-PnP&amp;rdquo;. PnP significa &amp;ldquo;Plug and Play&amp;rdquo;, o
+que, obviamente, seu dispositivo USB é.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Na aba &amp;ldquo;Geral&amp;rdquo;, vai estar escrito algo como:&lt;/p>
+&lt;pre tabindex="0">&lt;code>O aplicativo
+\Device\HarddiskVolume3\Program Files\Transmission\transmission-qt.exe
+com a id de processo 6664
+parou a remoção ou a ejeção para o dispositivo USB\VID_0BC2&amp;amp;PID_2322\MSFT30NA8H1DX3.
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;/ul>
+&lt;p>No meu caso, o Transmission estava usando um arquivo que estava na
+minha HD externa. Quando eu o fechei, eu consegui remover!&lt;/p></content></item><item><title>Listando todos os domínios numa rede</title><link>https://arthurmco.github.io/blog/posts/lista-todos-dominios-numa-rede/</link><pubDate>Mon, 26 Sep 2022 17:35:44 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/lista-todos-dominios-numa-rede/</guid><description>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando eu tava fazendo backup.
+Como eu tava achei legal, trouxe pra cá
+A data original é 26/09/2019
+Às vezes você quer uma lista de todos os domínios numa rede.
+Sei lá, talvez você queira o nome de um servidor específico no seu trabalho, e não sabe onde ver isso. Ou você não tem acesso a essa informação.</description><content>&lt;p>&lt;strong>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando&lt;/strong>
+&lt;strong>eu tava fazendo backup.&lt;/strong>&lt;br>
+&lt;strong>Como eu tava achei legal, trouxe pra cá&lt;/strong>&lt;br>
+&lt;strong>A data original é 26/09/2019&lt;/strong>&lt;/p>
+&lt;p>Às vezes você quer uma lista de todos os domínios numa rede.&lt;/p>
+&lt;p>Sei lá, talvez você queira o nome de um servidor específico no seu
+trabalho, e não sabe onde ver isso. Ou você não tem acesso a essa
+informação.&lt;/p>
+&lt;p>Eu precisei dessa informação um tempo atrás. Um pequeno shell script
+resolveu o problema&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">#!/bin/bash&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Troca A, B e C pelos três primeiros octetos da sua rede&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Por exemplo, 192.168.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Só funciona com redes /24, mas pode funcionar para outras redes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># se você adicionar mais loops.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> i in &lt;span style="color:#f92672">{&lt;/span>1..254&lt;span style="color:#f92672">}&lt;/span>; &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nslookup A.B.C.$i | tr &lt;span style="color:#e6db74">&amp;#39;\n&amp;#39;&lt;/span> &lt;span style="color:#e6db74">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> echo &lt;span style="color:#e6db74">&amp;#34; &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vai mostrar os domínios, linha por linha, e os IPs que não têm domínio&lt;/p>
+&lt;p>Não é perfeito, mas é o que salvou a minha vida :)&lt;/p></content></item><item><title>Formatinhos: TAR.GZ</title><link>https://arthurmco.github.io/blog/posts/formatinhos-targz/</link><pubDate>Fri, 19 Aug 2022 23:22:11 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/formatinhos-targz/</guid><description>O tar é o formato mais tradicional de arquivamento do universo Unix, sendo usado desde o final da década de 70, muito antes do ZIP sequer ser pensado.
 O tar é diferente de outros formatos de arquivamento porque ele não comprime arquivos individualmente. Todos o arquivo tar é comprimido junto. Para extrair os arquivos, você deve primeiro descomprimir o arquivo .tar inteiro.
 Para identificar o formato de compressão, você adiciona um sufixo no arquivo.</description><content>&lt;p>O &lt;code>tar&lt;/code> é o formato mais tradicional de arquivamento do universo Unix, sendo usado desde o final da
 década de 70, muito antes do ZIP sequer ser pensado.&lt;/p>
@@ -240,8 +302,8 @@ estão dentro da pasta &lt;code>/dev&lt;/code> nos linuxes e unixes da vida.&lt;
 &lt;h2 id="códigos">Códigos&lt;/h2>
 &lt;p>Inicialmente, definiremos os valores possíveis nos campos &lt;code>mode&lt;/code> e &lt;code>typeflag&lt;/code>:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="495627183" type="checkbox" />
-&lt;label for="495627183">
+&lt;input id="692187543" type="checkbox" />
+&lt;label for="692187543">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas possíveis nos valores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -308,8 +370,8 @@ return selections.get(val, FileType.Reserved)
 &lt;/div>
 &lt;p>Algumas funções auxiliares, que vão ajudar a ler o arquivo
 &lt;div class="collapsable-code">
-&lt;input id="936854712" type="checkbox" />
-&lt;label for="936854712">
+&lt;input id="784392156" type="checkbox" />
+&lt;label for="784392156">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Funções auxiliares&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -330,8 +392,8 @@ return default
 &lt;/p>
 &lt;p>Depois, vamos ler o arquivo TAR:
 &lt;div class="collapsable-code">
-&lt;input id="593168247" type="checkbox" />
-&lt;label for="593168247">
+&lt;input id="439521768" type="checkbox" />
+&lt;label for="439521768">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas do arquivo tar&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -555,8 +617,8 @@ G G G G G G G G | B B B B B B B B
 &lt;/code>&lt;/pre>&lt;p>Traduzir isso para bitmasks será um exercício para o leitor.&lt;/p>
 &lt;p>Em código, a leitura e interpretação das bitmasks é a seguinte:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="798435612" type="checkbox" />
-&lt;label for="798435612">
+&lt;input id="165937482" type="checkbox" />
+&lt;label for="165937482">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing da máscara de bits&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -664,8 +726,8 @@ o header DIB e o array de pixels.&lt;/li>
 &lt;/ul>
 &lt;p>As três primeiras são &lt;em>bem fáceis&lt;/em>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="942687531" type="checkbox" />
-&lt;label for="942687531">
+&lt;input id="743659812" type="checkbox" />
+&lt;label for="743659812">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -719,8 +781,8 @@ que &lt;strong>não é o canal alfa&lt;/strong>.&lt;/p>
 &lt;p>Pra quem parseou um header, ler essas cores é muito simples. É a mesma coisa que ler o array de
 pixels, na verdade.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="345876219" type="checkbox" />
-&lt;label for="345876219">
+&lt;input id="158369427" type="checkbox" />
+&lt;label for="158369427">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing da paleta de cores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -753,8 +815,8 @@ return table;
 &lt;h1 id="as-profundidades-de-cor-finais">As profundidades de cor finais&lt;/h1>
 &lt;p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="263451897" type="checkbox" />
-&lt;label for="263451897">
+&lt;input id="391648572" type="checkbox" />
+&lt;label for="391648572">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor II&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -885,8 +947,8 @@ do arquivo&lt;/li>
 &lt;p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta &lt;code>src&lt;/code> chamado de
 &lt;code>bmp.js&lt;/code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="673921854" type="checkbox" />
-&lt;label for="673921854">
+&lt;input id="597418623" type="checkbox" />
+&lt;label for="597418623">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header do arquivo bitmap&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1033,8 +1095,8 @@ Geralmente é 0.&lt;/li>
 &lt;p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
 depois do trecho anterior&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="913658724" type="checkbox" />
-&lt;label for="913658724">
+&lt;input id="489623157" type="checkbox" />
+&lt;label for="489623157">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1073,8 +1135,8 @@ size: headerSize,
 &lt;/div>
 &lt;p>Altere as linhas da função &lt;code>openBMPHeader&lt;/code> pra incluir o header DIB&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="794251863" type="checkbox" />
-&lt;label for="794251863">
+&lt;input id="743856912" type="checkbox" />
+&lt;label for="743856912">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1100,8 +1162,8 @@ da imagem. O começo de cada tira de pixels deve estar numa posição divisível
 bytes adicionais (chamados de &lt;em>padding&lt;/em> são adicionados ao final da tira.)&lt;/p>
 &lt;p>O código pra ler isso não é muito difícil não.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="293546781" type="checkbox" />
-&lt;label for="293546781">
+&lt;input id="325879641" type="checkbox" />
+&lt;label for="325879641">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1149,8 +1211,8 @@ return pixels;
 &lt;p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:&lt;/p>
 &lt;p>Coloque isso no final do arquivo &lt;code>bmp.js&lt;/code>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="284573961" type="checkbox" />
-&lt;label for="284573961">
+&lt;input id="928375416" type="checkbox" />
+&lt;label for="928375416">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1171,8 +1233,8 @@ colors: parseColors(header, buffer)
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">idata&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">plot&lt;/span>(&lt;span style="color:#a6e22e">buffer&lt;/span>, &lt;span style="color:#a6e22e">canvas&lt;/span>);
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A função plot vai ficar assim:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="456132978" type="checkbox" />
-&lt;label for="456132978">
+&lt;input id="836429715" type="checkbox" />
+&lt;label for="836429715">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">index.js: Visualização dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1238,8 +1300,8 @@ a ver a série dos formatinhos.&lt;/p>
 &lt;p>O código será mostrado assim (aprendi a formatar o código desse jeito nessa semana, e fica bem
 mais bonito, dá pra expandir e fica melhor em mobile.)&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="513287694" type="checkbox" />
-&lt;label for="513287694">
+&lt;input id="593742186" type="checkbox" />
+&lt;label for="593742186">
 &lt;span class="collapsable-code__language">c&amp;#43;&amp;#43;&lt;/span>
 &lt;span class="collapsable-code__title">Código exemplo&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>

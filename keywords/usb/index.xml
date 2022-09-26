@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>usb on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/usb/</link><description>Recent content in usb on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Mon, 26 Sep 2022 17:41:23 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/usb/index.xml" rel="self" type="application/rss+xml"/><item><title>Como ver o programa que não deixa você tirar seu dispositivo USB</title><link>https://arthurmco.github.io/blog/posts/como-ver-o-programa-que-usa-dispositivo-usb/</link><pubDate>Mon, 26 Sep 2022 17:41:23 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/como-ver-o-programa-que-usa-dispositivo-usb/</guid><description>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando eu tava fazendo backup.
+Como eu tava achei legal, trouxe pra cá
+A data original é 26/09/2019
+Ás vezes, você está no Windão e quer remover seu dispositivo USB, mas aparece aquela mensagem dizendo que o dispositivo está sendo usado
+Pra ver o programa que está usando o dispositivo, faça o seguinte</description><content>&lt;p>&lt;strong>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando&lt;/strong>
+&lt;strong>eu tava fazendo backup.&lt;/strong>&lt;br>
+&lt;strong>Como eu tava achei legal, trouxe pra cá&lt;/strong>&lt;br>
+&lt;strong>A data original é 26/09/2019&lt;/strong>&lt;/p>
+&lt;p>Ás vezes, você está no Windão e quer remover seu dispositivo USB, mas
+aparece aquela mensagem dizendo que o dispositivo está sendo usado&lt;/p>
+&lt;p>Pra ver o programa que está usando o dispositivo, faça o seguinte&lt;/p>
+&lt;ul>
+&lt;li>Botão direito no símbolo do Windows&lt;/li>
+&lt;li>Clique em &amp;ldquo;Visualizador de Eventos&amp;rdquo;&lt;/li>
+&lt;li>Na lista à esquerda, clique em Sistema&lt;/li>
+&lt;/ul>
+&lt;figure class="left" >
+&lt;img src="https://arthurmco.github.io/blog/blog/images/event-log-device-removal.png" />
+&lt;figcaption class="center" >O visualizador de eventos&lt;/figcaption>
+&lt;/figure>
+&lt;ul>
+&lt;li>
+&lt;p>Na lista à esquerda, vão aparecer alguns avisos. Clique no primeiro
+cuja &amp;ldquo;Fonte&amp;rdquo; for &amp;ldquo;Kernel-PnP&amp;rdquo;. PnP significa &amp;ldquo;Plug and Play&amp;rdquo;, o
+que, obviamente, seu dispositivo USB é.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Na aba &amp;ldquo;Geral&amp;rdquo;, vai estar escrito algo como:&lt;/p>
+&lt;pre tabindex="0">&lt;code>O aplicativo
+\Device\HarddiskVolume3\Program Files\Transmission\transmission-qt.exe
+com a id de processo 6664
+parou a remoção ou a ejeção para o dispositivo USB\VID_0BC2&amp;amp;PID_2322\MSFT30NA8H1DX3.
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;/ul>
+&lt;p>No meu caso, o Transmission estava usando um arquivo que estava na
+minha HD externa. Quando eu o fechei, eu consegui remover!&lt;/p></content></item></channel></rss>

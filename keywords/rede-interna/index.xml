@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rede interna on Blog do Arthur M.</title><link>https://arthurmco.github.io/blog/keywords/rede-interna/</link><description>Recent content in rede interna on Blog do Arthur M.</description><generator>Hugo -- gohugo.io</generator><language>pt-br</language><lastBuildDate>Mon, 26 Sep 2022 17:35:44 -0300</lastBuildDate><atom:link href="https://arthurmco.github.io/blog/keywords/rede-interna/index.xml" rel="self" type="application/rss+xml"/><item><title>Listando todos os domínios numa rede</title><link>https://arthurmco.github.io/blog/posts/lista-todos-dominios-numa-rede/</link><pubDate>Mon, 26 Sep 2022 17:35:44 -0300</pubDate><guid>https://arthurmco.github.io/blog/posts/lista-todos-dominios-numa-rede/</guid><description>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando eu tava fazendo backup.
+Como eu tava achei legal, trouxe pra cá
+A data original é 26/09/2019
+Às vezes você quer uma lista de todos os domínios numa rede.
+Sei lá, talvez você queira o nome de um servidor específico no seu trabalho, e não sabe onde ver isso. Ou você não tem acesso a essa informação.</description><content>&lt;p>&lt;strong>AVISO: Esse é um post que eu fiz faz um tempo, pra um outro projeto de blog, que eu achei quando&lt;/strong>
+&lt;strong>eu tava fazendo backup.&lt;/strong>&lt;br>
+&lt;strong>Como eu tava achei legal, trouxe pra cá&lt;/strong>&lt;br>
+&lt;strong>A data original é 26/09/2019&lt;/strong>&lt;/p>
+&lt;p>Às vezes você quer uma lista de todos os domínios numa rede.&lt;/p>
+&lt;p>Sei lá, talvez você queira o nome de um servidor específico no seu
+trabalho, e não sabe onde ver isso. Ou você não tem acesso a essa
+informação.&lt;/p>
+&lt;p>Eu precisei dessa informação um tempo atrás. Um pequeno shell script
+resolveu o problema&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">#!/bin/bash&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Troca A, B e C pelos três primeiros octetos da sua rede&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Por exemplo, 192.168.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Só funciona com redes /24, mas pode funcionar para outras redes&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># se você adicionar mais loops.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> i in &lt;span style="color:#f92672">{&lt;/span>1..254&lt;span style="color:#f92672">}&lt;/span>; &lt;span style="color:#66d9ef">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nslookup A.B.C.$i | tr &lt;span style="color:#e6db74">&amp;#39;\n&amp;#39;&lt;/span> &lt;span style="color:#e6db74">&amp;#39; &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> echo &lt;span style="color:#e6db74">&amp;#34; &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Vai mostrar os domínios, linha por linha, e os IPs que não têm domínio&lt;/p>
+&lt;p>Não é perfeito, mas é o que salvou a minha vida :)&lt;/p></content></item></channel></rss>

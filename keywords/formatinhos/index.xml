@@ -240,8 +240,8 @@ estão dentro da pasta &lt;code>/dev&lt;/code> nos linuxes e unixes da vida.&lt;
 &lt;h2 id="códigos">Códigos&lt;/h2>
 &lt;p>Inicialmente, definiremos os valores possíveis nos campos &lt;code>mode&lt;/code> e &lt;code>typeflag&lt;/code>:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="495627183" type="checkbox" />
-&lt;label for="495627183">
+&lt;input id="692187543" type="checkbox" />
+&lt;label for="692187543">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas possíveis nos valores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -308,8 +308,8 @@ return selections.get(val, FileType.Reserved)
 &lt;/div>
 &lt;p>Algumas funções auxiliares, que vão ajudar a ler o arquivo
 &lt;div class="collapsable-code">
-&lt;input id="936854712" type="checkbox" />
-&lt;label for="936854712">
+&lt;input id="784392156" type="checkbox" />
+&lt;label for="784392156">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Funções auxiliares&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -330,8 +330,8 @@ return default
 &lt;/p>
 &lt;p>Depois, vamos ler o arquivo TAR:
 &lt;div class="collapsable-code">
-&lt;input id="593168247" type="checkbox" />
-&lt;label for="593168247">
+&lt;input id="439521768" type="checkbox" />
+&lt;label for="439521768">
 &lt;span class="collapsable-code__language">python&lt;/span>
 &lt;span class="collapsable-code__title">tarfile.py: Estruturas do arquivo tar&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -555,8 +555,8 @@ G G G G G G G G | B B B B B B B B
 &lt;/code>&lt;/pre>&lt;p>Traduzir isso para bitmasks será um exercício para o leitor.&lt;/p>
 &lt;p>Em código, a leitura e interpretação das bitmasks é a seguinte:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="798435612" type="checkbox" />
-&lt;label for="798435612">
+&lt;input id="165937482" type="checkbox" />
+&lt;label for="165937482">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing da máscara de bits&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -664,8 +664,8 @@ o header DIB e o array de pixels.&lt;/li>
 &lt;/ul>
 &lt;p>As três primeiras são &lt;em>bem fáceis&lt;/em>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="942687531" type="checkbox" />
-&lt;label for="942687531">
+&lt;input id="743659812" type="checkbox" />
+&lt;label for="743659812">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -719,8 +719,8 @@ que &lt;strong>não é o canal alfa&lt;/strong>.&lt;/p>
 &lt;p>Pra quem parseou um header, ler essas cores é muito simples. É a mesma coisa que ler o array de
 pixels, na verdade.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="345876219" type="checkbox" />
-&lt;label for="345876219">
+&lt;input id="158369427" type="checkbox" />
+&lt;label for="158369427">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing da paleta de cores&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -753,8 +753,8 @@ return table;
 &lt;h1 id="as-profundidades-de-cor-finais">As profundidades de cor finais&lt;/h1>
 &lt;p>Agora que você tem a tabela de cores, ler os outros formatos fica muito mais fácil.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="263451897" type="checkbox" />
-&lt;label for="263451897">
+&lt;input id="391648572" type="checkbox" />
+&lt;label for="391648572">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels por profundidade de cor II&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -885,8 +885,8 @@ do arquivo&lt;/li>
 &lt;p>Nós vamos ler esse header da seguinte forma: crie um arquivo na pasta &lt;code>src&lt;/code> chamado de
 &lt;code>bmp.js&lt;/code>. Toda nossa lógica de parsing de bitmap ficará nesse arquivo&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="673921854" type="checkbox" />
-&lt;label for="673921854">
+&lt;input id="597418623" type="checkbox" />
+&lt;label for="597418623">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header do arquivo bitmap&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1033,8 +1033,8 @@ Geralmente é 0.&lt;/li>
 &lt;p>O parsing desse header não é nada difícil. No arquivo bmp.js, adicione essas linhas, logo
 depois do trecho anterior&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="913658724" type="checkbox" />
-&lt;label for="913658724">
+&lt;input id="489623157" type="checkbox" />
+&lt;label for="489623157">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1073,8 +1073,8 @@ size: headerSize,
 &lt;/div>
 &lt;p>Altere as linhas da função &lt;code>openBMPHeader&lt;/code> pra incluir o header DIB&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="794251863" type="checkbox" />
-&lt;label for="794251863">
+&lt;input id="743856912" type="checkbox" />
+&lt;label for="743856912">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing do header DIB&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1100,8 +1100,8 @@ da imagem. O começo de cada tira de pixels deve estar numa posição divisível
 bytes adicionais (chamados de &lt;em>padding&lt;/em> são adicionados ao final da tira.)&lt;/p>
 &lt;p>O código pra ler isso não é muito difícil não.&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="293546781" type="checkbox" />
-&lt;label for="293546781">
+&lt;input id="325879641" type="checkbox" />
+&lt;label for="325879641">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1149,8 +1149,8 @@ return pixels;
 &lt;p>Agora chegou a hora de visualizar os pixels. Vamos alterar o código em dois lugares:&lt;/p>
 &lt;p>Coloque isso no final do arquivo &lt;code>bmp.js&lt;/code>&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="284573961" type="checkbox" />
-&lt;label for="284573961">
+&lt;input id="928375416" type="checkbox" />
+&lt;label for="928375416">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">bmp.js: Parsing dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1171,8 +1171,8 @@ colors: parseColors(header, buffer)
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">idata&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">plot&lt;/span>(&lt;span style="color:#a6e22e">buffer&lt;/span>, &lt;span style="color:#a6e22e">canvas&lt;/span>);
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A função plot vai ficar assim:&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="456132978" type="checkbox" />
-&lt;label for="456132978">
+&lt;input id="836429715" type="checkbox" />
+&lt;label for="836429715">
 &lt;span class="collapsable-code__language">javascript&lt;/span>
 &lt;span class="collapsable-code__title">index.js: Visualização dos pixels&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
@@ -1238,8 +1238,8 @@ a ver a série dos formatinhos.&lt;/p>
 &lt;p>O código será mostrado assim (aprendi a formatar o código desse jeito nessa semana, e fica bem
 mais bonito, dá pra expandir e fica melhor em mobile.)&lt;/p>
 &lt;div class="collapsable-code">
-&lt;input id="513287694" type="checkbox" />
-&lt;label for="513287694">
+&lt;input id="593742186" type="checkbox" />
+&lt;label for="593742186">
 &lt;span class="collapsable-code__language">c&amp;#43;&amp;#43;&lt;/span>
 &lt;span class="collapsable-code__title">Código exemplo&lt;/span>
 &lt;span class="collapsable-code__toggle" data-label-expand="△" data-label-collapse="▽">&lt;/span>
